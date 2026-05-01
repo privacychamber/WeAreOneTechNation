@@ -5,7 +5,7 @@ import { Logo } from '../ui/Logo';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-background-lightSecondary dark:bg-background-secondary pt-20 pb-10 border-t border-slate-200 dark:border-white/5">
+    <footer className="bg-background-light-secondary dark:bg-background-secondary pt-20 pb-10 border-t border-slate-200 dark:border-white/5">
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="space-y-6">
