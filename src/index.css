@@ -1,25 +1,60 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@theme {
+  --font-inter: 'Inter', sans-serif;
+  --font-sora: 'Sora', sans-serif;
 
-:root {
-  --primary: #4F6DFF;
-  --accent: #7DD3FC;
+  --color-primary: #4F6DFF;
+  --color-primary-dark: #3D56D1;
+  --color-primary-light: #768DFF;
+
+  --color-accent: #7DD3FC;
+  --color-accent-dark: #38BDF8;
+  --color-accent-light: #BAE6FD;
+
+  --color-background-dark: #0B0F1A;
+  --color-background-secondary: #111827;
+  --color-background-light: #FFFFFF;
+  --color-background-light-secondary: #F3F4F6;
+
+  --animate-gradient-x: gradient-x 15s ease infinite;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes gradient-x {
+    0%, 100% {
+      background-size: 200% 200%;
+      background-position: left center;
+    }
+    50% {
+      background-size: 200% 200%;
+      background-position: right center;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
 }
 
 @layer base {
   body {
-    @apply font-inter bg-background-light text-slate-900 transition-colors duration-300;
+    font-family: var(--font-inter);
+    background-color: var(--color-background-light);
+    color: theme(colors.slate.900);
+    transition: background-color 0.3s, color 0.3s;
   }
 
   .dark body {
-    @apply bg-background-dark text-slate-100;
+    background-color: var(--color-background-dark);
+    color: theme(colors.slate.100);
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-sora font-bold tracking-tight;
+    font-family: var(--font-sora);
+    font-weight: 700;
+    letter-spacing: -0.025em;
   }
 }
 
@@ -33,11 +68,25 @@
   }
 
   .btn-primary {
-    @apply px-6 py-3 bg-primary text-white font-semibold rounded-full hover:bg-primary-dark transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 active:scale-95;
+    @apply px-6 py-3 font-semibold rounded-full transition-all duration-300 active:scale-95;
+    background-color: var(--color-primary);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-primary-dark);
+    box-shadow: 0 10px 30px -10px rgba(79, 109, 255, 0.4);
   }
 
   .btn-outline {
-    @apply px-6 py-3 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-white transition-all duration-300 active:scale-95;
+    @apply px-6 py-3 border-2 font-semibold rounded-full transition-all duration-300 active:scale-95;
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .btn-outline:hover {
+    background-color: var(--color-primary);
+    color: white;
   }
 
   .section-padding {
@@ -55,11 +104,11 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-background-light;
+  background-color: var(--color-background-light);
 }
 
 .dark ::-webkit-scrollbar-track {
-  @apply bg-background-dark;
+  background-color: var(--color-background-dark);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -71,5 +120,5 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-primary;
+  background-color: var(--color-primary);
 }
