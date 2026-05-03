@@ -6,6 +6,7 @@ import Portfolio from './pages/Portfolio';
 import CaseStudies from './pages/CaseStudies';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Admin from './pages/Admin';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="*" element={<Home />} />
         </Route>
+        <Route path="admin" element={<Admin />} />
       </Routes>
     </Router>
   );

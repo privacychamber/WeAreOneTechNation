@@ -2,13 +2,39 @@ import React, { useState } from 'react';
 import { Mail, MapPin, Send, MessageSquare, CheckCircle2 } from 'lucide-react';
 
 const Contact: React.FC = () => {
-  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    projectType: 'Web Development',
+    budget: '$5,000 - $10,000',
+    message: ''
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    // Simulate API call
-    setTimeout(() => setSubmitted(false), 5000);
+    
+    try {
+      const response = await fetch('./api/submit.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      
+      if (response.ok) {
+        setSubmitted(true);
+        setTimeout(() => setSubmitted(false), 5000);
+        setFormData({
+          name: '',
+          email: '',
+          projectType: 'Web Development',
+          budget: '$5,000 - $10,000',
+          message: ''
+        });
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Something went wrong. Please try again.');
+    }
   };
 
   return (
@@ -82,6 +108,8 @@ const Contact: React.FC = () => {
                     <input
                       type="text"
                       required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 px-6 py-4 rounded-2xl outline-none focus:border-primary transition-colors"
                       placeholder="John Doe"
                     />
@@ -91,6 +119,8 @@ const Contact: React.FC = () => {
                     <input
                       type="email"
                       required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 px-6 py-4 rounded-2xl outline-none focus:border-primary transition-colors"
                       placeholder="john@example.com"
                     />
@@ -100,7 +130,11 @@ const Contact: React.FC = () => {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-slate-500 uppercase tracking-widest ml-1">Project Type</label>
-                    <select className="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 px-6 py-4 rounded-2xl outline-none focus:border-primary transition-colors appearance-none">
+                    <select
+                      value={formData.projectType}
+                      onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
+                      className="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 px-6 py-4 rounded-2xl outline-none focus:border-primary transition-colors appearance-none"
+                    >
                       <option>Web Development</option>
                       <option>AI Integration</option>
                       <option>Digital Automation</option>
@@ -109,7 +143,11 @@ const Contact: React.FC = () => {
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-slate-500 uppercase tracking-widest ml-1">Estimated Budget</label>
-                    <select className="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 px-6 py-4 rounded-2xl outline-none focus:border-primary transition-colors appearance-none">
+                    <select
+                      value={formData.budget}
+                      onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                      className="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 px-6 py-4 rounded-2xl outline-none focus:border-primary transition-colors appearance-none"
+                    >
                       <option>$2,000 - $5,000</option>
                       <option>$5,000 - $10,000</option>
                       <option>$10,000 - $20,000</option>
@@ -122,6 +160,8 @@ const Contact: React.FC = () => {
                   <label className="text-sm font-bold text-slate-500 uppercase tracking-widest ml-1">Tell us about your project</label>
                   <textarea
                     rows={4}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 px-6 py-4 rounded-2xl outline-none focus:border-primary transition-colors resize-none"
                     placeholder="Briefly describe your goals..."
                   ></textarea>
