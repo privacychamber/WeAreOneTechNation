@@ -42,14 +42,22 @@ export const Navbar: React.FC = () => {
       )}
     >
       <div className="container-custom flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
-          <Logo size={36} />
-          <span className={cn(
-            "text-xl font-bold font-sora hidden sm:block",
-            isScrolled ? "text-slate-900 dark:text-white" : "text-slate-900 dark:text-white"
-          )}>
-            WE ARE ONE <span className="text-primary">TECH NATION</span>
-          </span>
+        <Link to="/" className="flex items-center gap-3">
+          <Logo size={44} />
+          <div className="flex flex-col leading-none">
+            <span className={cn(
+              "text-[11px] font-semibold tracking-[0.18em] uppercase",
+              "text-slate-500 dark:text-slate-400"
+            )}>
+              We Are One
+            </span>
+            <span className={cn(
+              "text-[17px] font-extrabold tracking-[0.08em] uppercase font-sora",
+              "text-slate-900 dark:text-white"
+            )}>
+              Tech <span className="text-primary">Nation</span>
+            </span>
+          </div>
         </Link>
 
         {/* Desktop Nav */}
