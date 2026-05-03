@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { MessageSquare, Briefcase, Calendar, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useContent } from '../../hooks/useContent';
 
 export const StickyCTA: React.FC = () => {
+  const { content } = useContent();
   const [isOpen, setIsOpen] = useState(false);
 
+  const rawWhatsapp = content?.settings?.contact_whatsapp || '+91-9418100803';
+  const cleanWhatsapp = rawWhatsapp.replace(/\D/g, '');
+
   const actions = [
-    { icon: <MessageSquare size={20} />, label: 'WhatsApp', href: 'https://wa.me/1234567890', color: 'bg-[#25D366]' },
+    { icon: <MessageSquare size={20} />, label: 'WhatsApp', href: `https://wa.me/${cleanWhatsapp}`, color: 'bg-[#25D366]' },
     { icon: <Briefcase size={20} />, label: 'View Portfolio', href: '/portfolio', color: 'bg-primary' },
     { icon: <Calendar size={20} />, label: 'Book Call', href: '/contact', color: 'bg-accent-dark' },
   ];
