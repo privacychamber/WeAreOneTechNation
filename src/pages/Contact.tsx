@@ -79,18 +79,18 @@ const Contact: React.FC = () => {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-slate-500 uppercase tracking-widest ml-1">Full Name</label>
-                    <input 
-                      type="text" 
-                      required 
+                    <input
+                      type="text"
+                      required
                       className="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 px-6 py-4 rounded-2xl outline-none focus:border-primary transition-colors"
                       placeholder="John Doe"
                     />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-slate-500 uppercase tracking-widest ml-1">Email Address</label>
-                    <input 
-                      type="email" 
-                      required 
+                    <input
+                      type="email"
+                      required
                       className="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 px-6 py-4 rounded-2xl outline-none focus:border-primary transition-colors"
                       placeholder="john@example.com"
                     />
@@ -120,15 +120,15 @@ const Contact: React.FC = () => {
 
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-slate-500 uppercase tracking-widest ml-1">Tell us about your project</label>
-                  <textarea 
+                  <textarea
                     rows={4}
                     className="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 px-6 py-4 rounded-2xl outline-none focus:border-primary transition-colors resize-none"
                     placeholder="Briefly describe your goals..."
                   ></textarea>
                 </div>
 
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   disabled={submitted}
                   className="btn-primary w-full py-5 text-xl flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
