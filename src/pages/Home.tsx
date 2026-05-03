@@ -3,11 +3,16 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Zap, BarChart3, Globe, Cpu, ShieldCheck } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useContent } from '../hooks/useContent';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Home: React.FC = () => {
+  const { content } = useContent();
   const heroRef = useRef<HTMLDivElement>(null);
+
+  const heroTitle = content?.settings?.hero_title || "We Build Digital <br /><span class='text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent'>Systems That Think,</span> <br />Learn, and Convert.";
+  const heroSubtitle = content?.settings?.hero_subtitle || "From AI-powered automation to high-performance web ecosystems. We design, build, and scale your digital future.";
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -46,28 +51,13 @@ const Home: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
-  const services = [
-    {
-      title: 'AI-Powered Systems',
-      desc: 'Intelligent automation and LLM integrations that streamline operations.',
-      icon: <Cpu className="text-primary" size={32} />
-    },
-    {
-      title: 'High-Converting Websites',
-      desc: 'Speed-optimized, SEO-first digital experiences designed to sell.',
-      icon: <BarChart3 className="text-accent-dark" size={32} />
-    },
-    {
-      title: 'Scalable Architectures',
-      desc: 'Robust backend systems built to handle millions of requests.',
-      icon: <Globe className="text-primary" size={32} />
-    },
-    {
-      title: 'Digital Security',
-      desc: 'Enterprise-grade protection for your most valuable digital assets.',
-      icon: <ShieldCheck className="text-accent-dark" size={32} />
-    }
-  ];
+  const dynamicServices = content?.services?.map((s: any) => ({
+    title: s.title,
+    desc: s.description,
+    icon: s.icon === 'cpu' ? <Cpu className="text-primary" size={32} /> : 
+          s.icon === 'layers' ? <BarChart3 className="text-accent-dark" size={32} /> :
+          <Globe className="text-primary" size={32} />
+  })) || [];
 
   return (
     <div ref={heroRef}>
@@ -78,13 +68,12 @@ const Home: React.FC = () => {
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass border-primary/20 text-primary text-sm font-semibold">
               <Zap size={14} fill="currentColor" /> <span>The New Standard in Tech</span>
             </div>
-            <h1 className="text-5xl md:text-7xl leading-tight">
-              We Build Digital <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Systems That Think,</span> <br />
-              Learn, and Convert.
-            </h1>
+            <h1 
+              className="text-5xl md:text-7xl leading-tight"
+              dangerouslySetInnerHTML={{ __html: heroTitle }}
+            />
             <p className="text-xl text-slate-600 dark:text-slate-400 max-w-xl">
-              From AI-powered automation to high-performance web ecosystems. We design, build, and scale your digital future.
+              {heroSubtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Link to="/contact" className="btn-primary text-center px-10 py-4 text-lg">
@@ -155,7 +144,7 @@ const Home: React.FC = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service, i) => (
+            {dynamicServices.map((service, i) => (
               <div key={i} className="reveal glass p-8 rounded-3xl hover:border-primary/50 transition-all duration-500 group relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-2 h-0 bg-primary group-hover:h-full transition-all duration-500" />
                 <div className="mb-6 p-4 bg-slate-100 dark:bg-white/5 rounded-2xl inline-block group-hover:scale-110 transition-transform duration-500">

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Mail, MapPin, Send, MessageSquare, CheckCircle2 } from 'lucide-react';
+import { useContent } from '../hooks/useContent';
 
 const Contact: React.FC = () => {
+  const { content } = useContent();
+  const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -9,6 +12,9 @@ const Contact: React.FC = () => {
     budget: '$5,000 - $10,000',
     message: ''
   });
+
+  const email = content?.settings?.contact_email || 'privacy.chamber@gmail.com';
+  const whatsapp = content?.settings?.contact_whatsapp || '+91-9418100803';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,7 +63,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <div className="text-sm text-slate-500 font-bold uppercase tracking-widest">Email Us</div>
-                  <div className="text-xl font-bold">privacy.chamber@gmail.com</div>
+                  <div className="text-xl font-bold">{email}</div>
                 </div>
               </div>
               <div className="flex items-center gap-6">
@@ -66,7 +72,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <div className="text-sm text-slate-500 font-bold uppercase tracking-widest">WhatsApp</div>
-                  <div className="text-xl font-bold">+91-9418100803</div>
+                  <div className="text-xl font-bold">{whatsapp}</div>
                 </div>
               </div>
               <div className="flex items-center gap-6">
