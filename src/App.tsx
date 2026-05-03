@@ -12,6 +12,7 @@ function App() {
   return (
     <Router basename={import.meta.env.BASE_URL}>
       <Routes>
+        <Route path="admin" element={<Admin />} />
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
           <Route path="services" element={<Services />} />
@@ -21,7 +22,6 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="*" element={<Home />} />
         </Route>
-        <Route path="admin" element={<Admin />} />
       </Routes>
     </Router>
   );
