@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Sun, Moon, Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 import { useTheme } from '../../hooks/useTheme';
 import { Logo } from '../ui/Logo';
 import { clsx, type ClassValue } from 'clsx';
@@ -19,7 +19,7 @@ const navLinks = [
 ];
 
 export const Navbar: React.FC = () => {
-  const { theme, toggleTheme } = useTheme();
+  useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
