@@ -77,12 +77,7 @@ export const Navbar: React.FC = () => {
             </Link>
           ))}
           
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
-          >
-            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
+
 
           <Link to="/contact" className="btn-primary flex items-center gap-2">
             Book Strategy Call <ArrowRight size={16} />
@@ -91,12 +86,7 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile Toggle */}
         <div className="flex md:hidden items-center gap-4">
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
-          >
-            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
+
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="text-slate-900 dark:text-white"
