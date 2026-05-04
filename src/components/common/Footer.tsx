@@ -79,7 +79,7 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="border-t border-slate-200 dark:border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
-          <p>© {new Date().getFullYear()} WE ARE ONE TECH NATION. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} WE ARE ONE TECH NATION. All rights reserved. <span className="opacity-30">v2.1</span></p>
           <div className="flex gap-8">
             <a href="#" className="hover:text-primary">Privacy Policy</a>
             <a href="#" className="hover:text-primary">Terms of Service</a>
