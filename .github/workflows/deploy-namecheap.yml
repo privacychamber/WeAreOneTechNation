@@ -31,5 +31,6 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
-          server-dir: ./public_html/ # Change this if you are deploying to a subfolder
+          server-dir: public_html/
+          state-name: .ftp-deploy-sync-state.json
           protocol: ftp # Use 'sftp' if your Namecheap plan supports it (more secure)
