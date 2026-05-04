@@ -24,7 +24,10 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy via FTP
+      - name: Create Path Marker
+        run: echo "Pathfinder version 1.0" > dist/pathfinder.txt
+
+      - name: Try Root Upload
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -32,5 +35,14 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
           server-dir: ./
-          state-name: .ftp-deploy-sync-state.json
-          protocol: ftp # Use 'sftp' if your Namecheap plan supports it (more secure)
+          state-name: .sync-root.json
+
+      - name: Try public_html Upload
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: public_html/
+          state-name: .sync-public.json
