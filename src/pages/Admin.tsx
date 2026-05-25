@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Mail, MessageSquare, Calendar, ChevronRight, Search, LayoutDashboard, Users, Settings, LogOut, Loader2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { Calendar, ChevronRight, Search, LayoutDashboard, Settings, LogOut, Loader2 } from 'lucide-react';
 
 interface Lead {
   id: number;
@@ -35,7 +35,7 @@ const Admin: React.FC = () => {
   const fetchLeads = async () => {
     setLoading(true);
     try {
-      const response = await fetch('./api/get_leads.php', {
+      const response = await fetch('/api/get_leads.php', {
         headers: { 'Authorization': 'WAOTN_ADMIN_2024' }
       });
       const result = await response.json();
@@ -49,7 +49,7 @@ const Admin: React.FC = () => {
 
   const fetchContent = async () => {
     try {
-      const response = await fetch('./api/get_content.php');
+      const response = await fetch('/api/get_content.php');
       const result = await response.json();
       if (result.status === 'success') setContent(result.data);
     } catch (error) {
@@ -59,7 +59,7 @@ const Admin: React.FC = () => {
 
   const updateSetting = async (key: string, value: string) => {
     try {
-      await fetch('./api/update_content.php', {
+      await fetch('/api/update_content.php', {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',

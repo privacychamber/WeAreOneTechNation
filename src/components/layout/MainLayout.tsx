@@ -1,10 +1,14 @@
 import React, { useEffect } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Navbar } from '../common/Navbar';
 import { Footer } from '../common/Footer';
 import { StickyCTA } from '../ui/StickyCTA';
 
-export const MainLayout: React.FC = () => {
+interface MainLayoutProps {
+  children: React.ReactNode;
+}
+
+export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -13,7 +17,7 @@ export const MainLayout: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden">
-      {/* Background Ornaments */}
+      {/* Background Ornaments omitted for brevity in targetContent match, but kept in replacement */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary/5 dark:bg-primary/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-accent/5 dark:bg-accent/5 rounded-full blur-[100px]" />
@@ -34,7 +38,7 @@ export const MainLayout: React.FC = () => {
       <Navbar />
       
       <main className="flex-grow z-10">
-        <Outlet />
+        {children}
       </main>
 
       <Footer />

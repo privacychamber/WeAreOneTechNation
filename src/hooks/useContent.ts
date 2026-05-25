@@ -7,7 +7,7 @@ export const useContent = () => {
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        const response = await fetch('./api/get_content.php');
+        const response = await fetch('/api/get_content.php');
         const result = await response.json();
         if (result.status === 'success') {
           setContent(result.data);

@@ -25,9 +25,16 @@ jobs:
         run: npm run build
 
       - name: Create Path Marker
-        run: echo "Pathfinder version 1.0" > dist/pathfinder.txt
+        run: echo "Pathfinder version 2.0" > dist/pathfinder.txt
 
-      - name: Try Root Upload
+      - name: Discover Server Structure
+        run: |
+          echo "Listing FTP Root:" > dist/server_map.txt
+          # We use a trick here: upload a dummy file and hope the logs show the path
+          # Or we can try to use a different action to list.
+          # For now, let's just try the most likely Namecheap addon domain path.
+
+      - name: Deploy to Server Root
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -36,13 +43,3 @@ jobs:
           local-dir: ./dist/
           server-dir: ./
           state-name: .sync-root.json
-
-      - name: Try public_html Upload
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: public_html/
-          state-name: .sync-public.json

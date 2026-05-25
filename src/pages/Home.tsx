@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Zap, BarChart3, Globe, Cpu, ShieldCheck } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Zap, BarChart3, Globe, Cpu, Database, Shield } from 'lucide-react';
+import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useContent } from '../hooks/useContent';
@@ -11,29 +12,30 @@ const Home: React.FC = () => {
   const { content } = useContent();
   const heroRef = useRef<HTMLDivElement>(null);
 
-  const heroTitle = content?.settings?.hero_title || "We Build Digital <br /><span class='text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent'>Systems That Think,</span> <br />Learn, and Convert.";
+  const heroTitle = content?.settings?.hero_title || "We Build Digital <br /><span class='text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-light to-accent'>Systems That Think,</span> <br />Learn, and Convert.";
   const heroSubtitle = content?.settings?.hero_subtitle || "From AI-powered automation to high-performance web ecosystems. We design, build, and scale your digital future.";
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Hero Animation
-      gsap.from('.hero-content > *', {
-        y: 60,
+      // Hero Content Animation
+      gsap.from('.hero-content-anim > *', {
+        y: 50,
         opacity: 0,
         duration: 1,
-        stagger: 0.2,
+        stagger: 0.15,
         ease: 'power3.out'
       });
 
-      gsap.from('.hero-image', {
-        scale: 0.8,
+      // Hero Image mockup fade in
+      gsap.from('.hero-mockup-anim', {
+        scale: 0.9,
         opacity: 0,
-        duration: 1.5,
+        duration: 1.2,
         ease: 'power2.out',
-        delay: 0.5
+        delay: 0.4
       });
 
-      // Section Reveals
+      // Scroll reveals for sections
       gsap.utils.toArray('.reveal').forEach((elem: any) => {
         gsap.from(elem, {
           scrollTrigger: {
@@ -51,185 +53,432 @@ const Home: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
-  const dynamicServices = content?.services?.map((s: any) => ({
-    title: s.title,
-    desc: s.description,
-    icon: s.icon === 'cpu' ? <Cpu className="text-primary" size={32} /> : 
-          s.icon === 'layers' ? <BarChart3 className="text-accent-dark" size={32} /> :
-          <Globe className="text-primary" size={32} />
-  })) || [];
+  // Standard requested enterprise logos for horizontal marquee
+  const logos = ['TechFlow', 'Quantum', 'Nexus', 'Apex', 'Vanguard'];
+
+  // Default fallback services matching user requirements
+  const defaultServices = [
+    {
+      title: "AI-Powered Systems",
+      desc: "Intelligent automation and LLMs that automate workflows and drive actions.",
+      icon: <Cpu className="text-primary" size={32} />
+    },
+    {
+      title: "High-Converting Websites",
+      desc: "Speed-optimized, SEO-first landing pages and products that convert visitors into revenue.",
+      icon: <Globe className="text-accent-dark" size={32} />
+    },
+    {
+      title: "Scalable Architectures",
+      desc: "Robust backends and edge deployments handling millions of requests with ease.",
+      icon: <Database className="text-primary" size={32} />
+    },
+    {
+      title: "Digital Security",
+      desc: "Enterprise-grade protection protecting your systems and safeguarding user data.",
+      icon: <Shield className="text-accent-dark" size={32} />
+    }
+  ];
+
+  // Parse services from backend if available, otherwise use defaults
+  const dynamicServices = content?.services && content.services.length > 0
+    ? content.services.map((s: any) => ({
+        title: s.title,
+        desc: s.description,
+        icon: s.icon === 'cpu' ? <Cpu className="text-primary" size={32} /> : 
+              s.icon === 'globe' ? <Globe className="text-accent-dark" size={32} /> :
+              s.icon === 'database' ? <Database className="text-primary" size={32} /> :
+              s.icon === 'shield' ? <Shield className="text-accent-dark" size={32} /> :
+              s.icon === 'layers' ? <BarChart3 className="text-accent-dark" size={32} /> :
+              <Globe className="text-primary" size={32} />
+      }))
+    : defaultServices;
 
   return (
-    <div ref={heroRef}>
+    <div ref={heroRef} className="bg-background-dark text-white select-none">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-        <div className="container-custom grid lg:grid-cols-2 gap-12 items-center">
-          <div className="hero-content space-y-8 z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass border-primary/20 text-primary text-sm font-semibold">
-              <Zap size={14} fill="currentColor" /> <span>The New Standard in Tech</span>
+      <section className="relative min-h-screen flex items-center pt-28 pb-16 overflow-hidden">
+        {/* Abstract Glow in background */}
+        <div className="absolute top-[20%] left-[-10%] w-[45%] h-[45%] bg-primary/10 rounded-full blur-[130px] pointer-events-none" />
+        <div className="absolute top-[40%] right-[-10%] w-[40%] h-[40%] bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
+
+        <div className="container-custom grid lg:grid-cols-12 gap-12 items-center relative z-10">
+          
+          {/* Left Hero Content */}
+          <div className="lg:col-span-6 space-y-8 hero-content-anim">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-primary text-xs font-bold tracking-wider uppercase shadow-inner backdrop-blur-sm">
+              <Zap size={12} className="text-accent fill-accent animate-pulse" />
+              <span>The New Standard in Tech</span>
             </div>
+            
             <h1 
-              className="text-5xl md:text-7xl leading-tight"
+              className="text-4xl sm:text-5xl md:text-6xl font-extrabold font-sora leading-[1.1] tracking-tight"
               dangerouslySetInnerHTML={{ __html: heroTitle }}
             />
-            <p className="text-xl text-slate-600 dark:text-slate-400 max-w-xl">
+            
+            <p className="text-base sm:text-lg md:text-xl text-slate-400 max-w-xl font-normal leading-relaxed">
               {heroSubtitle}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Link to="/contact" className="btn-primary text-center px-10 py-4 text-lg">
+            
+            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+              <Link 
+                to="/contact" 
+                className="btn-primary text-center px-8 py-4 text-base font-bold shadow-[0_10px_25px_-5px_rgba(79,109,255,0.4)] hover:shadow-[0_15px_30px_-5px_rgba(79,109,255,0.6)] transition-all duration-300"
+              >
                 Build My System
               </Link>
-              <Link to="/portfolio" className="btn-outline text-center px-10 py-4 text-lg">
+              <Link 
+                to="/portfolio" 
+                className="btn-outline text-center px-8 py-4 text-base font-bold border-white/10 text-white bg-white/[0.02] hover:bg-white/5 hover:border-white transition-all duration-300"
+              >
                 See Portfolio
               </Link>
             </div>
-            <div className="flex items-center gap-6 pt-4 text-sm text-slate-500">
+            
+            <div className="flex flex-wrap items-center gap-6 pt-4 text-xs font-semibold uppercase tracking-wider text-slate-500">
               <div className="flex items-center gap-2">
-                <CheckCircle2 size={16} className="text-primary" /> Multi-Page Scaling
+                <CheckCircle2 size={16} className="text-primary" />
+                <span>Multi-Page Scaling</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 size={16} className="text-primary" /> AI Integration
+                <CheckCircle2 size={16} className="text-primary" />
+                <span>AI Integration</span>
               </div>
             </div>
           </div>
 
-          <div className="hero-image relative lg:block">
-            <div className="relative z-10 glass rounded-3xl p-4 overflow-hidden border-white/20 shadow-2xl">
-              <img 
-                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426" 
-                alt="Dashboard Preview" 
-                className="rounded-2xl w-full h-auto shadow-inner"
-              />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/20 blur-[100px] -z-10 animate-pulse" />
-            </div>
-            
-            {/* Floating Card */}
-            <div className="absolute -bottom-10 -left-10 glass p-6 rounded-2xl shadow-xl z-20 hidden md:block border-primary/20">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center text-primary">
-                  <BarChart3 size={24} />
-                </div>
-                <div>
-                  <div className="text-xs text-slate-500 uppercase font-bold tracking-widest">Conversion Rate</div>
-                  <div className="text-2xl font-bold font-sora">+142%</div>
+          {/* Right Hero Mockup Image with Orbiting Floating Cards */}
+          <div className="lg:col-span-6 relative hero-mockup-anim mt-10 lg:mt-0">
+            <div className="relative z-10 glass rounded-2xl border border-white/10 shadow-2xl overflow-hidden bg-slate-950/40 backdrop-blur-md p-2">
+              {/* macOS Window Chrome Header */}
+              <div className="bg-slate-900/60 px-4 py-2.5 rounded-t-xl border-b border-white/5 flex items-center gap-1.5">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
+                <div className="text-[9px] text-slate-500 font-bold uppercase tracking-widest mx-auto pr-8">
+                  waotn.agency // System_Console
                 </div>
               </div>
+              
+              {/* Dashboard Content */}
+              <div className="bg-slate-950/50 rounded-b-xl overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200" 
+                  alt="WAOTN System Dashboard" 
+                  className="w-full h-auto opacity-80"
+                />
+              </div>
             </div>
+
+            {/* Orbiting Floating Badge 1: Multi-Page Scaling */}
+            <motion.div 
+              animate={{ y: [0, -10, 0] }}
+              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+              className="absolute -left-8 top-1/4 glass px-4 py-2.5 rounded-xl border border-white/10 shadow-xl hidden md:flex items-center gap-3 backdrop-blur-md bg-black/40 z-20"
+            >
+              <div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center text-accent">
+                <Globe size={16} />
+              </div>
+              <div>
+                <div className="text-[9px] text-slate-500 font-bold uppercase tracking-wider">Infrastructure</div>
+                <div className="text-xs font-bold text-white font-sora">Multi-Page Scaling</div>
+              </div>
+            </motion.div>
+
+            {/* Orbiting Floating Badge 2: AI Integration */}
+            <motion.div 
+              animate={{ y: [0, 8, 0] }}
+              transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
+              className="absolute right-4 -top-6 glass px-4 py-2.5 rounded-xl border border-white/10 shadow-xl flex items-center gap-3 backdrop-blur-md bg-black/40 z-20"
+            >
+              <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center text-primary animate-pulse">
+                <Cpu size={16} />
+              </div>
+              <div>
+                <div className="text-[9px] text-slate-500 font-bold uppercase tracking-wider">Engineered</div>
+                <div className="text-xs font-bold text-white font-sora">AI Integration</div>
+              </div>
+            </motion.div>
+
+            {/* Orbiting Floating Badge 3: Conversion Rate */}
+            <motion.div 
+              animate={{ y: [0, -12, 0] }}
+              transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+              className="absolute -bottom-6 -left-6 glass p-5 rounded-2xl border border-white/10 shadow-2xl flex items-center gap-4 backdrop-blur-md bg-black/50 z-20 max-w-[210px]"
+            >
+              <div className="w-10 h-10 bg-emerald-500/20 rounded-full flex items-center justify-center text-emerald-400">
+                <BarChart3 size={20} />
+              </div>
+              <div>
+                <div className="text-[9px] text-slate-500 uppercase font-bold tracking-wider mb-0.5">Conversion Rate</div>
+                <div className="text-xl font-black font-sora text-emerald-400">+142%</div>
+              </div>
+            </motion.div>
           </div>
+
         </div>
       </section>
 
-      {/* Trust Bar */}
-      <section className="py-12 border-y border-slate-200 dark:border-white/5 bg-slate-50/50 dark:bg-white/[0.02]">
-        <div className="container-custom">
-          <p className="text-center text-sm font-bold text-slate-400 dark:text-slate-600 uppercase tracking-[0.2em] mb-10">
+      {/* Infinite Horizontal Logo Marquee */}
+      <section className="relative w-full overflow-hidden py-8 bg-slate-950/50 border-y border-white/5">
+        <div className="container-custom mb-6">
+          <p className="text-center text-xs font-bold text-slate-500 uppercase tracking-[0.25em]">
             Trusted by Forward-Thinking Enterprises
           </p>
-          <div className="flex flex-wrap justify-center gap-12 md:gap-24 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-            {['TechFlow', 'Quantum', 'Nexus', 'Apex', 'Vanguard'].map((name) => (
-              <span key={name} className="text-2xl font-bold font-sora text-slate-400">{name}</span>
+        </div>
+        
+        {/* Marquee Row */}
+        <div className="flex overflow-hidden select-none relative w-full">
+          {/* Faders */}
+          <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background-dark to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background-dark to-transparent z-10 pointer-events-none" />
+
+          {/* Running Tape 1 */}
+          <motion.div
+            initial={{ x: 0 }}
+            animate={{ x: "-100%" }}
+            transition={{ ease: "linear", duration: 25, repeat: Infinity }}
+            className="flex gap-20 shrink-0 min-w-full justify-around items-center pr-20"
+          >
+            {logos.map((name, idx) => (
+              <div key={idx} className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors duration-300 cursor-pointer group">
+                <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center font-bold text-primary text-sm font-sora group-hover:border-primary/50 group-hover:bg-primary/5 transition-all duration-300">
+                  {name[0]}
+                </div>
+                <span className="text-lg font-bold font-sora tracking-wider">{name}</span>
+              </div>
             ))}
-          </div>
+          </motion.div>
+
+          {/* Running Tape 2 (Duplicate for seamless scroll) */}
+          <motion.div
+            initial={{ x: 0 }}
+            animate={{ x: "-100%" }}
+            transition={{ ease: "linear", duration: 25, repeat: Infinity }}
+            className="flex gap-20 shrink-0 min-w-full justify-around items-center pr-20"
+          >
+            {logos.map((name, idx) => (
+              <div key={`dup-${idx}`} className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors duration-300 cursor-pointer group">
+                <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center font-bold text-primary text-sm font-sora group-hover:border-primary/50 group-hover:bg-primary/5 transition-all duration-300">
+                  {name[0]}
+                </div>
+                <span className="text-lg font-bold font-sora tracking-wider">{name}</span>
+              </div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
-      {/* Services Overview */}
+      {/* Services Section */}
       <section className="section-padding relative overflow-hidden">
-        <div className="container-custom">
+        <div className="container-custom relative z-10">
+          
+          {/* Section Header */}
           <div className="max-w-3xl mb-20 reveal">
-            <h2 className="text-4xl md:text-5xl mb-6">Expertise at the Intersection of AI and Design</h2>
-            <p className="text-lg text-slate-600 dark:text-slate-400">
+            <span className="text-primary font-bold text-sm uppercase tracking-widest">Our Capabilities</span>
+            <h2 className="text-4xl md:text-5xl font-sora font-extrabold mt-2 mb-6">
+              Expertise at the Intersection<br />of AI and Design
+            </h2>
+            <p className="text-lg text-slate-400 leading-relaxed">
               We don't just build websites; we engineer digital ecosystems that serve as the backbone of your business growth.
             </p>
           </div>
 
+          {/* 2x2 Services Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {dynamicServices.map((service, i) => (
-              <div key={i} className="reveal glass p-8 rounded-3xl hover:border-primary/50 transition-all duration-500 group relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-2 h-0 bg-primary group-hover:h-full transition-all duration-500" />
-                <div className="mb-6 p-4 bg-slate-100 dark:bg-white/5 rounded-2xl inline-block group-hover:scale-110 transition-transform duration-500">
-                  {service.icon}
+            {dynamicServices.map((service: any, i: number) => (
+              <motion.div
+                key={i}
+                whileHover={{ y: -8 }}
+                className="reveal glass p-8 rounded-3xl border border-white/5 hover:border-primary/30 bg-white/[0.01] transition-all duration-500 group relative overflow-hidden flex flex-col justify-between"
+              >
+                {/* Glow Overlay */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(79,109,255,0.08),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                
+                <div>
+                  {/* Icon Frame */}
+                  <div className="mb-6 p-4 bg-white/5 border border-white/10 rounded-2xl inline-block group-hover:scale-110 group-hover:border-primary/30 group-hover:bg-primary/5 transition-all duration-500 text-primary">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-xl font-bold font-sora text-white mb-3 group-hover:text-primary transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p className="text-slate-400 text-sm leading-relaxed mb-8">
+                    {service.desc}
+                  </p>
                 </div>
-                <h3 className="text-xl mb-4">{service.title}</h3>
-                <p className="text-slate-600 dark:text-slate-400 mb-6">
-                  {service.desc}
-                </p>
-                <Link to="/services" className="inline-flex items-center gap-2 text-primary font-bold group-hover:gap-3 transition-all">
-                  Learn More <ArrowRight size={18} />
+
+                <Link 
+                  to="/services" 
+                  className="inline-flex items-center gap-2 text-primary font-bold text-sm group-hover:gap-3 transition-all duration-300"
+                >
+                  <span>Learn More</span>
+                  <ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
                 </Link>
-              </div>
+              </motion.div>
             ))}
           </div>
+
         </div>
       </section>
 
-      {/* Value Prop */}
+      {/* Performance & Metrics Section */}
       <section className="section-padding bg-background-dark text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/30 via-transparent to-transparent" />
-        </div>
+        {/* Radial Background Globs */}
+        <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[150px] pointer-events-none -translate-y-1/2" />
+        <div className="absolute bottom-10 right-1/4 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
+
         <div className="container-custom relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="reveal">
-              <h2 className="text-4xl md:text-5xl mb-8">Built for Performance. <br />Designed for Scale.</h2>
-              <div className="space-y-6">
+          <div className="grid lg:grid-cols-12 gap-16 items-center">
+            
+            {/* Left: Numbered Timeline */}
+            <div className="lg:col-span-7 reveal space-y-12">
+              <div>
+                <span className="text-primary font-bold text-sm uppercase tracking-widest">Why Partners Choose Us</span>
+                <h2 className="text-4xl md:text-5xl font-sora font-extrabold mt-2 mb-6">
+                  Built for Performance.<br />Designed for Scale.
+                </h2>
+                <p className="text-slate-400 text-base sm:text-lg max-w-xl">
+                  We bridge the gap between intelligent systems and high-converting visual design to give your business an unfair advantage.
+                </p>
+              </div>
+
+              <div className="space-y-8 relative before:absolute before:left-6 before:top-4 before:bottom-4 before:w-[2px] before:bg-white/5">
                 {[
-                  { title: 'Core Web Vitals', desc: 'Every project scores 90+ on Lighthouse metrics.' },
-                  { title: 'Conversion-First UX', desc: 'User journeys mapped to drive revenue and leads.' },
-                  { title: 'Modern Tech Stack', desc: 'React, Next.js, and Headless CMS for maximum agility.' }
+                  { 
+                    number: '01', 
+                    title: 'Core Web Vitals', 
+                    desc: 'Every system is engineered to score 90+ on Lighthouse, ensuring instant load times and perfect SEO signals.',
+                    badge: '99 score'
+                  },
+                  { 
+                    number: '02', 
+                    title: 'Conversion-First UX', 
+                    desc: 'We map detailed user journeys and deploy behavioral heatmaps to maximize pipeline and revenue generation.',
+                    badge: '142% avg. lift'
+                  },
+                  { 
+                    number: '03', 
+                    title: 'Modern Tech Stack', 
+                    desc: 'Utilizing React, Next.js, Headless CMS, and edge deployments to provide speed, security, and effortless scaling.',
+                    badge: 'Next.js & Edge'
+                  }
                 ].map((item, i) => (
-                  <div key={i} className="flex gap-4">
-                    <div className="mt-1 w-6 h-6 rounded-full bg-primary flex-shrink-0 flex items-center justify-center text-[10px] font-bold">
-                      {i + 1}
+                  <div key={i} className="flex gap-6 relative group">
+                    {/* Circle Number Marker */}
+                    <div className="w-12 h-12 rounded-full bg-slate-900 border border-white/10 group-hover:border-primary/50 group-hover:bg-primary/10 transition-all duration-300 flex-shrink-0 flex items-center justify-center font-sora font-bold text-slate-400 group-hover:text-primary z-10">
+                      {item.number}
                     </div>
-                    <div>
-                      <h4 className="text-xl mb-1">{item.title}</h4>
-                      <p className="text-slate-400">{item.desc}</p>
+                    <div className="pt-1">
+                      <div className="flex items-center gap-3 mb-1">
+                        <h4 className="text-lg sm:text-xl font-bold font-sora text-white group-hover:text-primary transition-colors duration-300">{item.title}</h4>
+                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-white/5 border border-white/10 text-accent group-hover:bg-accent/10 group-hover:text-white transition-all duration-300">
+                          {item.badge}
+                        </span>
+                      </div>
+                      <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="reveal">
-              <div className="glass rounded-3xl p-8 border-white/5 space-y-8">
-                <div className="flex justify-between items-end">
+
+            {/* Right: Stats Dashboard and Testimonial Quote */}
+            <div className="lg:col-span-5 reveal space-y-8">
+              
+              {/* Stats Panel */}
+              <div className="glass rounded-3xl p-8 border border-white/5 bg-white/[0.01] shadow-2xl relative overflow-hidden group hover:border-white/10 transition-all duration-500">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-[40px] pointer-events-none" />
+                
+                <div className="flex justify-between items-start mb-8">
                   <div>
-                    <div className="text-slate-400 text-sm mb-1 uppercase tracking-widest">Efficiency Increase</div>
-                    <div className="text-5xl font-bold font-sora">85%</div>
+                    <div className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">Efficiency Increase</div>
+                    <div className="text-5xl font-extrabold font-sora text-white group-hover:text-primary transition-colors duration-300">85%</div>
                   </div>
-                  <div className="text-primary font-bold text-lg mb-1">+22% YoY</div>
+                  <div className="bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full text-emerald-400 font-bold text-xs flex items-center gap-1">
+                    <span>+22% YoY</span>
+                  </div>
                 </div>
-                <div className="h-32 flex items-end gap-2">
-                  {[40, 70, 45, 90, 65, 80, 100].map((h, i) => (
-                    <div 
-                      key={i} 
-                      className="flex-1 bg-gradient-to-t from-primary to-accent rounded-t-lg transition-all duration-1000" 
-                      style={{ height: `${h}%` }}
-                    />
+
+                {/* Animated Mini Bar Chart */}
+                <div className="h-28 flex items-end gap-3 mb-4 px-2">
+                  {[45, 60, 40, 80, 55, 75, 95].map((h, i) => (
+                    <div key={i} className="flex-1 flex flex-col justify-end h-full group/bar">
+                      <motion.div 
+                        initial={{ height: 0 }}
+                        whileInView={{ height: `${h}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: i * 0.1, ease: "easeOut" }}
+                        className="w-full bg-gradient-to-t from-primary to-accent rounded-t-md relative"
+                      >
+                        {/* Tooltip on hover */}
+                        <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 border border-white/10 px-1.5 py-0.5 rounded text-[10px] text-white opacity-0 group-hover/bar:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                          {h}%
+                        </div>
+                      </motion.div>
+                    </div>
                   ))}
                 </div>
-                <p className="text-slate-400 italic">
-                  "WAOTN transformed our legacy systems into a modern AI-integrated engine. Our output doubled within 3 months."
-                </p>
+                <div className="flex justify-between text-[10px] text-slate-500 font-bold uppercase tracking-wider px-1">
+                  <span>Q1</span>
+                  <span>Q2</span>
+                  <span>Q3</span>
+                  <span>Q4</span>
+                  <span>Q5</span>
+                  <span>Q6</span>
+                  <span>Active</span>
+                </div>
               </div>
+
+              {/* Testimonial quote card */}
+              <div className="glass rounded-3xl p-8 border border-white/5 bg-gradient-to-r from-primary/5 to-accent/5 relative overflow-hidden shadow-xl">
+                <div className="absolute top-4 left-6 text-7xl font-serif text-primary/10 select-none">“</div>
+                <div className="relative z-10">
+                  <p className="text-slate-300 italic text-base leading-relaxed mb-6 font-medium">
+                    "WAOTN transformed our legacy systems into a modern AI-integrated engine. Our output doubled within 3 months."
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-accent flex items-center justify-center font-bold text-white text-sm">
+                      CT
+                    </div>
+                    <div>
+                      <div className="text-sm font-bold text-white">Chief Technology Officer</div>
+                      <div className="text-xs text-slate-500">Enterprise AI Partner</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
+
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
+      {/* Final Call to Action Banner */}
       <section className="section-padding container-custom reveal">
-        <div className="glass rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden border-primary/20">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-1/2 bg-primary/10 blur-[120px] -z-10" />
-          <h2 className="text-4xl md:text-6xl mb-8">Ready to Scale Your Digital Nation?</h2>
-          <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-12">
+        <div className="glass rounded-[2.5rem] md:rounded-[3.5rem] p-12 md:p-24 text-center relative overflow-hidden border border-white/10 bg-gradient-to-b from-white/[0.03] to-transparent shadow-2xl">
+          {/* Blur Lights */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60%] h-[60%] bg-primary/25 rounded-full blur-[130px] -z-10 pointer-events-none" />
+          <div className="absolute -bottom-10 left-1/4 w-[40%] h-[40%] bg-accent/10 rounded-full blur-[100px] -z-10 pointer-events-none" />
+
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-sora font-extrabold text-white mb-6 leading-tight tracking-tight">
+            Ready to Scale Your<br />Digital Nation?
+          </h2>
+          <p className="text-base sm:text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed">
             Join the elite companies leveraging premium technology to dominate their markets. Strategy calls are limited.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-6">
-            <Link to="/contact" className="btn-primary px-12 py-5 text-xl">
+          <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-xs mx-auto sm:max-w-none">
+            <Link 
+              to="/contact" 
+              className="btn-primary px-8 py-4 text-base font-bold shadow-[0_15px_30px_-10px_rgba(79,109,255,0.5)] hover:shadow-[0_20px_40px_-5px_rgba(79,109,255,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 text-center"
+            >
               Book Your Strategy Call
             </Link>
-            <Link to="/portfolio" className="btn-outline px-12 py-5 text-xl">
+            <Link 
+              to="/portfolio" 
+              className="btn-outline px-8 py-4 text-base font-bold border-white/10 hover:border-white text-white bg-white/[0.02] hover:bg-white/10 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 text-center"
+            >
               Explore Our Work
             </Link>
           </div>

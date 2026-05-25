@@ -1,15 +1,17 @@
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /
-  
-  # Allow the /api directory to be accessed directly
-  RewriteCond %{REQUEST_URI} ^/api/
-  RewriteRule ^ - [L]
+# Basic SPA Routing
+RewriteEngine On
 
-  # Standard SPA Routing
-  RewriteRule ^index\.html$ - [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteCond %{REQUEST_FILENAME} !-l
-  RewriteRule . /index.html [L]
-</IfModule>
+# 1. Force SSL
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 2. Stop if file or directory exists (including /api/...)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# 3. Everything else to index.html
+RewriteRule . index.html [L]
+
+# Security
+Options -Indexes

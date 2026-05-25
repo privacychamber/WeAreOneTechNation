@@ -20,7 +20,7 @@ const Contact: React.FC = () => {
     e.preventDefault();
     
     try {
-      const response = await fetch('./api/submit.php', {
+      const response = await fetch('/api/submit.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

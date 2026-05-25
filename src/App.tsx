@@ -10,18 +10,16 @@ import Admin from './pages/Admin';
 
 function App() {
   return (
-    <Router basename={import.meta.env.BASE_URL}>
+    <Router>
       <Routes>
-        <Route path="admin" element={<Admin />} />
-        <Route path="/" element={<MainLayout />}>
-          <Route index element={<Home />} />
-          <Route path="services" element={<Services />} />
-          <Route path="portfolio" element={<Portfolio />} />
-          <Route path="case-studies" element={<CaseStudies />} />
-          <Route path="about" element={<About />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="*" element={<Home />} />
-        </Route>
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/services" element={<MainLayout><Services /></MainLayout>} />
+        <Route path="/portfolio" element={<MainLayout><Portfolio /></MainLayout>} />
+        <Route path="/case-studies" element={<MainLayout><CaseStudies /></MainLayout>} />
+        <Route path="/about" element={<MainLayout><About /></MainLayout>} />
+        <Route path="/contact" element={<MainLayout><Contact /></MainLayout>} />
+        <Route path="/" element={<MainLayout><Home /></MainLayout>} />
+        <Route path="*" element={<MainLayout><Home /></MainLayout>} />
       </Routes>
     </Router>
   );
