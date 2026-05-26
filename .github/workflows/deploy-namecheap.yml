@@ -43,3 +43,13 @@ jobs:
           local-dir: ./dist/
           server-dir: ./
           state-name: .sync-root.json
+
+      - name: Deploy to public_html
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: public_html/
+          state-name: .sync-public.json
