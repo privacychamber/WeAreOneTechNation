@@ -99,15 +99,15 @@ const Portfolio: React.FC = () => {
             <Link 
               to={`/case-studies`} 
               key={project.id} 
-              className="group relative block bg-white dark:bg-background-secondary rounded-[2rem] overflow-hidden border border-slate-200 dark:border-white/5 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10"
+              className="group relative block bg-white dark:bg-background-secondary rounded-[2rem] overflow-hidden border border-slate-200 dark:border-white/5 hover:border-primary/30 transition-colors duration-200"
             >
               <div className="aspect-[4/3] overflow-hidden relative">
                 <img 
                   src={project.image} 
                   alt={project.title} 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                  className="w-full h-full object-cover" 
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end p-8">
                   <div className="text-white flex items-center gap-2 font-bold">
                     View Case Study <ExternalLink size={18} />
                   </div>

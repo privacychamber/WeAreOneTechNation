@@ -1,179 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Zap, BarChart3, Globe, Cpu, Database, Shield } from 'lucide-react';
-import { motion } from 'framer-motion';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useContent } from '../hooks/useContent';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const Home: React.FC = () => {
   const { content } = useContent();
-  const heroRef = useRef<HTMLDivElement>(null);
-  const heroGlowRef = useRef<HTMLDivElement>(null);
-  
-  // Refs for stats count-up animations
-  const efficiencyCountRef = useRef<HTMLSpanElement>(null);
-  const conversionCountRef = useRef<HTMLDivElement>(null);
 
   const heroSubtitle = content?.settings?.hero_subtitle || "From AI-powered automation to high-performance web ecosystems. We design, build, and scale your digital future.";
   const heroTitle = content?.settings?.hero_title || "We Build Digital <br /><span class='text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-light to-accent'>Systems That Think,</span> <br />Learn, and Convert.";
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // 1. Title clip-path slide reveal
-      gsap.fromTo('.hero-title-mask', 
-        { clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)', y: 30 },
-        { clipPath: 'polygon(0 0%, 100% 0%, 100% 100%, 0 100%)', y: 0, duration: 1.2, ease: 'power4.out', delay: 0.2 }
-      );
-
-      // 2. Stagger fade-in for subtitle and CTAs
-      gsap.from('.hero-sub-anim', {
-        opacity: 0,
-        y: 20,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'power3.out',
-        delay: 0.6
-      });
-
-      // 3. Scale and fade-in for the main mockup
-      gsap.from('.hero-mockup-anim', {
-        scale: 0.95,
-        opacity: 0,
-        duration: 1.4,
-        ease: 'power2.out',
-        delay: 0.5
-      });
-
-      // 4. Background tech elements continuous rotation & float
-      gsap.to('.tech-circle-rotate', {
-        rotation: 360,
-        duration: 30,
-        repeat: -1,
-        ease: 'none'
-      });
-
-      gsap.to('.tech-float-1', {
-        y: -15,
-        x: 10,
-        rotation: 6,
-        duration: 7,
-        repeat: -1,
-        yoyo: true,
-        ease: 'power1.inOut'
-      });
-
-      gsap.to('.tech-float-2', {
-        y: 18,
-        x: -12,
-        rotation: -6,
-        duration: 9,
-        repeat: -1,
-        yoyo: true,
-        ease: 'power1.inOut'
-      });
-
-      // 5. Section Scroll Reveals
-      gsap.utils.toArray('.reveal').forEach((elem: any) => {
-        gsap.from(elem, {
-          scrollTrigger: {
-            trigger: elem,
-            start: 'top 85%',
-          },
-          y: 35,
-          opacity: 0,
-          duration: 0.8,
-          ease: 'power2.out'
-        });
-      });
-
-      // 6. Stats Count Up (Efficiency Card - 85%)
-      const countObj = { efficiency: 0, conversion: 0 };
-      
-      gsap.to(countObj, {
-        efficiency: 85,
-        duration: 2.2,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '#stats-container',
-          start: 'top 85%',
-        },
-        onUpdate: () => {
-          if (efficiencyCountRef.current) {
-            efficiencyCountRef.current.innerText = Math.floor(countObj.efficiency).toString();
-          }
-        }
-      });
-
-      // Stats Count Up (Hero Floating Card - 142%)
-      gsap.to(countObj, {
-        conversion: 142,
-        duration: 2.5,
-        ease: 'power3.out',
-        delay: 0.8,
-        onUpdate: () => {
-          if (conversionCountRef.current) {
-            conversionCountRef.current.innerText = '+' + Math.floor(countObj.conversion).toString() + '%';
-          }
-        }
-      });
-
-    }, heroRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  // 7. Interactive mouse spotlight follow-me effect in Hero
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!heroGlowRef.current) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    gsap.to(heroGlowRef.current, {
-      x: x - 200,
-      y: y - 200,
-      duration: 0.8,
-      ease: 'power3.out'
-    });
-  };
-
-  // 8. 3D card tilt controls for services
-  const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = -(y - centerY) / 12; // tilt angle
-    const rotateY = (x - centerX) / 12;
-    
-    gsap.to(card, {
-      rotateX: rotateX,
-      rotateY: rotateY,
-      transformPerspective: 1000,
-      scale: 1.02,
-      duration: 0.3,
-      ease: 'power2.out',
-      overwrite: 'auto'
-    });
-  };
-
-  const handleCardMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    gsap.to(card, {
-      rotateX: 0,
-      rotateY: 0,
-      scale: 1,
-      duration: 0.5,
-      ease: 'power3.out',
-      overwrite: 'auto'
-    });
-  };
 
   const logos = ['TechFlow', 'Quantum', 'Nexus', 'Apex', 'Vanguard'];
 
@@ -214,17 +48,9 @@ const Home: React.FC = () => {
     : defaultServices;
 
   return (
-    <div ref={heroRef} className="bg-background-dark text-white select-none relative overflow-hidden">
-      {/* Interactive mouse follow spotlight */}
-      <div 
-        ref={heroGlowRef}
-        className="absolute w-[400px] h-[400px] bg-primary/10 rounded-full blur-[120px] pointer-events-none opacity-0 lg:opacity-100 transition-opacity duration-1000 z-0"
-        style={{ left: 0, top: 0 }}
-      />
-
+    <div className="bg-background-dark text-white select-none relative overflow-hidden">
       {/* Hero Section */}
       <section 
-        onMouseMove={handleMouseMove}
         className="relative min-h-screen flex items-center pt-28 pb-16 overflow-hidden z-10"
       >
         {/* Futuristic Background Grid Lines */}
@@ -234,8 +60,8 @@ const Home: React.FC = () => {
         <div className="absolute top-[10%] left-[-5%] w-[45%] h-[45%] bg-primary/10 rounded-full blur-[130px] pointer-events-none z-0" />
         <div className="absolute bottom-[20%] right-[-5%] w-[40%] h-[40%] bg-accent/5 rounded-full blur-[100px] pointer-events-none z-0" />
 
-        {/* Rotating Tech Compass Accents (Background) */}
-        <div className="absolute top-[15%] right-[8%] opacity-20 pointer-events-none z-0 hidden xl:block tech-circle-rotate">
+        {/* Tech Compass Accents (Background) */}
+        <div className="absolute top-[15%] right-[8%] opacity-20 pointer-events-none z-0 hidden xl:block">
           <svg width="240" height="240" viewBox="0 0 100 100" className="text-primary">
             <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4, 4" />
             <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" strokeWidth="0.2" />
@@ -244,15 +70,14 @@ const Home: React.FC = () => {
           </svg>
         </div>
 
-        {/* Floating Futuristic Node Accents */}
-        <div className="absolute bottom-[15%] left-[5%] opacity-15 pointer-events-none z-0 hidden lg:block tech-float-1">
+        {/* Futuristic Node Accents */}
+        <div className="absolute bottom-[15%] left-[5%] opacity-15 pointer-events-none z-0 hidden lg:block">
           <svg width="180" height="180" viewBox="0 0 100 100" className="text-accent">
             <line x1="10" y1="30" x2="50" y2="10" stroke="currentColor" strokeWidth="0.5" />
             <line x1="50" y1="10" x2="90" y2="40" stroke="currentColor" strokeWidth="0.5" />
             <line x1="90" y1="40" x2="60" y2="80" stroke="currentColor" strokeWidth="0.5" />
             <line x1="60" y1="80" x2="10" y2="30" stroke="currentColor" strokeWidth="0.5" />
             <circle cx="10" cy="30" r="3" fill="currentColor" />
-            <circle cx="50" cy="10" r="4" fill="currentColor" className="animate-ping" style={{ animationDuration: '3s' }} />
             <circle cx="50" cy="10" r="3" fill="currentColor" />
             <circle cx="90" cy="40" r="2.5" fill="currentColor" />
             <circle cx="60" cy="80" r="3" fill="currentColor" />
@@ -264,7 +89,7 @@ const Home: React.FC = () => {
           {/* Left Hero Content */}
           <div className="lg:col-span-6 space-y-8">
             <div className="hero-sub-anim inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-primary text-xs font-bold tracking-wider uppercase shadow-inner backdrop-blur-sm">
-              <Zap size={12} className="text-accent fill-accent animate-pulse" />
+              <Zap size={12} className="text-accent fill-accent" />
               <span>The New Standard in Tech</span>
             </div>
             
@@ -331,10 +156,8 @@ const Home: React.FC = () => {
             </div>
 
             {/* Orbiting Badge 1: Multi-Page Scaling */}
-            <motion.div 
-              animate={{ y: [0, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-              className="absolute -left-10 top-1/4 glass px-4 py-2.5 rounded-xl border border-white/10 shadow-xl hidden md:flex items-center gap-3 backdrop-blur-md bg-black/40 z-20 tech-float-1"
+            <div 
+              className="absolute -left-10 top-1/4 glass px-4 py-2.5 rounded-xl border border-white/10 shadow-xl hidden md:flex items-center gap-3 backdrop-blur-md bg-black/40 z-20"
             >
               <div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center text-accent">
                 <Globe size={16} />
@@ -343,28 +166,24 @@ const Home: React.FC = () => {
                 <div className="text-[9px] text-slate-500 font-bold uppercase tracking-wider">Infrastructure</div>
                 <div className="text-xs font-bold text-white font-sora">Multi-Page Scaling</div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Orbiting Badge 2: AI Integration */}
-            <motion.div 
-              animate={{ y: [0, 8, 0] }}
-              transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
-              className="absolute right-4 -top-6 glass px-4 py-2.5 rounded-xl border border-white/10 shadow-xl flex items-center gap-3 backdrop-blur-md bg-black/40 z-20 tech-float-2"
+            <div 
+              className="absolute right-4 -top-6 glass px-4 py-2.5 rounded-xl border border-white/10 shadow-xl flex items-center gap-3 backdrop-blur-md bg-black/40 z-20"
             >
-              <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center text-primary animate-pulse">
+              <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
                 <Cpu size={16} />
               </div>
               <div>
                 <div className="text-[9px] text-slate-500 font-bold uppercase tracking-wider">Engineered</div>
                 <div className="text-xs font-bold text-white font-sora">AI Integration</div>
               </div>
-            </motion.div>
+            </div>
 
-            {/* Orbiting Badge 3: Conversion Rate count-up */}
-            <motion.div 
+            {/* Orbiting Badge 3: Conversion Rate */}
+            <div 
               id="hero-conversion-card"
-              animate={{ y: [0, -12, 0] }}
-              transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
               className="absolute -bottom-6 -left-6 glass p-5 rounded-2xl border border-white/10 shadow-2xl flex items-center gap-4 backdrop-blur-md bg-black/50 z-20 max-w-[210px]"
             >
               <div className="w-10 h-10 bg-emerald-500/20 rounded-full flex items-center justify-center text-emerald-400">
@@ -373,38 +192,24 @@ const Home: React.FC = () => {
               <div>
                 <div className="text-[9px] text-slate-500 uppercase font-bold tracking-wider mb-0.5">Conversion Rate</div>
                 <div 
-                  ref={conversionCountRef}
                   className="text-2xl font-black font-sora text-emerald-400"
                 >
-                  +0%
+                  +142%
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
 
         </div>
       </section>
 
-      {/* Infinite Horizontal Logo Marquee */}
+      {/* Partner Logos */}
       <section className="relative w-full overflow-hidden py-8 bg-slate-950/50 border-y border-white/5 z-10">
-        <div className="container-custom mb-6">
-          <p className="text-center text-xs font-bold text-slate-500 uppercase tracking-[0.25em]">
+        <div className="container-custom">
+          <p className="text-center text-xs font-bold text-slate-500 uppercase tracking-[0.25em] mb-6">
             Trusted by Forward-Thinking Enterprises
           </p>
-        </div>
-        
-        <div className="flex overflow-hidden select-none relative w-full">
-          {/* Edge Faders */}
-          <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background-dark to-transparent z-10 pointer-events-none" />
-          <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background-dark to-transparent z-10 pointer-events-none" />
-
-          {/* Running Tape 1 */}
-          <motion.div
-            initial={{ x: 0 }}
-            animate={{ x: "-100%" }}
-            transition={{ ease: "linear", duration: 25, repeat: Infinity }}
-            className="flex gap-20 shrink-0 min-w-full justify-around items-center pr-20"
-          >
+          <div className="flex flex-wrap justify-center gap-x-12 gap-y-6 items-center">
             {logos.map((name, idx) => (
               <div key={idx} className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors duration-300 cursor-pointer group">
                 <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center font-bold text-primary text-sm font-sora group-hover:border-primary/50 group-hover:bg-primary/5 transition-all duration-300">
@@ -413,24 +218,7 @@ const Home: React.FC = () => {
                 <span className="text-lg font-bold font-sora tracking-wider">{name}</span>
               </div>
             ))}
-          </motion.div>
-
-          {/* Running Tape 2 */}
-          <motion.div
-            initial={{ x: 0 }}
-            animate={{ x: "-100%" }}
-            transition={{ ease: "linear", duration: 25, repeat: Infinity }}
-            className="flex gap-20 shrink-0 min-w-full justify-around items-center pr-20"
-          >
-            {logos.map((name, idx) => (
-              <div key={`dup-${idx}`} className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors duration-300 cursor-pointer group">
-                <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center font-bold text-primary text-sm font-sora group-hover:border-primary/50 group-hover:bg-primary/5 transition-all duration-300">
-                  {name[0]}
-                </div>
-                <span className="text-lg font-bold font-sora tracking-wider">{name}</span>
-              </div>
-            ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -454,20 +242,11 @@ const Home: React.FC = () => {
             {dynamicServices.map((service: any, i: number) => (
               <div
                 key={i}
-                onMouseMove={handleCardMouseMove}
-                onMouseLeave={handleCardMouseLeave}
-                className="reveal glass p-8 rounded-3xl border border-white/5 bg-white/[0.01] transition-all duration-300 group relative overflow-hidden flex flex-col justify-between cursor-default"
-                style={{ transformStyle: 'preserve-3d', backfaceVisibility: 'hidden' }}
+                className="glass p-8 rounded-3xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-primary/30 transition-colors duration-300 group flex flex-col justify-between cursor-default"
               >
-                {/* Custom internal glow accent */}
-                <div 
-                  className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(79,109,255,0.08),transparent_60%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                  style={{ transform: 'translateZ(10px)' }}
-                />
-                
-                <div style={{ transform: 'translateZ(25px)' }}>
+                <div>
                   {/* Icon Frame */}
-                  <div className="mb-6 p-4 bg-white/5 border border-white/10 rounded-2xl inline-block group-hover:scale-110 group-hover:border-primary/30 group-hover:bg-primary/5 transition-all duration-300 text-primary">
+                  <div className="mb-6 p-4 bg-white/5 border border-white/10 rounded-2xl inline-block text-primary">
                     {service.icon}
                   </div>
                   <h3 className="text-xl font-bold font-sora text-white mb-3 group-hover:text-primary transition-colors duration-300">
@@ -480,11 +259,10 @@ const Home: React.FC = () => {
 
                 <Link 
                   to="/services" 
-                  className="inline-flex items-center gap-2 text-primary font-bold text-sm group-hover:gap-3 transition-all duration-300"
-                  style={{ transform: 'translateZ(15px)' }}
+                  className="inline-flex items-center gap-2 text-primary font-bold text-sm"
                 >
                   <span>Learn More</span>
-                  <ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight size={16} />
                 </Link>
               </div>
             ))}
@@ -560,14 +338,14 @@ const Home: React.FC = () => {
             <div id="stats-container" className="lg:col-span-5 reveal space-y-8 z-10">
               
               {/* Stats Panel with Count Up */}
-              <div className="glass rounded-3xl p-8 border border-white/5 bg-white/[0.01] shadow-2xl relative overflow-hidden group hover:border-white/10 transition-all duration-500">
+              <div className="glass rounded-3xl p-8 border border-white/5 bg-white/[0.01] shadow-2xl relative overflow-hidden group hover:border-white/10 transition-colors duration-300">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-[40px] pointer-events-none" />
                 
                 <div className="flex justify-between items-start mb-8">
                   <div>
                     <div className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">Efficiency Increase</div>
                     <div className="text-5xl font-extrabold font-sora text-white group-hover:text-primary transition-colors duration-300">
-                      <span ref={efficiencyCountRef}>0</span>%
+                      <span>85</span>%
                     </div>
                   </div>
                   <div className="bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full text-emerald-400 font-bold text-xs flex items-center gap-1">
@@ -575,22 +353,19 @@ const Home: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Animated Mini Bar Chart */}
+                {/* Mini Bar Chart */}
                 <div className="h-28 flex items-end gap-3 mb-4 px-2">
                   {[45, 60, 40, 80, 55, 75, 95].map((h, i) => (
                     <div key={i} className="flex-1 flex flex-col justify-end h-full group/bar">
-                      <motion.div 
-                        initial={{ height: 0 }}
-                        whileInView={{ height: `${h}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: i * 0.08, ease: "easeOut" }}
+                      <div 
+                        style={{ height: `${h}%` }}
                         className="w-full bg-gradient-to-t from-primary to-accent rounded-t-md relative"
                       >
-                        {/* Interactive Tooltip */}
+                        {/* Tooltip on hover */}
                         <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 border border-white/10 px-1.5 py-0.5 rounded text-[10px] text-white opacity-0 group-hover/bar:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
                           {h}%
                         </div>
-                      </motion.div>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -646,13 +421,13 @@ const Home: React.FC = () => {
           <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-xs mx-auto sm:max-w-none">
             <Link 
               to="/contact" 
-              className="btn-primary px-8 py-4 text-base font-bold shadow-[0_15px_30px_-10px_rgba(79,109,255,0.5)] hover:shadow-[0_20px_40px_-5px_rgba(79,109,255,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 text-center"
+              className="btn-primary px-8 py-4 text-base font-bold shadow-[0_10px_25px_-5px_rgba(79,109,255,0.4)] hover:shadow-[0_15px_30px_-5px_rgba(79,109,255,0.6)] text-center transition-colors duration-200"
             >
               Book Your Strategy Call
             </Link>
             <Link 
               to="/portfolio" 
-              className="btn-outline px-8 py-4 text-base font-bold border-white/10 hover:border-white text-white bg-white/[0.02] hover:bg-white/10 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 text-center"
+              className="btn-outline px-8 py-4 text-base font-bold border-white/10 hover:border-white text-white bg-white/[0.02] hover:bg-white/10 text-center transition-colors duration-200"
             >
               Explore Our Work
             </Link>
