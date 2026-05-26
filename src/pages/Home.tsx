@@ -48,7 +48,7 @@ const Home: React.FC = () => {
     : defaultServices;
 
   return (
-    <div className="bg-background-dark text-white select-none relative overflow-hidden">
+    <div className="bg-transparent text-white select-none relative overflow-hidden">
       {/* Hero Section */}
       <section 
         className="relative min-h-screen flex items-center pt-28 pb-16 overflow-hidden z-10"
@@ -272,7 +272,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Performance & Metrics Section */}
-      <section className="section-padding bg-background-dark text-white relative overflow-hidden z-10">
+      <section className="section-padding bg-transparent text-white relative overflow-hidden z-10">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.003)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.003)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none opacity-50 z-0" />
 
         {/* Ambient Blur Blurs */}
