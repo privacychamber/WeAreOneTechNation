@@ -16,13 +16,19 @@ const Home: React.FC = () => {
   const efficiencyCountRef = useRef<HTMLSpanElement>(null);
   const conversionCountRef = useRef<HTMLDivElement>(null);
 
+  const rawTitle = content?.settings?.hero_title || "We Build Digital Systems That Think, Learn, and Convert.";
   const heroSubtitle = content?.settings?.hero_subtitle || "From AI-powered automation to high-performance web ecosystems. We design, build, and scale your digital future.";
   
-  // Apple-level white-to-slate metallic gradient title
-  const heroTitle = content?.settings?.hero_title || 
-    "<span class='bg-gradient-to-b from-white via-white to-slate-400 text-transparent bg-clip-text'>We Build Digital</span><br />" +
-    "<span class='text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-light to-accent'>Systems That Think,</span><br />" +
-    "<span class='bg-gradient-to-b from-white via-white to-slate-400 text-transparent bg-clip-text'>Learn, and Convert.</span>";
+  // Dynamically parses and wraps the title in metallic white-to-slate and accent gradients
+  const formatHeroTitle = (title: string) => {
+    const cleanText = title.replace(/<[^>]*>/g, '').trim();
+    if (cleanText.includes("We Build Digital Systems That Think, Learn, and Convert.")) {
+      return `<span class="bg-gradient-to-b from-white via-white to-slate-400 text-transparent bg-clip-text">We Build Digital</span><br />` +
+             `<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-light to-accent">Systems That Think,</span><br />` +
+             `<span class="bg-gradient-to-b from-white via-white to-slate-400 text-transparent bg-clip-text">Learn, and Convert.</span>`;
+    }
+    return `<span class="bg-gradient-to-b from-white via-white to-slate-400 text-transparent bg-clip-text">${title}</span>`;
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -30,8 +36,8 @@ const Home: React.FC = () => {
       const tl = gsap.timeline();
 
       tl.fromTo('.hero-title-anim', 
-        { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.4, ease: 'power4.out', delay: 0.1 }
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.2, ease: 'power4.out', delay: 0.1 }
       );
 
       tl.from('.hero-sub-anim', {
@@ -40,23 +46,14 @@ const Home: React.FC = () => {
         duration: 0.8,
         stagger: 0.12,
         ease: 'power3.out'
-      }, '-=1.0');
-
-      tl.from('.hero-mockup-anim', {
-        scale: 0.96,
-        opacity: 0,
-        y: 35,
-        duration: 1.2,
-        ease: 'power3.out'
       }, '-=0.9');
 
-      tl.from('.orbiting-badge', {
+      tl.from('.hero-mockup-anim', {
+        scale: 0.97,
         opacity: 0,
-        scale: 0.7,
-        y: 15,
-        duration: 1.0,
-        stagger: 0.12,
-        ease: 'back.out(1.5)'
+        y: 30,
+        duration: 1.2,
+        ease: 'power3.out'
       }, '-=0.8');
 
       // 2. Scroll Trigger Reveals for Section headers and grids
@@ -91,7 +88,7 @@ const Home: React.FC = () => {
         }
       });
 
-      // 4. Scroll Trigger Count Up (Hero Floating Card - 142%)
+      // 4. Scroll Trigger Count Up (Hero Metrics Grid Card - 142%)
       gsap.to(countObj, {
         conversion: 142,
         duration: 2.2,
@@ -177,8 +174,8 @@ const Home: React.FC = () => {
             
             <div className="overflow-hidden">
               <h1 
-                className="hero-title-anim text-4xl sm:text-5xl md:text-6xl font-extrabold font-sora leading-[1.15] tracking-tight text-white"
-                dangerouslySetInnerHTML={{ __html: heroTitle }}
+                className="hero-title-anim text-4xl sm:text-5xl md:text-6xl font-extrabold font-sora leading-[1.15] tracking-tight"
+                dangerouslySetInnerHTML={{ __html: formatHeroTitle(rawTitle) }}
               />
             </div>
             
@@ -189,13 +186,13 @@ const Home: React.FC = () => {
             <div className="hero-sub-anim flex flex-col sm:flex-row gap-4 pt-2">
               <Link 
                 to="/contact" 
-                className="btn-primary text-center px-8 py-4 text-base font-bold shadow-[0_10px_25px_-5px_rgba(79,109,255,0.4)] hover:shadow-[0_15px_30px_-5px_rgba(79,109,255,0.6)] transition-all duration-300"
+                className="px-8 py-3.5 text-center text-base font-semibold rounded-full text-white bg-primary hover:bg-primary-dark transition-colors duration-200"
               >
                 Build My System
               </Link>
               <Link 
                 to="/portfolio" 
-                className="btn-outline text-center px-8 py-4 text-base font-bold border-white/10 text-white bg-white/[0.02] hover:bg-white/5 hover:border-white transition-all duration-300"
+                className="px-8 py-3.5 text-center text-base font-semibold rounded-full text-white border border-white/10 bg-white/[0.02] hover:bg-white/5 hover:border-white transition-colors duration-200"
               >
                 See Portfolio
               </Link>
@@ -213,7 +210,7 @@ const Home: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Hero Mockup with Orbiting Floating Cards */}
+          {/* Right Hero Mockup with Structured Metrics Bar */}
           <div className="lg:col-span-6 relative hero-mockup-anim mt-10 lg:mt-0 z-10">
             {/* macOS Chrome Wrapper */}
             <div className="relative z-10 glass rounded-2xl border border-white/10 shadow-2xl overflow-hidden bg-slate-950/40 backdrop-blur-md p-2 group/mockup">
@@ -237,48 +234,21 @@ const Home: React.FC = () => {
               </div>
             </div>
 
-            {/* Orbiting Badge 1: Multi-Page Scaling */}
-            <div 
-              className="orbiting-badge absolute -left-10 top-1/4 glass px-4 py-2.5 rounded-xl border border-white/10 shadow-xl hidden md:flex items-center gap-3 backdrop-blur-md bg-black/40 z-20 animate-float"
-              style={{ animationDuration: '6s' }}
-            >
-              <div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center text-accent">
-                <Globe size={16} />
+            {/* Clean, Apple-style horizontal metrics grid aligned below the mockup */}
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 relative z-20">
+              <div className="glass p-4 rounded-xl border border-white/5 bg-slate-950/40 backdrop-blur-md">
+                <div className="text-[9px] text-slate-500 font-bold uppercase tracking-wider mb-1">Infrastructure</div>
+                <div className="text-sm font-bold text-white font-sora">Multi-Page Scaling</div>
               </div>
-              <div>
-                <div className="text-[9px] text-slate-500 font-bold uppercase tracking-wider">Infrastructure</div>
-                <div className="text-xs font-bold text-white font-sora">Multi-Page Scaling</div>
+              <div className="glass p-4 rounded-xl border border-white/5 bg-slate-950/40 backdrop-blur-md">
+                <div className="text-[9px] text-slate-500 font-bold uppercase tracking-wider mb-1">Engineered</div>
+                <div className="text-sm font-bold text-white font-sora">AI Integration</div>
               </div>
-            </div>
-
-            {/* Orbiting Badge 2: AI Integration */}
-            <div 
-              className="orbiting-badge absolute right-4 -top-6 glass px-4 py-2.5 rounded-xl border border-white/10 shadow-xl flex items-center gap-3 backdrop-blur-md bg-black/40 z-20 animate-float"
-              style={{ animationDuration: '7s', animationDelay: '1s' }}
-            >
-              <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
-                <Cpu size={16} />
-              </div>
-              <div>
-                <div className="text-[9px] text-slate-500 font-bold uppercase tracking-wider">Engineered</div>
-                <div className="text-xs font-bold text-white font-sora">AI Integration</div>
-              </div>
-            </div>
-
-            {/* Orbiting Badge 3: Conversion Rate */}
-            <div 
-              id="hero-conversion-card"
-              className="orbiting-badge absolute -bottom-6 -left-6 glass p-5 rounded-2xl border border-white/10 shadow-2xl flex items-center gap-4 backdrop-blur-md bg-black/50 z-20 max-w-[210px] animate-float"
-              style={{ animationDuration: '8s', animationDelay: '0.5s' }}
-            >
-              <div className="w-10 h-10 bg-emerald-500/20 rounded-full flex items-center justify-center text-emerald-400">
-                <BarChart3 size={20} />
-              </div>
-              <div>
-                <div className="text-[9px] text-slate-500 uppercase font-bold tracking-wider mb-0.5">Conversion Rate</div>
+              <div id="hero-conversion-card" className="glass p-4 rounded-xl border border-white/5 bg-slate-950/40 backdrop-blur-md">
+                <div className="text-[9px] text-slate-500 font-bold uppercase tracking-wider mb-1">Conversion Rate</div>
                 <div 
                   ref={conversionCountRef}
-                  className="text-2xl font-black font-sora text-emerald-400"
+                  className="text-lg font-black text-emerald-400 font-sora"
                 >
                   +0%
                 </div>
@@ -527,13 +497,13 @@ const Home: React.FC = () => {
           <div className="flex flex-col sm:flex-row justify-center gap-6 max-w-xs mx-auto sm:max-w-none">
             <Link 
               to="/contact" 
-              className="btn-primary px-8 py-4 text-base font-bold shadow-[0_10px_25px_-5px_rgba(79,109,255,0.4)] hover:shadow-[0_15px_30px_-5px_rgba(79,109,255,0.6)] text-center transition-colors duration-200"
+              className="px-8 py-3.5 text-center text-base font-semibold rounded-full text-white bg-primary hover:bg-primary-dark transition-colors duration-200"
             >
               Book Your Strategy Call
             </Link>
             <Link 
               to="/portfolio" 
-              className="btn-outline px-8 py-4 text-base font-bold border-white/10 hover:border-white text-white bg-white/[0.02] hover:bg-white/10 text-center transition-colors duration-200"
+              className="px-8 py-3.5 text-center text-base font-semibold rounded-full text-white border border-white/10 bg-white/[0.02] hover:bg-white/10 transition-colors duration-200"
             >
               Explore Our Work
             </Link>

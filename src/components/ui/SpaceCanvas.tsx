@@ -13,8 +13,9 @@ export const SpaceCanvas: React.FC = () => {
 
     // 1. Scene & Camera setup
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
-    camera.position.z = 85;
+    // Narrower field of view for premium telephoto compression
+    const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+    camera.position.z = 90;
 
     // 2. Renderer setup
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -22,52 +23,27 @@ export const SpaceCanvas: React.FC = () => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
-    // 3. Programmatic Circle Texture
-    const createCircleTexture = () => {
-      const canvas = document.createElement('canvas');
-      canvas.width = 16;
-      canvas.height = 16;
-      const ctx = canvas.getContext('2d');
-      if (ctx) {
-        const gradient = ctx.createRadialGradient(8, 8, 0, 8, 8, 8);
-        gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
-        gradient.addColorStop(0.3, 'rgba(125, 211, 252, 0.8)'); // Light accent color
-        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, 16, 16);
-      }
-      return new THREE.CanvasTexture(canvas);
-    };
-
-    // 4. Create 3D Orbiting Particle Galaxy
-    const particleCount = 2000;
+    // 3. Create 3D Orbiting Particle Galaxy (Subtle sharp stars)
+    const particleCount = 800;
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
 
-    const colorPrimary = new THREE.Color('#4F6DFF'); // Indigo
-    const colorAccent = new THREE.Color('#7DD3FC');  // Cyan
+    const colorPrimary = new THREE.Color('#FFFFFF'); // Crisp white stars
+    const colorAccent = new THREE.Color('#93C5FD');  // Soft pale blue stars
 
     for (let i = 0; i < particleCount; i++) {
-      // Create a layered sphere distribution
-      const u = Math.random();
-      const v = Math.random();
-      const theta = u * 2.0 * Math.PI;
-      const phi = Math.acos(2.0 * v - 1.0);
-      
-      // Multi-layered orbits (some near core, some sparse outer)
-      const r = Math.pow(Math.random(), 1.5) * 55 + 20; 
-
-      const x = r * Math.sin(phi) * Math.cos(theta);
-      const y = r * Math.sin(phi) * Math.sin(theta);
-      const z = r * Math.cos(phi);
+      // Distribute stars in a wide 3D space volume
+      const x = (Math.random() - 0.5) * 280;
+      const y = (Math.random() - 0.5) * 200;
+      const z = (Math.random() - 0.5) * 160 - 40; // Push stars back behind text layers
 
       positions[i * 3] = x;
       positions[i * 3 + 1] = y;
       positions[i * 3 + 2] = z;
 
-      // Color gradient blend based on radius (inner is brighter/cyan, outer is deep indigo)
-      const mixRatio = r / 75;
-      const mixedColor = colorAccent.clone().lerp(colorPrimary, mixRatio);
+      // 85% pure white stars, 15% soft blue stars for high-end color accuracy
+      const mixRatio = Math.random() > 0.85 ? 0.3 : 0.0;
+      const mixedColor = colorPrimary.clone().lerp(colorAccent, mixRatio);
       colors[i * 3] = mixedColor.r;
       colors[i * 3 + 1] = mixedColor.g;
       colors[i * 3 + 2] = mixedColor.b;
@@ -77,13 +53,13 @@ export const SpaceCanvas: React.FC = () => {
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
+    // Raw squares at size 0.32 render as ultra-sharp pin-point dots on Retina/4K screens
     const material = new THREE.PointsMaterial({
-      size: 1.5,
+      size: 0.32,
       vertexColors: true,
       transparent: true,
-      opacity: 0.65,
+      opacity: 0.7,
       sizeAttenuation: true,
-      map: createCircleTexture(),
       depthWrite: false,
       blending: THREE.AdditiveBlending,
     });
@@ -91,7 +67,7 @@ export const SpaceCanvas: React.FC = () => {
     const starField = new THREE.Points(geometry, material);
     scene.add(starField);
 
-    // 5. Interaction variables
+    // 4. Interaction variables
     let mouseX = 0;
     let mouseY = 0;
     let targetX = 0;
@@ -108,29 +84,29 @@ export const SpaceCanvas: React.FC = () => {
 
     window.addEventListener('mousemove', handleMouseMove);
 
-    // 6. Animation Loop
+    // 5. Animation Loop
     let animationFrameId: number;
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
 
-      // Slow orbital rotation
-      baseRotationY += 0.0006;
-      baseRotationX += 0.0002;
+      // Very slow, professional background orbital drift
+      baseRotationY += 0.0003;
+      baseRotationX += 0.0001;
 
-      // Smooth pointer lerp
-      mouseX += (targetX - mouseX) * 0.04;
-      mouseY += (targetY - mouseY) * 0.04;
+      // Smooth pointer tracking interpolation
+      mouseX += (targetX - mouseX) * 0.05;
+      mouseY += (targetY - mouseY) * 0.05;
 
-      // Apply rotation + interactive mouse drift
-      starField.rotation.y = baseRotationY + mouseX * 0.25;
-      starField.rotation.x = baseRotationX + mouseY * 0.20;
+      // Subtle reactive tilt (Apple-level details: no massive shifts)
+      starField.rotation.y = baseRotationY + mouseX * 0.08;
+      starField.rotation.x = baseRotationX + mouseY * 0.06;
 
       renderer.render(scene, camera);
     };
 
     animate();
 
-    // 7. Resize handling
+    // 6. Resize handling
     const handleResize = () => {
       if (!containerRef.current) return;
       const w = containerRef.current.clientWidth;
@@ -145,7 +121,7 @@ export const SpaceCanvas: React.FC = () => {
 
     window.addEventListener('resize', handleResize);
 
-    // 8. Cleanup
+    // 7. Cleanup
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
@@ -162,7 +138,7 @@ export const SpaceCanvas: React.FC = () => {
   return (
     <div 
       ref={containerRef} 
-      className="absolute inset-0 z-0 pointer-events-none w-full h-full overflow-hidden opacity-80"
+      className="absolute inset-0 z-0 pointer-events-none w-full h-full overflow-hidden opacity-[0.45]"
     />
   );
 };
