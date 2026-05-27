@@ -1,13 +1,116 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Zap, BarChart3, Globe, Cpu, Database, Shield } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useContent } from '../hooks/useContent';
+import { SpaceCanvas } from '../components/ui/SpaceCanvas';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Home: React.FC = () => {
   const { content } = useContent();
+  const heroRef = useRef<HTMLDivElement>(null);
+  
+  // Refs for stats count-up animations
+  const efficiencyCountRef = useRef<HTMLSpanElement>(null);
+  const conversionCountRef = useRef<HTMLDivElement>(null);
 
   const heroSubtitle = content?.settings?.hero_subtitle || "From AI-powered automation to high-performance web ecosystems. We design, build, and scale your digital future.";
-  const heroTitle = content?.settings?.hero_title || "We Build Digital <br /><span class='text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-light to-accent'>Systems That Think,</span> <br />Learn, and Convert.";
+  
+  // Apple-level white-to-slate metallic gradient title
+  const heroTitle = content?.settings?.hero_title || 
+    "<span class='bg-gradient-to-b from-white via-white to-slate-400 text-transparent bg-clip-text'>We Build Digital</span><br />" +
+    "<span class='text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-light to-accent'>Systems That Think,</span><br />" +
+    "<span class='bg-gradient-to-b from-white via-white to-slate-400 text-transparent bg-clip-text'>Learn, and Convert.</span>";
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // 1. Apple-level slide-up and fade-in entrance timeline
+      const tl = gsap.timeline();
+
+      tl.fromTo('.hero-title-anim', 
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.4, ease: 'power4.out', delay: 0.1 }
+      );
+
+      tl.from('.hero-sub-anim', {
+        opacity: 0,
+        y: 20,
+        duration: 0.8,
+        stagger: 0.12,
+        ease: 'power3.out'
+      }, '-=1.0');
+
+      tl.from('.hero-mockup-anim', {
+        scale: 0.96,
+        opacity: 0,
+        y: 35,
+        duration: 1.2,
+        ease: 'power3.out'
+      }, '-=0.9');
+
+      tl.from('.orbiting-badge', {
+        opacity: 0,
+        scale: 0.7,
+        y: 15,
+        duration: 1.0,
+        stagger: 0.12,
+        ease: 'back.out(1.5)'
+      }, '-=0.8');
+
+      // 2. Scroll Trigger Reveals for Section headers and grids
+      gsap.utils.toArray('.reveal').forEach((elem: any) => {
+        gsap.from(elem, {
+          scrollTrigger: {
+            trigger: elem,
+            start: 'top 85%',
+          },
+          y: 40,
+          opacity: 0,
+          duration: 1.0,
+          ease: 'power3.out'
+        });
+      });
+
+      // 3. Scroll Trigger Count Up (Efficiency Card - 85%)
+      const countObj = { efficiency: 0, conversion: 0 };
+      
+      gsap.to(countObj, {
+        efficiency: 85,
+        duration: 2.0,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '#stats-container',
+          start: 'top 85%',
+        },
+        onUpdate: () => {
+          if (efficiencyCountRef.current) {
+            efficiencyCountRef.current.innerText = Math.floor(countObj.efficiency).toString();
+          }
+        }
+      });
+
+      // 4. Scroll Trigger Count Up (Hero Floating Card - 142%)
+      gsap.to(countObj, {
+        conversion: 142,
+        duration: 2.2,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '#hero-conversion-card',
+          start: 'top 90%',
+        },
+        onUpdate: () => {
+          if (conversionCountRef.current) {
+            conversionCountRef.current.innerText = '+' + Math.floor(countObj.conversion).toString() + '%';
+          }
+        }
+      });
+
+    }, heroRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const logos = ['TechFlow', 'Quantum', 'Nexus', 'Apex', 'Vanguard'];
 
@@ -48,54 +151,33 @@ const Home: React.FC = () => {
     : defaultServices;
 
   return (
-    <div className="bg-transparent text-white select-none relative overflow-hidden">
+    <div ref={heroRef} className="bg-transparent text-white select-none relative overflow-hidden">
       {/* Hero Section */}
       <section 
-        className="relative min-h-screen flex items-center pt-28 pb-16 overflow-hidden z-10"
+        className="relative min-h-screen flex items-center pt-32 pb-24 overflow-hidden z-10"
       >
-        {/* Futuristic Background Grid Lines */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.007)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.007)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_70%,transparent_100%)] z-0" />
+        {/* Interactive Three.js WebGL Particle Background */}
+        <SpaceCanvas />
 
-        {/* Ambient Blur Lights */}
+        {/* Futuristic Background Grid Lines */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.005)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.005)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_70%,transparent_100%)] z-0" />
+
+        {/* Ambient Glow Lights */}
         <div className="absolute top-[10%] left-[-5%] w-[45%] h-[45%] bg-primary/10 rounded-full blur-[130px] pointer-events-none z-0" />
         <div className="absolute bottom-[20%] right-[-5%] w-[40%] h-[40%] bg-accent/5 rounded-full blur-[100px] pointer-events-none z-0" />
 
-        {/* Tech Compass Accents (Background) */}
-        <div className="absolute top-[15%] right-[8%] opacity-20 pointer-events-none z-0 hidden xl:block">
-          <svg width="240" height="240" viewBox="0 0 100 100" className="text-primary">
-            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4, 4" />
-            <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" strokeWidth="0.2" />
-            <line x1="50" y1="5" x2="50" y2="95" stroke="currentColor" strokeWidth="0.2" />
-            <line x1="5" y1="50" x2="95" y2="50" stroke="currentColor" strokeWidth="0.2" />
-          </svg>
-        </div>
-
-        {/* Futuristic Node Accents */}
-        <div className="absolute bottom-[15%] left-[5%] opacity-15 pointer-events-none z-0 hidden lg:block">
-          <svg width="180" height="180" viewBox="0 0 100 100" className="text-accent">
-            <line x1="10" y1="30" x2="50" y2="10" stroke="currentColor" strokeWidth="0.5" />
-            <line x1="50" y1="10" x2="90" y2="40" stroke="currentColor" strokeWidth="0.5" />
-            <line x1="90" y1="40" x2="60" y2="80" stroke="currentColor" strokeWidth="0.5" />
-            <line x1="60" y1="80" x2="10" y2="30" stroke="currentColor" strokeWidth="0.5" />
-            <circle cx="10" cy="30" r="3" fill="currentColor" />
-            <circle cx="50" cy="10" r="3" fill="currentColor" />
-            <circle cx="90" cy="40" r="2.5" fill="currentColor" />
-            <circle cx="60" cy="80" r="3" fill="currentColor" />
-          </svg>
-        </div>
-
-        <div className="container-custom grid lg:grid-cols-12 gap-12 items-center relative z-10 w-full">
+        <div className="container-custom grid lg:grid-cols-12 gap-16 items-center relative z-10 w-full">
           
           {/* Left Hero Content */}
           <div className="lg:col-span-6 space-y-8">
-            <div className="hero-sub-anim inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-primary text-xs font-bold tracking-wider uppercase shadow-inner backdrop-blur-sm">
+            <div className="hero-sub-anim inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-primary text-xs font-bold tracking-widest uppercase shadow-inner backdrop-blur-sm">
               <Zap size={12} className="text-accent fill-accent" />
               <span>The New Standard in Tech</span>
             </div>
             
             <div className="overflow-hidden">
               <h1 
-                className="hero-title-mask text-4xl sm:text-5xl md:text-6xl font-extrabold font-sora leading-[1.1] tracking-tight text-white"
+                className="hero-title-anim text-4xl sm:text-5xl md:text-6xl font-extrabold font-sora leading-[1.15] tracking-tight text-white"
                 dangerouslySetInnerHTML={{ __html: heroTitle }}
               />
             </div>
@@ -157,7 +239,8 @@ const Home: React.FC = () => {
 
             {/* Orbiting Badge 1: Multi-Page Scaling */}
             <div 
-              className="absolute -left-10 top-1/4 glass px-4 py-2.5 rounded-xl border border-white/10 shadow-xl hidden md:flex items-center gap-3 backdrop-blur-md bg-black/40 z-20"
+              className="orbiting-badge absolute -left-10 top-1/4 glass px-4 py-2.5 rounded-xl border border-white/10 shadow-xl hidden md:flex items-center gap-3 backdrop-blur-md bg-black/40 z-20 animate-float"
+              style={{ animationDuration: '6s' }}
             >
               <div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center text-accent">
                 <Globe size={16} />
@@ -170,7 +253,8 @@ const Home: React.FC = () => {
 
             {/* Orbiting Badge 2: AI Integration */}
             <div 
-              className="absolute right-4 -top-6 glass px-4 py-2.5 rounded-xl border border-white/10 shadow-xl flex items-center gap-3 backdrop-blur-md bg-black/40 z-20"
+              className="orbiting-badge absolute right-4 -top-6 glass px-4 py-2.5 rounded-xl border border-white/10 shadow-xl flex items-center gap-3 backdrop-blur-md bg-black/40 z-20 animate-float"
+              style={{ animationDuration: '7s', animationDelay: '1s' }}
             >
               <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
                 <Cpu size={16} />
@@ -184,7 +268,8 @@ const Home: React.FC = () => {
             {/* Orbiting Badge 3: Conversion Rate */}
             <div 
               id="hero-conversion-card"
-              className="absolute -bottom-6 -left-6 glass p-5 rounded-2xl border border-white/10 shadow-2xl flex items-center gap-4 backdrop-blur-md bg-black/50 z-20 max-w-[210px]"
+              className="orbiting-badge absolute -bottom-6 -left-6 glass p-5 rounded-2xl border border-white/10 shadow-2xl flex items-center gap-4 backdrop-blur-md bg-black/50 z-20 max-w-[210px] animate-float"
+              style={{ animationDuration: '8s', animationDelay: '0.5s' }}
             >
               <div className="w-10 h-10 bg-emerald-500/20 rounded-full flex items-center justify-center text-emerald-400">
                 <BarChart3 size={20} />
@@ -192,9 +277,10 @@ const Home: React.FC = () => {
               <div>
                 <div className="text-[9px] text-slate-500 uppercase font-bold tracking-wider mb-0.5">Conversion Rate</div>
                 <div 
+                  ref={conversionCountRef}
                   className="text-2xl font-black font-sora text-emerald-400"
                 >
-                  +142%
+                  +0%
                 </div>
               </div>
             </div>
@@ -203,15 +289,35 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Partner Logos */}
-      <section className="relative w-full overflow-hidden py-8 bg-slate-950/50 border-y border-white/5 z-10">
-        <div className="container-custom">
-          <p className="text-center text-xs font-bold text-slate-500 uppercase tracking-[0.25em] mb-6">
+      {/* Infinite Horizontal Logo Marquee */}
+      <section className="relative w-full overflow-hidden py-10 bg-slate-950/30 border-y border-white/5 z-10">
+        <div className="container-custom mb-6">
+          <p className="text-center text-xs font-bold text-slate-500 uppercase tracking-[0.25em]">
             Trusted by Forward-Thinking Enterprises
           </p>
-          <div className="flex flex-wrap justify-center gap-x-12 gap-y-6 items-center">
+        </div>
+        
+        <div className="flex overflow-hidden select-none relative w-full">
+          {/* Edge Faders */}
+          <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background-dark to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background-dark to-transparent z-10 pointer-events-none" />
+
+          {/* Running Tape 1 */}
+          <div className="flex gap-20 shrink-0 min-w-full justify-around items-center pr-20 animate-marquee">
             {logos.map((name, idx) => (
               <div key={idx} className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors duration-300 cursor-pointer group">
+                <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center font-bold text-primary text-sm font-sora group-hover:border-primary/50 group-hover:bg-primary/5 transition-all duration-300">
+                  {name[0]}
+                </div>
+                <span className="text-lg font-bold font-sora tracking-wider">{name}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Running Tape 2 */}
+          <div className="flex gap-20 shrink-0 min-w-full justify-around items-center pr-20 animate-marquee">
+            {logos.map((name, idx) => (
+              <div key={`dup-${idx}`} className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors duration-300 cursor-pointer group">
                 <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center font-bold text-primary text-sm font-sora group-hover:border-primary/50 group-hover:bg-primary/5 transition-all duration-300">
                   {name[0]}
                 </div>
@@ -223,7 +329,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Services Section */}
-      <section className="section-padding relative overflow-hidden z-10">
+      <section className="py-24 md:py-36 relative overflow-hidden z-10">
         <div className="container-custom relative z-10">
           
           {/* Section Header */}
@@ -237,12 +343,12 @@ const Home: React.FC = () => {
             </p>
           </div>
 
-          {/* 3D Tilting Cards Grid */}
+          {/* Grids with High-Contrast backdrops & subtle borders */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {dynamicServices.map((service: any, i: number) => (
               <div
                 key={i}
-                className="glass p-8 rounded-3xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-primary/30 transition-colors duration-300 group flex flex-col justify-between cursor-default"
+                className="reveal glass p-8 rounded-3xl border border-white/5 bg-slate-950/40 backdrop-blur-xl hover:bg-slate-950/60 hover:border-primary/20 transition-all duration-300 group flex flex-col justify-between cursor-default"
               >
                 <div>
                   {/* Icon Frame */}
@@ -272,7 +378,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Performance & Metrics Section */}
-      <section className="section-padding bg-transparent text-white relative overflow-hidden z-10">
+      <section className="py-24 md:py-36 bg-transparent text-white relative overflow-hidden z-10">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.003)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.003)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none opacity-50 z-0" />
 
         {/* Ambient Blur Blurs */}
@@ -338,14 +444,14 @@ const Home: React.FC = () => {
             <div id="stats-container" className="lg:col-span-5 reveal space-y-8 z-10">
               
               {/* Stats Panel with Count Up */}
-              <div className="glass rounded-3xl p-8 border border-white/5 bg-white/[0.01] shadow-2xl relative overflow-hidden group hover:border-white/10 transition-colors duration-300">
+              <div className="glass rounded-3xl p-8 border border-white/5 bg-slate-950/40 backdrop-blur-xl hover:border-primary/20 transition-all duration-300">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-[40px] pointer-events-none" />
                 
                 <div className="flex justify-between items-start mb-8">
                   <div>
                     <div className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">Efficiency Increase</div>
                     <div className="text-5xl font-extrabold font-sora text-white group-hover:text-primary transition-colors duration-300">
-                      <span>85</span>%
+                      <span ref={efficiencyCountRef}>0</span>%
                     </div>
                   </div>
                   <div className="bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full text-emerald-400 font-bold text-xs flex items-center gap-1">
@@ -381,7 +487,7 @@ const Home: React.FC = () => {
               </div>
 
               {/* Testimonial card */}
-              <div className="glass rounded-3xl p-8 border border-white/5 bg-gradient-to-r from-primary/5 to-accent/5 relative overflow-hidden shadow-xl">
+              <div className="glass rounded-3xl p-8 border border-white/5 bg-slate-950/40 backdrop-blur-xl relative overflow-hidden shadow-xl">
                 <div className="absolute top-4 left-6 text-7xl font-serif text-primary/10 select-none">“</div>
                 <div className="relative z-10">
                   <p className="text-slate-300 italic text-base leading-relaxed mb-6 font-medium">
@@ -406,7 +512,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Final Call to Action Banner */}
-      <section className="section-padding container-custom reveal z-10 relative">
+      <section className="py-24 md:py-36 container-custom reveal z-10 relative">
         <div className="glass rounded-[2.5rem] md:rounded-[3.5rem] p-12 md:p-24 text-center relative overflow-hidden border border-white/10 bg-gradient-to-b from-white/[0.03] to-transparent shadow-2xl">
           {/* Radial blur light glow */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60%] h-[60%] bg-primary/25 rounded-full blur-[130px] -z-10 pointer-events-none" />
