@@ -129,38 +129,38 @@ const Contact: React.FC = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">Full Name</label>
+                    <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">What's your name? 👋</label>
                     <input
                       type="text"
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 px-6 py-4 rounded-2xl outline-none focus:border-[#2563eb] dark:focus:border-[#2563eb] transition-colors text-gray-900 dark:text-white"
-                      placeholder="John Doe"
+                      placeholder="John Doe... or Batman 🦇"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">Email Address</label>
+                    <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">Your best email 📧</label>
                     <input
                       type="email"
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 px-6 py-4 rounded-2xl outline-none focus:border-[#2563eb] dark:focus:border-[#2563eb] transition-colors text-gray-900 dark:text-white"
-                      placeholder="john@example.com"
+                      placeholder="where.should.we.reply@example.com"
                     />
                   </div>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">Project Type</label>
+                    <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">What are we building? 🚀</label>
                     <select
                       value={formData.projectType}
                       onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
                       className="w-full bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 px-6 py-4 rounded-2xl outline-none focus:border-[#2563eb] transition-colors appearance-none text-gray-900 dark:text-white"
                     >
-                      <option value="" disabled>Select a service</option>
+                      <option value="" disabled>Select your magical journey...</option>
                       {serviceOptions.map((opt: string, i: number) => (
                         <option key={i} value={opt}>{opt}</option>
                       ))}
@@ -171,28 +171,28 @@ const Contact: React.FC = () => {
                     </select>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">Estimated Budget</label>
+                    <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">Investment Tier 💰</label>
                     <select
                       value={formData.budget}
                       onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                       className="w-full bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 px-6 py-4 rounded-2xl outline-none focus:border-[#2563eb] transition-colors appearance-none text-gray-900 dark:text-white"
                     >
-                      <option>$2,000 - $5,000</option>
-                      <option>$5,000 - $10,000</option>
-                      <option>$10,000 - $20,000</option>
-                      <option>$20,000+</option>
+                      <option>$2,000 - $5,000 (Let's roll)</option>
+                      <option>$5,000 - $10,000 (Serious business)</option>
+                      <option>$10,000 - $20,000 (We're scaling)</option>
+                      <option>$20,000+ (Take my money!)</option>
                     </select>
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">Tell us about your project</label>
+                  <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">Spill the details! ✨</label>
                   <textarea
                     rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 px-6 py-4 rounded-2xl outline-none focus:border-[#2563eb] transition-colors resize-none text-gray-900 dark:text-white"
-                    placeholder="Briefly describe your goals..."
+                    placeholder="Don't be shy, tell us everything about your grand vision..."
                   ></textarea>
                 </div>
 
@@ -202,9 +202,9 @@ const Contact: React.FC = () => {
                   className="interactive-glow-button bg-[#2563eb] hover:bg-[#1d4ed8] text-white rounded-full font-semibold transition-colors duration-300 w-full py-5 text-xl flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {submitted ? (
-                    <>Message Sent! <CheckCircle2 /></>
+                    <>Woohoo! We're doing a happy dance! 🎉 <CheckCircle2 /></>
                   ) : (
-                    <>Start Your Project <Send size={20} /></>
+                    <>Send Message 🚀 <Send size={20} /></>
                   )}
                 </button>
               </form>
