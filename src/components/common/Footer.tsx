@@ -2,18 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Globe, Mail, MessageSquare, ArrowUpRight } from 'lucide-react';
 import { Logo } from '../ui/Logo';
+import { useContent } from '../../hooks/useContent';
 
 export const Footer: React.FC = () => {
+  const { content } = useContent();
+  const services = content?.services?.map((s: any) => s.title) || ['AI-Powered Systems', 'High-Converting Websites', 'Scalable Architectures', 'Digital Automation'];
+
   return (
     <footer className="bg-white pt-20 pb-10 border-t border-gray-200">
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="space-y-6">
-            <Link to="/" className="flex items-center gap-2">
-              <Logo size={32} />
-              <span className="text-xl font-bold font-sora text-gray-900">
-                WAO<span className="text-[#2563eb]">TN</span>
-              </span>
+            <Link to="/" className="flex items-center">
+              <img src="/logo.png" alt="We Are One Tech Nation" className="h-14 w-auto object-contain origin-left" />
             </Link>
             <p className="text-gray-500 max-w-xs">
               We build digital systems that think, learn, and convert. A premium technology partner for high-value digital ecosystems.
@@ -34,7 +35,7 @@ export const Footer: React.FC = () => {
           <div>
             <h4 className="text-lg font-bold mb-6">Services</h4>
             <ul className="space-y-4">
-              {['AI-Powered Systems', 'High-Converting Websites', 'Scalable Architectures', 'Digital Automation'].map((item) => (
+              {services.map((item: string) => (
                 <li key={item}>
                   <Link to="/services" className="text-gray-500 hover:text-[#2563eb] transition-colors flex items-center gap-2 group">
                     {item} <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />

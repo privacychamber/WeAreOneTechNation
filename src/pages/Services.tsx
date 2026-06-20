@@ -1,37 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Cpu, Globe, Zap, ArrowRight, Layers, Smartphone, Database } from 'lucide-react';
+import { Cpu, Globe, Zap, ArrowRight, Layers, Smartphone, Database, Shield } from 'lucide-react';
+import { useContent } from '../hooks/useContent';
+
+const getIcon = (iconName: string) => {
+  switch(iconName) {
+    case 'cpu': return <Cpu className="text-[#2563eb]" size={48} />;
+    case 'globe': return <Globe className="text-[#3b82f6]" size={48} />;
+    case 'layers': return <Layers className="text-[#2563eb]" size={48} />;
+    case 'shield': return <Shield className="text-[#3b82f6]" size={48} />;
+    default: return <Zap className="text-[#2563eb]" size={48} />;
+  }
+};
 
 const Services: React.FC = () => {
-  const serviceCategories = [
-    {
-      id: 'ai',
-      title: 'AI & Automation Systems',
-      subtitle: 'Intelligence built into your core.',
-      description: 'We integrate advanced LLMs and custom automation pipelines into your existing workflows to reduce manual overhead and increase decision-making speed.',
-      features: ['Custom GPT & LLM Integration', 'Automated Content Pipelines', 'Intelligent Customer Support Bots', 'Predictive Analytics Dashboards'],
-      icon: <Cpu className="text-[#2563eb]" size={48} />,
-      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=2000'
-    },
-    {
-      id: 'web',
-      title: 'High-Performance Web',
-      subtitle: 'Websites that convert at 3x the industry average.',
-      description: 'Beyond aesthetics, we build for conversion. Our websites are lightweight, SEO-engineered, and designed with psychological triggers to turn visitors into leads.',
-      features: ['React & Next.js Development', 'Headless CMS Architecture', 'Performance Optimization (Lighthouse 95+)', 'SEO & Conversion Engineering'],
-      icon: <Globe className="text-[#3b82f6]" size={48} />,
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000'
-    },
-    {
-      id: 'infra',
-      title: 'Scalable Architecture',
-      subtitle: 'Foundations that never break.',
-      description: 'Build for today, scale for tomorrow. We design cloud-native infrastructures that handle traffic spikes and complex data loads with ease.',
-      features: ['Cloud Infrastructure (AWS/GCP/Azure)', 'Microservices Architecture', 'Database Optimization', 'Real-time Data Processing'],
-      icon: <Layers className="text-[#2563eb]" size={48} />,
-      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2000'
-    }
-  ];
+  const { content } = useContent();
+  const serviceCategories = content?.services || [];
 
   return (
     <div className="pt-32">
@@ -44,13 +28,17 @@ const Services: React.FC = () => {
       </section>
 
       {/* Service Blocks */}
-      {serviceCategories.map((service, i) => (
+      {serviceCategories.map((service: any, i: number) => {
+        let featuresList = [];
+        try { featuresList = JSON.parse(service.features || '[]'); } catch(e) {}
+        
+        return (
         <section key={service.id} className={`py-20 ${i % 2 === 1 ? 'bg-gray-50' : ''}`}>
           <div className="container-custom">
             <div className={`grid lg:grid-cols-2 gap-16 items-center ${i % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
               <div className={i % 2 === 1 ? 'lg:order-2' : ''}>
                 <div className="mb-6 p-4 bg-white rounded-2xl shadow-sm border border-gray-100 inline-block">
-                  {service.icon}
+                  {getIcon(service.icon)}
                 </div>
                 <h2 className="text-4xl mb-2">{service.title}</h2>
                 <p className="text-[#2563eb] font-bold text-lg mb-6">{service.subtitle}</p>
@@ -58,7 +46,7 @@ const Services: React.FC = () => {
                   {service.description}
                 </p>
                 <div className="grid sm:grid-cols-2 gap-4 mb-10">
-                  {service.features.map((feature, j) => (
+                  {featuresList.map((feature: string, j: number) => (
                     <div key={j} className="flex items-center gap-3">
                       <Zap size={18} className="text-[#2563eb] flex-shrink-0" />
                       <span className="font-medium">{feature}</span>
@@ -81,7 +69,8 @@ const Services: React.FC = () => {
             </div>
           </div>
         </section>
-      ))}
+        );
+      })}
 
       {/* Why Choose Us Grid */}
       <section className="py-20 md:py-32 container-custom">

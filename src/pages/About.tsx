@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Target, Shield, Globe, Award, Sparkles } from 'lucide-react';
+import { useContent } from '../hooks/useContent';
 
 const About: React.FC = () => {
+  const { content } = useContent();
+
   return (
     <div className="pt-32">
       {/* Hero */}
@@ -22,10 +25,10 @@ const About: React.FC = () => {
           <div className="space-y-8">
             <h2 className="text-4xl text-gray-900">Our Vision</h2>
             <p className="text-lg text-gray-500 leading-relaxed">
-              Founded on the principle of "One Tech Nation," we believe in a unified digital future where AI and human creativity merge to solve the world's most complex business challenges.
+              {content?.settings?.about_vision || "Founded on the principle of 'One Tech Nation,' we believe in a unified digital future where AI and human creativity merge to solve the world's most complex business challenges."}
             </p>
             <p className="text-lg text-gray-500 leading-relaxed">
-              We don't operate like a standard agency. We are your technical co-founders, your innovation lab, and your scale partner all in one.
+              {content?.settings?.about_vision_secondary || "We don't operate like a standard agency. We are your technical co-founders, your innovation lab, and your scale partner all in one."}
             </p>
             <div className="grid grid-cols-2 gap-8 pt-4">
               <div>

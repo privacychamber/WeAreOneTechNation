@@ -26,13 +26,25 @@ try {
     } 
     else if ($type === 'service') {
         if ($action === 'update') {
-            $stmt = $db->prepare("UPDATE services SET title = ?, description = ?, icon = ? WHERE id = ?");
-            $stmt->execute([$data['title'], $data['description'], $data['icon'], $data['id']]);
+            $stmt = $db->prepare("UPDATE services SET title = ?, subtitle = ?, description = ?, features = ?, icon = ?, image = ? WHERE id = ?");
+            $stmt->execute([$data['title'], $data['subtitle'], $data['description'], $data['features'], $data['icon'], $data['image'], $data['id']]);
         } else if ($action === 'add') {
-            $stmt = $db->prepare("INSERT INTO services (title, description, icon) VALUES (?, ?, ?)");
-            $stmt->execute([$data['title'], $data['description'], $data['icon']]);
+            $stmt = $db->prepare("INSERT INTO services (title, subtitle, description, features, icon, image) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$data['title'], $data['subtitle'], $data['description'], $data['features'], $data['icon'], $data['image']]);
         } else if ($action === 'delete') {
             $stmt = $db->prepare("DELETE FROM services WHERE id = ?");
+            $stmt->execute([$data['id']]);
+        }
+    }
+    else if ($type === 'portfolio') {
+        if ($action === 'update') {
+            $stmt = $db->prepare("UPDATE portfolio SET title = ?, category = ?, metrics = ?, tags = ?, image_url = ?, link = ? WHERE id = ?");
+            $stmt->execute([$data['title'], $data['category'], $data['metrics'], $data['tags'], $data['image_url'], $data['link'], $data['id']]);
+        } else if ($action === 'add') {
+            $stmt = $db->prepare("INSERT INTO portfolio (title, category, metrics, tags, image_url, link) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$data['title'], $data['category'], $data['metrics'], $data['tags'], $data['image_url'], $data['link']]);
+        } else if ($action === 'delete') {
+            $stmt = $db->prepare("DELETE FROM portfolio WHERE id = ?");
             $stmt->execute([$data['id']]);
         }
     }

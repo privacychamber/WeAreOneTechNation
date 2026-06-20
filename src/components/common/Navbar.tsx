@@ -20,16 +20,8 @@ export const Navbar: React.FC = () => {
         <nav className="bg-white rounded-full p-[5px] flex items-center justify-between shadow-[0_4px_24px_rgba(0,0,0,0.04)] pointer-events-auto">
           {/* Left: Logo & Desktop Links */}
           <div className="flex items-center gap-6">
-            <Link to="/" className="flex items-center gap-2 pl-2">
-              <Logo size={28} />
-              <div className="flex flex-col leading-none">
-                <span className="text-[8px] font-semibold tracking-[0.18em] uppercase text-gray-500">
-                  We Are One
-                </span>
-                <span className="text-[12px] font-extrabold tracking-[0.08em] uppercase font-sora text-gray-900">
-                  Tech <span className="text-primary">Nation</span>
-                </span>
-              </div>
+            <Link to="/" className="flex items-center pl-2">
+              <img src="/logo.png" alt="We Are One Tech Nation" className="h-10 w-auto object-contain scale-[1.5] origin-left" />
             </Link>
             <div className="hidden md:flex items-center gap-6">
               {navLinks.map((link) => (

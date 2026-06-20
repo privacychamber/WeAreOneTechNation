@@ -1,8 +1,11 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Shader, Swirl, ChromaFlow, FilmGrain, FlutedGlass } from 'shaders/react';
+import { useContent } from '../hooks/useContent';
 
 export const HeroSection: React.FC = () => {
+  const { content } = useContent();
+
   return (
     <section className="relative w-full h-screen min-h-screen bg-[#EFEFEF] overflow-hidden flex flex-col justify-end pb-14 sm:pb-16 lg:pb-20">
       {/* Background Shader Overlay */}
@@ -18,14 +21,13 @@ export const HeroSection: React.FC = () => {
       {/* Hero Content */}
       <div className="relative z-20 w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 pt-32">
         <p className="text-[13px] leading-[14px] text-gray-900 tracking-wide mb-5 sm:mb-8 font-medium">
-          Axion Studio
+          {content?.settings?.hero_subtitle || 'Axion Studio'}
         </p>
         
-        <h1 className="text-gray-900 font-medium leading-[1.08] tracking-[-0.03em] text-[clamp(1.75rem,7vw,4.2rem)] sm:text-[clamp(2.5rem,5vw,4.2rem)]">
-          We craft digital experiences <br className="hidden sm:block" /><span className="sm:hidden"> </span>
-          for brands ready to dominate <br className="hidden sm:block" /><span className="sm:hidden"> </span>
-          their category online.
-        </h1>
+        <h1 
+          className="text-gray-900 font-medium leading-[1.08] tracking-[-0.03em] text-[clamp(1.75rem,7vw,4.2rem)] sm:text-[clamp(2.5rem,5vw,4.2rem)]"
+          dangerouslySetInnerHTML={{ __html: content?.settings?.hero_title || 'We craft digital experiences <br class="hidden sm:block" />for brands ready to dominate <br class="hidden sm:block" />their category online.' }}
+        />
 
         <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5">
           <button className="group bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-[13px] leading-[14px] font-medium rounded-full pl-5 sm:pl-6 pr-2 py-2 flex items-center gap-3 transition-colors duration-300">

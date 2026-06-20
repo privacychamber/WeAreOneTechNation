@@ -1,66 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ExternalLink, ArrowRight } from 'lucide-react';
-
-const projects = [
-  {
-    id: 1,
-    title: 'Nexus AI Dashboard',
-    category: 'AI / SaaS',
-    image: 'https://images.unsplash.com/photo-1551288049-bbda4e966c52?auto=format&fit=crop&q=80&w=1000',
-    tags: ['React', 'OpenAI', 'Node.js'],
-    metrics: '+45% Efficiency'
-  },
-  {
-    id: 2,
-    title: 'Vanguard E-Commerce',
-    category: 'Web / E-com',
-    image: 'https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=1000',
-    tags: ['Next.js', 'Shopify', 'GSAP'],
-    metrics: '3.2s -> 0.8s Load'
-  },
-  {
-    id: 3,
-    title: 'Quantum Ledger',
-    category: 'Web3 / Fintech',
-    image: 'https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=1000',
-    tags: ['Solidity', 'Tailwind', 'Python'],
-    metrics: '$2M TVL'
-  },
-  {
-    id: 4,
-    title: 'Apex Logistics System',
-    category: 'Automation',
-    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1000',
-    tags: ['Cloud', 'Go', 'Docker'],
-    metrics: '99.99% Uptime'
-  },
-  {
-    id: 5,
-    title: 'Solaris Marketing Portal',
-    category: 'Web / CMS',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000',
-    tags: ['Headless CMS', 'Vite', 'Three.js'],
-    metrics: '+200% Leads'
-  },
-  {
-    id: 6,
-    title: 'Aura Health App',
-    category: 'Mobile / SaaS',
-    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1000',
-    tags: ['React Native', 'Firebase', 'AI'],
-    metrics: '100k+ Users'
-  }
-];
-
-const categories = ['All', 'AI / SaaS', 'Web / E-com', 'Web3 / Fintech', 'Automation', 'Mobile / SaaS'];
+import { useContent } from '../hooks/useContent';
 
 const Portfolio: React.FC = () => {
   const [activeTab, setActiveTab] = useState('All');
+  const { content } = useContent();
+
+  const projects = content?.portfolio || [];
+  
+  // Extract unique categories from projects
+  const uniqueCategories = Array.from(new Set(projects.map((p: any) => p.category))) as string[];
+  const categories: string[] = ['All', ...uniqueCategories];
 
   const filteredProjects = activeTab === 'All' 
     ? projects 
-    : projects.filter(p => p.category === activeTab);
+    : projects.filter((p: any) => p.category === activeTab);
 
   return (
     <div className="pt-32 pb-20">
@@ -95,7 +50,10 @@ const Portfolio: React.FC = () => {
       {/* Grid */}
       <section className="container-custom">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project) => (
+          {filteredProjects.map((project: any) => {
+            let tagsList = [];
+            try { tagsList = JSON.parse(project.tags || '[]'); } catch(e) {}
+            return (
             <Link 
               to={`/case-studies`} 
               key={project.id} 
@@ -103,7 +61,7 @@ const Portfolio: React.FC = () => {
             >
               <div className="aspect-[4/3] overflow-hidden relative">
                 <img 
-                  src={project.image} 
+                  src={project.image_url} 
                   alt={project.title} 
                   className="w-full h-full object-cover" 
                 />
@@ -121,7 +79,7 @@ const Portfolio: React.FC = () => {
                 <div className="text-[#2563eb] font-bold text-sm uppercase tracking-widest mb-2">{project.category}</div>
                 <h3 className="text-2xl mb-4 group-hover:text-[#2563eb] transition-colors text-gray-900">{project.title}</h3>
                 <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
+                  {tagsList.map((tag: string) => (
                     <span key={tag} className="text-xs bg-gray-100 px-3 py-1 rounded-full text-gray-500">
                       {tag}
                     </span>
@@ -129,7 +87,7 @@ const Portfolio: React.FC = () => {
                 </div>
               </div>
             </Link>
-          ))}
+          )})}
         </div>
       </section>
 
