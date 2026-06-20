@@ -80,33 +80,51 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     portfolio: [
       {
         id: 1,
-        title: 'WeAreOneTechNation',
-        category: 'Corporate Website',
-        metrics: '100% Performance',
-        tags: JSON.stringify(['TypeScript', 'React', 'Tailwind']),
-        image_url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1500',
+        title: 'Sarahswati Agni',
+        category: 'Brand Website',
+        metrics: 'Custom Design',
+        tags: JSON.stringify(['HTML', 'CSS', 'JavaScript']),
+        image_url: '/images/portfolio/sarahswati-agni.jpg',
         link: '/case-studies'
       },
       {
         id: 2,
-        title: 'SaiHoliday',
-        category: 'Travel Platform',
-        metrics: '3x Booking Rate',
-        tags: JSON.stringify(['TypeScript', 'Next.js', 'Booking System']),
-        image_url: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=1500',
+        title: 'Katoch Organic Farm',
+        category: 'E-Commerce',
+        metrics: '100% Organic',
+        tags: JSON.stringify(['Next.js', 'React', 'Tailwind CSS', 'Framer']),
+        image_url: '/images/portfolio/katoch-organic.jpg',
         link: '/case-studies'
       },
       {
         id: 3,
         title: 'Make Holidays Memorable',
         category: 'Travel Platform',
-        metrics: '+150% Engagement',
+        metrics: '500+ Destinations',
         tags: JSON.stringify(['TypeScript', 'React', 'Tour Management']),
-        image_url: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=1500',
+        image_url: '/images/portfolio/mhm-travels.jpg',
         link: '/case-studies'
       },
       {
         id: 4,
+        title: 'The Glam House',
+        category: 'Beauty & Wellness',
+        metrics: 'Premium Care',
+        tags: JSON.stringify(['UI/UX', 'Booking System', 'Brand Identity']),
+        image_url: '/images/portfolio/glam-house.jpg',
+        link: '/case-studies'
+      },
+      {
+        id: 5,
+        title: "Sai Holiday's",
+        category: 'Travel Platform',
+        metrics: '10,000+ Travelers',
+        tags: JSON.stringify(['Next.js', 'React.js', 'Tailwind CSS', 'Framer Motion']),
+        image_url: '/images/portfolio/sai-holiday.jpg',
+        link: '/case-studies'
+      },
+      {
+        id: 6,
         title: 'VibeRide',
         category: 'Mobility App',
         metrics: '10k+ Rides/Day',
@@ -115,7 +133,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         link: '/case-studies'
       },
       {
-        id: 5,
+        id: 7,
         title: 'Yoga Wellness',
         category: 'Health & Fitness',
         metrics: '5k+ Active Members',
@@ -124,21 +142,12 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         link: '/case-studies'
       },
       {
-        id: 6,
-        title: 'SarahswatiAgni',
-        category: 'Brand Website',
-        metrics: 'Global Reach',
-        tags: JSON.stringify(['HTML5', 'CSS3', 'UI/UX']),
-        image_url: 'https://images.unsplash.com/photo-1518182170546-0766de6b6aa1?auto=format&fit=crop&q=80&w=1500',
-        link: '/case-studies'
-      },
-      {
-        id: 7,
-        title: 'Axion Studio',
-        category: 'Creative Studio',
-        metrics: 'Award Winning Design',
-        tags: JSON.stringify(['HTML5', 'CSS3', 'Portfolio']),
-        image_url: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1500',
+        id: 8,
+        title: 'WeAreOneTechNation',
+        category: 'Corporate Website',
+        metrics: '100% Performance',
+        tags: JSON.stringify(['TypeScript', 'React', 'Tailwind']),
+        image_url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1500',
         link: '/case-studies'
       }
     ]
