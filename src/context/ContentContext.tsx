@@ -24,6 +24,33 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     services: [
       {
         id: 1,
+        title: 'AI & Automation Systems',
+        subtitle: 'Intelligence built into your core.',
+        description: 'We integrate advanced LLMs and custom automation pipelines into your existing workflows to reduce manual overhead and increase decision-making speed.',
+        features: JSON.stringify(['Custom GPT & LLM Integration', 'Automated Content Pipelines', 'Intelligent Customer Support Bots', 'Predictive Analytics Dashboards']),
+        icon: 'cpu',
+        image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=2000'
+      },
+      {
+        id: 2,
+        title: 'High-Performance Web',
+        subtitle: 'Websites that convert at 3x the industry average.',
+        description: 'Beyond aesthetics, we build for conversion. Our websites are lightweight, SEO-engineered, and designed with psychological triggers to turn visitors into leads.',
+        features: JSON.stringify(['React & Next.js Development', 'Headless CMS Architecture', 'Performance Optimization', 'SEO & Conversion Engineering']),
+        icon: 'globe',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000'
+      },
+      {
+        id: 3,
+        title: 'Scalable Architecture',
+        subtitle: 'Foundations that never break.',
+        description: 'Build for today, scale for tomorrow. We design cloud-native infrastructures that handle traffic spikes and complex data loads with ease.',
+        features: JSON.stringify(['Cloud Infrastructure (AWS/GCP/Azure)', 'Microservices Architecture', 'Database Optimization', 'Real-time Data Processing']),
+        icon: 'layers',
+        image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2000'
+      },
+      {
+        id: 4,
         title: 'Website Development',
         subtitle: 'High-converting, scalable platforms.',
         description: 'We build end-to-end web applications designed to convert. Our websites are lightweight, SEO-engineered, and designed with psychological triggers to turn visitors into leads.',
@@ -32,7 +59,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000'
       },
       {
-        id: 2,
+        id: 5,
         title: 'Designing',
         subtitle: 'Beautiful, user-centric interfaces.',
         description: 'Modern UX/UI that wows your customers. We design premium brand experiences, from initial wireframes to high-fidelity interactive prototypes.',
@@ -41,7 +68,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=2000'
       },
       {
-        id: 3,
+        id: 6,
         title: 'Marketing Services',
         subtitle: 'Full end-to-end business development and management.',
         description: 'We don’t just build your product; we help you scale it. From comprehensive go-to-market strategies to full business management and growth marketing campaigns.',
