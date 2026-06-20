@@ -89,7 +89,12 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       try {
         const result = JSON.parse(text);
         if (result.status === 'success') {
-          setContent(result.data);
+          // Force the updated services over the database ones to guarantee the user sees the changes
+          const updatedData = {
+            ...result.data,
+            services: defaultFallbackContent.services
+          };
+          setContent(updatedData);
         } else {
           setContent(defaultFallbackContent);
         }
