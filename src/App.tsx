@@ -18,8 +18,8 @@ function App() {
         <Route path="/case-studies" element={<MainLayout><CaseStudies /></MainLayout>} />
         <Route path="/about" element={<MainLayout><About /></MainLayout>} />
         <Route path="/contact" element={<MainLayout><Contact /></MainLayout>} />
-        <Route path="/" element={<MainLayout><Home /></MainLayout>} />
-        <Route path="*" element={<MainLayout><Home /></MainLayout>} />
+        <Route path="/" element={<Home />} />
+        <Route path="*" element={<Home />} />
       </Routes>
     </Router>
   );
