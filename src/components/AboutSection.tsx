@@ -32,14 +32,14 @@ export const AboutSection: React.FC = () => {
               Through research, creative thinking and iteration we help growing brands realize their digital full potential.
             </p>
             
-            <button className="self-start group bg-[#F26522] hover:bg-[#e05a1a] text-white text-[13px] font-medium rounded-full pl-5 pr-2 py-2 flex items-center gap-3 transition-colors duration-300">
+            <button className="self-start group bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-[13px] font-medium rounded-full pl-5 pr-2 py-2 flex items-center gap-3 transition-colors duration-300">
               <div className="flex-col overflow-hidden h-[20px] relative w-auto">
                 <div className="flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-translate-y-1/2">
                   <span className="h-[20px] flex items-center">About our studio</span>
                   <span className="h-[20px] flex items-center">About our studio</span>
                 </div>
               </div>
-              <div className="bg-white text-[#F26522] w-7 h-7 rounded-full flex items-center justify-center">
+              <div className="bg-white text-[#2563eb] w-7 h-7 rounded-full flex items-center justify-center">
                 <ArrowRight size={14} className="transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-rotate-45" />
               </div>
             </button>
@@ -72,14 +72,14 @@ export const AboutSection: React.FC = () => {
                 and iteration we help growing brands <br/>
                 realize their digital full potential.
               </p>
-              <button className="group bg-[#F26522] hover:bg-[#e05a1a] text-white text-[13px] font-medium rounded-full pl-6 pr-2 py-2 flex items-center gap-3 transition-colors duration-300">
+              <button className="group bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-[13px] font-medium rounded-full pl-6 pr-2 py-2 flex items-center gap-3 transition-colors duration-300">
                 <div className="flex-col overflow-hidden h-[20px] relative w-auto">
                   <div className="flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-translate-y-1/2">
                     <span className="h-[20px] flex items-center">About our studio</span>
                     <span className="h-[20px] flex items-center">About our studio</span>
                   </div>
                 </div>
-                <div className="bg-white text-[#F26522] w-8 h-8 rounded-full flex items-center justify-center">
+                <div className="bg-white text-[#2563eb] w-8 h-8 rounded-full flex items-center justify-center">
                   <ArrowRight size={16} className="transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-rotate-45" />
                 </div>
               </button>
