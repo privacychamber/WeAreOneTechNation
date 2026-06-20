@@ -21,8 +21,8 @@ const Portfolio: React.FC = () => {
     <div className="pt-32 pb-20">
       <section className="container-custom mb-16">
         <div className="max-w-3xl">
-          <h1 className="text-5xl md:text-7xl mb-6 text-gray-900">Proven Results.</h1>
-          <p className="text-xl text-gray-500">
+          <h1 className="text-5xl md:text-7xl mb-6 text-gray-900 dark:text-white transition-colors duration-300">Proven Results.</h1>
+          <p className="text-xl text-gray-500 dark:text-gray-400 transition-colors duration-300">
             A selection of high-value digital systems we've engineered for global partners.
           </p>
         </div>
@@ -38,7 +38,7 @@ const Portfolio: React.FC = () => {
               className={`px-6 py-2 rounded-full border-2 transition-all duration-300 font-medium ${
                 activeTab === cat 
                 ? 'bg-[#2563eb] border-[#2563eb] text-white' 
-                : 'border-gray-200 hover:border-[#2563eb]/50 text-gray-600 hover:text-gray-900'
+                : 'border-gray-200 dark:border-slate-700 hover:border-[#2563eb]/50 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
               }`}
             >
               {cat}
@@ -57,7 +57,7 @@ const Portfolio: React.FC = () => {
             <Link 
               to={`/case-studies`} 
               key={project.id} 
-              className="group relative block bg-white rounded-[2rem] overflow-hidden border border-gray-100 hover:border-[#2563eb]/30 transition-colors duration-200 shadow-sm"
+              className="group relative block bg-white dark:bg-slate-800 rounded-[2rem] overflow-hidden border border-gray-100 dark:border-slate-700 hover:border-[#2563eb]/30 transition-colors duration-200 shadow-sm dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)]"
             >
               <div className="aspect-[4/3] overflow-hidden relative">
                 <img 
@@ -71,16 +71,16 @@ const Portfolio: React.FC = () => {
                   </div>
                 </div>
                 {/* Metric Badge */}
-                <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-md border border-white/20 shadow-sm px-4 py-2 rounded-full text-xs font-bold text-gray-900 z-10">
+                <div className="absolute top-6 left-6 bg-white/90 dark:bg-black/90 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-sm px-4 py-2 rounded-full text-xs font-bold text-gray-900 dark:text-white z-10 transition-colors duration-300">
                   {project.metrics}
                 </div>
               </div>
               <div className="p-8">
                 <div className="text-[#2563eb] font-bold text-sm uppercase tracking-widest mb-2">{project.category}</div>
-                <h3 className="text-2xl mb-4 group-hover:text-[#2563eb] transition-colors text-gray-900">{project.title}</h3>
+                <h3 className="text-2xl mb-4 group-hover:text-[#2563eb] transition-colors text-gray-900 dark:text-white">{project.title}</h3>
                 <div className="flex flex-wrap gap-2">
                   {tagsList.map((tag: string) => (
-                    <span key={tag} className="text-xs bg-gray-100 px-3 py-1 rounded-full text-gray-500">
+                    <span key={tag} className="text-xs bg-gray-100 dark:bg-slate-700 px-3 py-1 rounded-full text-gray-500 dark:text-gray-300 transition-colors duration-300">
                       {tag}
                     </span>
                   ))}
@@ -93,9 +93,9 @@ const Portfolio: React.FC = () => {
 
       {/* CTA */}
       <section className="container-custom mt-20 text-center">
-        <div className="bg-white shadow-[0_4px_24px_rgba(0,0,0,0.04)] p-12 rounded-[3rem] max-w-4xl mx-auto border border-gray-100">
-          <h2 className="text-3xl mb-6 text-gray-900">Want to see your project here?</h2>
-          <p className="text-gray-500 mb-8">
+        <div className="bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-12 rounded-[3rem] max-w-4xl mx-auto border border-gray-100 dark:border-slate-700 transition-colors duration-300">
+          <h2 className="text-3xl mb-6 text-gray-900 dark:text-white transition-colors duration-300">Want to see your project here?</h2>
+          <p className="text-gray-500 dark:text-gray-400 mb-8 transition-colors duration-300">
             Let's discuss how we can build a high-performance system for your business.
           </p>
           <Link to="/contact" className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-6 py-3 font-semibold rounded-full transition-colors duration-300 inline-flex items-center gap-2">

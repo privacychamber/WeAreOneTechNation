@@ -10,7 +10,7 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-white text-gray-900 w-full min-h-screen">
+    <div className="bg-white dark:bg-[#0B0F1A] text-gray-900 dark:text-white w-full min-h-screen transition-colors duration-300">
       <HeroSection />
       <AboutSection />
       <CaseStudiesSection />

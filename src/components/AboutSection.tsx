@@ -3,22 +3,22 @@ import { ArrowRight } from 'lucide-react';
 
 export const AboutSection: React.FC = () => {
   return (
-    <section id="studio" className="bg-white pt-16 sm:pt-20 lg:pt-32 pb-12 sm:pb-16 lg:pb-24 overflow-hidden">
+    <section id="studio" className="bg-white dark:bg-[#0B0F1A] pt-16 sm:pt-20 lg:pt-32 pb-12 sm:pb-16 lg:pb-24 overflow-hidden transition-colors duration-300">
       <div className="w-full max-w-[1440px] mx-auto">
         
         {/* Badge Row */}
         <div className="px-5 sm:px-8 lg:px-12 flex items-center gap-3 mb-6 sm:mb-8">
-          <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gray-900 text-white text-[11px] leading-[12px] font-semibold flex items-center justify-center">
+          <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-[11px] leading-[12px] font-semibold flex items-center justify-center transition-colors duration-300">
             1
           </div>
-          <div className="text-[12px] leading-[13px] font-medium border border-gray-200 rounded-full px-3 sm:px-4 py-1 sm:py-1.5">
+          <div className="text-[12px] leading-[13px] font-medium border border-gray-200 dark:border-slate-700 text-gray-900 dark:text-white rounded-full px-3 sm:px-4 py-1 sm:py-1.5 transition-colors duration-300">
             Introducing Axion
           </div>
         </div>
 
         {/* Heading h2 */}
         <div className="px-5 sm:px-8 lg:px-12">
-          <h2 className="text-gray-900 font-medium leading-[1.12] tracking-[-0.02em] text-[clamp(1.5rem,4vw,3.2rem)] mb-12 sm:mb-16 lg:mb-28">
+          <h2 className="text-gray-900 dark:text-white font-medium leading-[1.12] tracking-[-0.02em] text-[clamp(1.5rem,4vw,3.2rem)] mb-12 sm:mb-16 lg:mb-28 transition-colors duration-300">
             Strategy-led creatives, delivering <br className="hidden sm:block" /> results in digital and beyond.
           </h2>
         </div>
@@ -28,7 +28,7 @@ export const AboutSection: React.FC = () => {
           
           {/* Mobile/Tablet Layout (< lg) */}
           <div className="lg:hidden flex flex-col gap-8">
-            <p className="text-[15px] leading-[1.6] font-medium text-gray-900">
+            <p className="text-[15px] leading-[1.6] font-medium text-gray-900 dark:text-gray-300 transition-colors duration-300">
               Through research, creative thinking and iteration we help growing brands realize their digital full potential.
             </p>
             
@@ -67,7 +67,7 @@ export const AboutSection: React.FC = () => {
             />
             
             <div className="self-start flex flex-col items-end pb-8">
-              <p className="text-[16px] leading-[1.65] font-medium text-gray-900 whitespace-nowrap text-right mb-8">
+              <p className="text-[16px] leading-[1.65] font-medium text-gray-900 dark:text-gray-300 whitespace-nowrap text-right mb-8 transition-colors duration-300">
                 Through research, creative thinking <br/>
                 and iteration we help growing brands <br/>
                 realize their digital full potential.

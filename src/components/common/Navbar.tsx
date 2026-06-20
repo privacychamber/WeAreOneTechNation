@@ -22,7 +22,7 @@ export const Navbar: React.FC = () => {
           {/* Left: Logo & Desktop Links */}
           <div className="flex items-center gap-6">
             <Link to="/" className="flex items-center pl-2">
-              <img src="/logo.png" alt="We Are One Tech Nation" className="h-8 w-auto object-contain origin-left" />
+              <img src="/logo.png" alt="We Are One Tech Nation" className="h-12 w-auto object-contain origin-left transform scale-110" />
             </Link>
             <div className="hidden md:flex items-center gap-6">
               {navLinks.map((link) => (
