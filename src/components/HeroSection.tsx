@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Clock, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Logo } from '../ui/Logo';
+import { Logo } from './ui/Logo';
 import { Shader, Swirl, ChromaFlow, FilmGrain, FlutedGlass } from 'shaders/react';
 
 export const HeroSection: React.FC = () => {
