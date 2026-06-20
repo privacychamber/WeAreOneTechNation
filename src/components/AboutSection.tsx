@@ -32,7 +32,7 @@ export const AboutSection: React.FC = () => {
               Through research, creative thinking and iteration we help growing brands realize their digital full potential.
             </p>
             
-            <button className="self-start group bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-[13px] font-medium rounded-full pl-5 pr-2 py-2 flex items-center gap-3 transition-colors duration-300">
+            <button className="interactive-glow-button self-start group bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-[13px] font-medium rounded-full pl-5 pr-2 py-2 flex items-center gap-3 transition-colors duration-300">
               <div className="flex-col overflow-hidden h-[20px] relative w-auto">
                 <div className="flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-translate-y-1/2">
                   <span className="h-[20px] flex items-center">About our studio</span>
@@ -45,26 +45,32 @@ export const AboutSection: React.FC = () => {
             </button>
 
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 mt-4">
-              <img 
-                src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260516_090123_74be96d4-9c1b-40cf-932a-96f4f4babed3.png&w=1280&q=85" 
-                alt="Axion Studio Work 1" 
-                className="w-full sm:w-[45%] aspect-[438/346] object-cover rounded-xl sm:rounded-2xl"
-              />
-              <img 
-                src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260516_090133_c157d30b-a99a-4477-bec1-a446149ec3f2.png&w=1280&q=85" 
-                alt="Axion Studio Work 2" 
-                className="w-full sm:w-[55%] aspect-[900/600] object-cover rounded-xl sm:rounded-2xl"
-              />
+              <div className="interactive-glow w-full sm:w-[45%] aspect-[438/346] rounded-xl sm:rounded-2xl overflow-hidden shadow-sm border border-transparent dark:border-slate-700/50 hover:border-[#2563eb]/30 transition-all duration-300">
+                <img 
+                  src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260516_090123_74be96d4-9c1b-40cf-932a-96f4f4babed3.png&w=1280&q=85" 
+                  alt="Axion Studio Work 1" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="interactive-glow w-full sm:w-[55%] aspect-[900/600] rounded-xl sm:rounded-2xl overflow-hidden shadow-sm border border-transparent dark:border-slate-700/50 hover:border-[#2563eb]/30 transition-all duration-300">
+                <img 
+                  src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260516_090133_c157d30b-a99a-4477-bec1-a446149ec3f2.png&w=1280&q=85" 
+                  alt="Axion Studio Work 2" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
           </div>
 
           {/* Desktop Layout (>= lg) */}
           <div className="hidden lg:grid grid-cols-[26%_1fr_48%] items-end gap-6 xl:gap-8">
-            <img 
-              src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260516_090123_74be96d4-9c1b-40cf-932a-96f4f4babed3.png&w=1280&q=85" 
-              alt="Axion Studio Work 1" 
-              className="w-full aspect-[438/346] object-cover rounded-2xl self-end"
-            />
+            <div className="interactive-glow w-full aspect-[438/346] rounded-2xl overflow-hidden self-end shadow-sm border border-transparent dark:border-slate-700/50 hover:border-[#2563eb]/30 transition-all duration-300">
+              <img 
+                src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260516_090123_74be96d4-9c1b-40cf-932a-96f4f4babed3.png&w=1280&q=85" 
+                alt="Axion Studio Work 1" 
+                className="w-full h-full object-cover"
+              />
+            </div>
             
             <div className="self-start flex flex-col items-end pb-8">
               <p className="text-[16px] leading-[1.65] font-medium text-gray-900 dark:text-gray-300 whitespace-nowrap text-right mb-8 transition-colors duration-300">
@@ -72,7 +78,7 @@ export const AboutSection: React.FC = () => {
                 and iteration we help growing brands <br/>
                 realize their digital full potential.
               </p>
-              <button className="group bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-[13px] font-medium rounded-full pl-6 pr-2 py-2 flex items-center gap-3 transition-colors duration-300">
+              <button className="interactive-glow-button group bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-[13px] font-medium rounded-full pl-6 pr-2 py-2 flex items-center gap-3 transition-colors duration-300">
                 <div className="flex-col overflow-hidden h-[20px] relative w-auto">
                   <div className="flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-translate-y-1/2">
                     <span className="h-[20px] flex items-center">About our studio</span>
@@ -85,11 +91,13 @@ export const AboutSection: React.FC = () => {
               </button>
             </div>
 
-            <img 
-              src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260516_090133_c157d30b-a99a-4477-bec1-a446149ec3f2.png&w=1280&q=85" 
-              alt="Axion Studio Work 2" 
-              className="w-full aspect-[3/2] object-cover rounded-2xl self-end"
-            />
+            <div className="interactive-glow w-full aspect-[3/2] rounded-2xl overflow-hidden self-end shadow-sm border border-transparent dark:border-slate-700/50 hover:border-[#2563eb]/30 transition-all duration-300">
+              <img 
+                src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260516_090133_c157d30b-a99a-4477-bec1-a446149ec3f2.png&w=1280&q=85" 
+                alt="Axion Studio Work 2" 
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
 
         </div>
