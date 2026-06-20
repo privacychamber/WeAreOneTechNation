@@ -37,7 +37,7 @@ const Services: React.FC = () => {
           <div className="container-custom">
             <div className={`grid lg:grid-cols-2 gap-8 md:gap-16 items-center ${i % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
               <div className={i % 2 === 1 ? 'lg:order-2' : ''}>
-                <div className="mb-6 p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 inline-block transition-colors duration-300">
+                <div className="interactive-glow mb-6 p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 inline-block transition-colors duration-300">
                   {getIcon(service.icon)}
                 </div>
                 <h2 className="text-3xl md:text-4xl mb-2 text-gray-900 dark:text-white transition-colors duration-300">{service.title}</h2>
@@ -53,12 +53,12 @@ const Services: React.FC = () => {
                     </div>
                   ))}
                 </div>
-                <Link to="/contact" className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-6 py-3 font-semibold rounded-full transition-colors duration-300 inline-flex items-center gap-2">
+                <Link to="/contact" className="interactive-glow-button bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-6 py-3 font-semibold rounded-full transition-colors duration-300 inline-flex items-center gap-2">
                   Inquire About This Service <ArrowRight size={20} />
                 </Link>
               </div>
               <div className={`relative ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
-                <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl aspect-video lg:aspect-square">
+                <div className="interactive-glow relative z-10 rounded-3xl overflow-hidden shadow-2xl aspect-video lg:aspect-square">
                   <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 </div>
@@ -81,7 +81,7 @@ const Services: React.FC = () => {
             { icon: <Database />, title: 'Scalability', desc: 'Your system is built to handle $10M+ in revenue from day one.' },
             { icon: <Smartphone />, title: 'Modern UX', desc: 'Mobile-first, high-fidelity designs that wow your customers.' }
           ].map((item, i) => (
-            <div key={i} className="bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] rounded-2xl md:rounded-3xl p-6 md:p-10 text-center space-y-4 md:space-y-6 transition-colors duration-300 border border-transparent dark:border-slate-700">
+            <div key={i} className="interactive-glow bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] rounded-2xl md:rounded-3xl p-6 md:p-10 text-center space-y-4 md:space-y-6 transition-colors duration-300 border border-transparent dark:border-slate-700">
               <div className="w-16 h-16 bg-[#2563eb]/10 dark:bg-[#2563eb]/20 rounded-2xl flex items-center justify-center text-[#2563eb] mx-auto">
                 {React.cloneElement(item.icon as React.ReactElement<any>, { size: 32 })}
               </div>
@@ -100,7 +100,7 @@ const Services: React.FC = () => {
             <p className="text-xl text-gray-500 dark:text-gray-400 mb-12 max-w-2xl mx-auto transition-colors duration-300">
               Our consultants help you map out the technical roadmap for your business.
             </p>
-            <Link to="/contact" className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-12 py-4 font-semibold rounded-full transition-colors duration-300 text-lg">
+            <Link to="/contact" className="interactive-glow-button bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-12 py-4 font-semibold rounded-full transition-colors duration-300 text-lg">
               Book a Discovery Session
             </Link>
           </div>

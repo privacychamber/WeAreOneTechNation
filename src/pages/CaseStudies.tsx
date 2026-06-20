@@ -19,11 +19,11 @@ const CaseStudies: React.FC = () => {
               Nexus needed to automate their supply chain forecasting. We built a custom LLM-integrated dashboard that reduced manual entry by 85%.
             </p>
             <div className="grid grid-cols-2 gap-8">
-              <div className="p-6 bg-white dark:bg-slate-800 shadow-sm border border-gray-100 dark:border-slate-700 rounded-2xl transition-colors duration-300">
+              <div className="interactive-glow p-6 bg-white dark:bg-slate-800 shadow-sm border border-gray-100 dark:border-slate-700 rounded-2xl transition-colors duration-300">
                 <div className="text-3xl font-bold text-[#2563eb] mb-1">85%</div>
                 <div className="text-sm text-gray-400 uppercase font-bold tracking-widest">Automation Rate</div>
               </div>
-              <div className="p-6 bg-white dark:bg-slate-800 shadow-sm border border-gray-100 dark:border-slate-700 rounded-2xl transition-colors duration-300">
+              <div className="interactive-glow p-6 bg-white dark:bg-slate-800 shadow-sm border border-gray-100 dark:border-slate-700 rounded-2xl transition-colors duration-300">
                 <div className="text-3xl font-bold text-[#3b82f6] mb-1">1.2M</div>
                 <div className="text-sm text-gray-400 uppercase font-bold tracking-widest">Tasks/Day</div>
               </div>
@@ -79,15 +79,15 @@ const CaseStudies: React.FC = () => {
                 <TrendingUp className="text-[#2563eb]" /> Execution
               </h2>
               <div className="space-y-6 md:space-y-8">
-                <div className="bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-6 md:p-8 rounded-2xl md:rounded-3xl border border-gray-100 dark:border-slate-700 transition-colors duration-300">
+                <div className="interactive-glow bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-6 md:p-8 rounded-2xl md:rounded-3xl border border-gray-100 dark:border-slate-700 transition-colors duration-300">
                   <h4 className="text-lg md:text-xl font-bold mb-2 text-gray-900 dark:text-white">Phase 1: Data Normalization</h4>
                   <p className="text-gray-500 dark:text-gray-400">Cleaned and structured 10 years of historical logistics data to train the AI model.</p>
                 </div>
-                <div className="bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-6 md:p-8 rounded-2xl md:rounded-3xl border border-gray-100 dark:border-slate-700 transition-colors duration-300">
+                <div className="interactive-glow bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-6 md:p-8 rounded-2xl md:rounded-3xl border border-gray-100 dark:border-slate-700 transition-colors duration-300">
                   <h4 className="text-lg md:text-xl font-bold mb-2 text-gray-900 dark:text-white">Phase 2: AI Engine Development</h4>
                   <p className="text-gray-500 dark:text-gray-400">Integrated OpenAI API with custom vector embeddings for company-specific logistics context.</p>
                 </div>
-                <div className="bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-6 md:p-8 rounded-2xl md:rounded-3xl border border-gray-100 dark:border-slate-700 transition-colors duration-300">
+                <div className="interactive-glow bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-6 md:p-8 rounded-2xl md:rounded-3xl border border-gray-100 dark:border-slate-700 transition-colors duration-300">
                   <h4 className="text-lg md:text-xl font-bold mb-2 text-gray-900 dark:text-white">Phase 3: High-Performance UI</h4>
                   <p className="text-gray-500 dark:text-gray-400">Built a React-based real-time dashboard using WebSockets for live data streaming.</p>
                 </div>
@@ -97,7 +97,7 @@ const CaseStudies: React.FC = () => {
 
           {/* Sidebar Info */}
           <aside className="space-y-6 md:space-y-8">
-            <div className="bg-white dark:bg-slate-800 shadow-lg dark:shadow-2xl p-6 md:p-8 rounded-2xl md:rounded-3xl border border-gray-100 dark:border-slate-700 sticky top-24 md:top-32 transition-colors duration-300">
+            <div className="interactive-glow bg-white dark:bg-slate-800 shadow-lg dark:shadow-2xl p-6 md:p-8 rounded-2xl md:rounded-3xl border border-gray-100 dark:border-slate-700 sticky top-24 md:top-32 transition-colors duration-300">
               <h3 className="text-2xl mb-8 text-gray-900 dark:text-white">At a Glance</h3>
               <div className="space-y-8">
                 <div>
@@ -118,7 +118,7 @@ const CaseStudies: React.FC = () => {
                 </div>
               </div>
               <hr className="my-8 border-gray-200 dark:border-slate-700" />
-              <Link to="/contact" className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white w-full text-center py-4 rounded-full font-semibold transition-colors duration-300 block">
+              <Link to="/contact" className="interactive-glow-button bg-[#2563eb] hover:bg-[#1d4ed8] text-white w-full text-center py-4 rounded-full font-semibold transition-colors duration-300 block">
                 Get Similar Results
               </Link>
             </div>

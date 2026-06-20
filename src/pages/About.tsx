@@ -31,11 +31,11 @@ const About: React.FC = () => {
               {content?.settings?.about_vision_secondary || "We don't operate like a standard agency. We are your technical co-founders, your innovation lab, and your scale partner all in one."}
             </p>
             <div className="grid grid-cols-2 gap-8 pt-4">
-              <div>
+              <div className="interactive-glow p-4 rounded-xl border border-transparent hover:border-[#2563eb]/20">
                 <div className="text-4xl font-bold text-[#2563eb] mb-1">50+</div>
                 <div className="text-sm text-gray-400 uppercase font-bold tracking-widest">Global Projects</div>
               </div>
-              <div>
+              <div className="interactive-glow p-4 rounded-xl border border-transparent hover:border-[#2563eb]/20">
                 <div className="text-4xl font-bold text-[#2563eb] mb-1">$10M+</div>
                 <div className="text-sm text-gray-400 uppercase font-bold tracking-widest">Client Revenue Generated</div>
               </div>
@@ -67,7 +67,7 @@ const About: React.FC = () => {
             { icon: <Target />, title: 'Result Driven', desc: 'Every line of code is written with your business KPIs in mind.' },
             { icon: <Shield />, title: 'Rock-Solid Trust', desc: 'We are long-term partners. Your security and scalability are our priority.' }
           ].map((item, i) => (
-            <div key={i} className="text-center space-y-4 md:space-y-6 bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-6 md:p-10 rounded-2xl md:rounded-3xl transition-colors duration-300 border border-transparent dark:border-slate-700">
+            <div key={i} className="interactive-glow text-center space-y-4 md:space-y-6 bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-6 md:p-10 rounded-2xl md:rounded-3xl transition-colors duration-300 border border-transparent dark:border-slate-700">
               <div className="w-20 h-20 bg-[#2563eb]/10 dark:bg-[#2563eb]/20 rounded-full flex items-center justify-center text-[#2563eb] mx-auto">
                 {React.cloneElement(item.icon as React.ReactElement<any>, { size: 40 })}
               </div>
@@ -86,8 +86,8 @@ const About: React.FC = () => {
             We are always looking for the top 1% of talent and partners to push the boundaries of what's possible.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 md:gap-6">
-            <Link to="/contact" className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white rounded-full font-semibold px-8 md:px-10 py-4 transition-colors duration-300 inline-flex items-center justify-center">Work With Us</Link>
-            <Link to="/portfolio" className="border-2 border-[#2563eb] text-[#2563eb] hover:bg-[#2563eb] hover:text-white rounded-full font-semibold px-8 md:px-10 py-4 transition-colors duration-300 inline-flex items-center justify-center">See Our Legacy</Link>
+            <Link to="/contact" className="interactive-glow-button bg-[#2563eb] hover:bg-[#1d4ed8] text-white rounded-full font-semibold px-8 md:px-10 py-4 transition-colors duration-300 inline-flex items-center justify-center">Work With Us</Link>
+            <Link to="/portfolio" className="interactive-glow-button border-2 border-[#2563eb] text-[#2563eb] hover:bg-[#2563eb] hover:text-white rounded-full font-semibold px-8 md:px-10 py-4 transition-colors duration-300 inline-flex items-center justify-center">See Our Legacy</Link>
           </div>
         </div>
       </section>

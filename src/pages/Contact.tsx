@@ -58,7 +58,7 @@ const Contact: React.FC = () => {
 
             <div className="space-y-8">
               <div className="flex items-center gap-6">
-                <div className="w-14 h-14 bg-white dark:bg-slate-800 shadow-sm border border-gray-100 dark:border-slate-700 rounded-2xl flex items-center justify-center text-[#2563eb] transition-colors duration-300">
+                <div className="interactive-glow w-14 h-14 bg-white dark:bg-slate-800 shadow-sm border border-gray-100 dark:border-slate-700 rounded-2xl flex items-center justify-center text-[#2563eb] transition-colors duration-300">
                   <Mail size={24} />
                 </div>
                 <div>
@@ -67,7 +67,7 @@ const Contact: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center gap-6">
-                <div className="w-14 h-14 bg-white dark:bg-slate-800 shadow-sm border border-gray-100 dark:border-slate-700 rounded-2xl flex items-center justify-center text-[#2563eb] transition-colors duration-300">
+                <div className="interactive-glow w-14 h-14 bg-white dark:bg-slate-800 shadow-sm border border-gray-100 dark:border-slate-700 rounded-2xl flex items-center justify-center text-[#2563eb] transition-colors duration-300">
                   <MessageSquare size={24} />
                 </div>
                 <div>
@@ -76,7 +76,7 @@ const Contact: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center gap-6">
-                <div className="w-14 h-14 bg-white dark:bg-slate-800 shadow-sm border border-gray-100 dark:border-slate-700 rounded-2xl flex items-center justify-center text-[#2563eb] transition-colors duration-300">
+                <div className="interactive-glow w-14 h-14 bg-white dark:bg-slate-800 shadow-sm border border-gray-100 dark:border-slate-700 rounded-2xl flex items-center justify-center text-[#2563eb] transition-colors duration-300">
                   <MapPin size={24} />
                 </div>
                 <div>
@@ -86,7 +86,7 @@ const Contact: React.FC = () => {
               </div>
             </div>
 
-            <div className="p-6 md:p-8 bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] rounded-3xl border border-blue-100 dark:border-slate-700 transition-colors duration-300">
+            <div className="interactive-glow p-6 md:p-8 bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] rounded-3xl border border-blue-100 dark:border-slate-700 transition-colors duration-300">
               <h3 className="text-xl md:text-2xl mb-4 font-bold text-gray-900 dark:text-white transition-colors duration-300">What happens next?</h3>
               <ul className="space-y-4">
                 {[
@@ -176,7 +176,7 @@ const Contact: React.FC = () => {
                 <button
                   type="submit"
                   disabled={submitted}
-                  className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white rounded-full font-semibold transition-colors duration-300 w-full py-5 text-xl flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="interactive-glow-button bg-[#2563eb] hover:bg-[#1d4ed8] text-white rounded-full font-semibold transition-colors duration-300 w-full py-5 text-xl flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {submitted ? (
                     <>Message Sent! <CheckCircle2 /></>
@@ -200,7 +200,7 @@ const Contact: React.FC = () => {
             { q: "How long does a project take?", a: "Most projects take between 4-12 weeks depending on complexity." },
             { q: "Do you offer maintenance?", a: "Yes, we provide ongoing scaling and maintenance packages." }
           ].map((faq, i) => (
-            <div key={i} className="p-6 md:p-8 bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] rounded-3xl border border-gray-100 dark:border-slate-700 text-left transition-colors duration-300">
+            <div key={i} className="interactive-glow p-6 md:p-8 bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] rounded-3xl border border-gray-100 dark:border-slate-700 text-left transition-colors duration-300">
               <h4 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">{faq.q}</h4>
               <p className="text-gray-500 dark:text-gray-400">{faq.a}</p>
             </div>

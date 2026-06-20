@@ -57,7 +57,7 @@ const Portfolio: React.FC = () => {
             <Link 
               to={`/case-studies`} 
               key={project.id} 
-              className="group relative block bg-white dark:bg-slate-800 rounded-[2rem] overflow-hidden border border-gray-100 dark:border-slate-700 hover:border-[#2563eb]/30 transition-colors duration-200 shadow-sm dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)]"
+              className="interactive-glow group relative block bg-white dark:bg-slate-800 rounded-[2rem] overflow-hidden border border-gray-100 dark:border-slate-700 hover:border-[#2563eb]/30 transition-colors duration-200 shadow-sm dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)]"
             >
               <div className="aspect-[4/3] overflow-hidden relative">
                 <img 
@@ -93,12 +93,12 @@ const Portfolio: React.FC = () => {
 
       {/* CTA */}
       <section className="container-custom mt-12 md:mt-20 text-center">
-        <div className="bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-8 md:p-12 rounded-3xl md:rounded-[3rem] max-w-4xl mx-auto border border-gray-100 dark:border-slate-700 transition-colors duration-300">
+        <div className="interactive-glow bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-8 md:p-12 rounded-3xl md:rounded-[3rem] max-w-4xl mx-auto border border-gray-100 dark:border-slate-700 transition-colors duration-300">
           <h2 className="text-2xl md:text-3xl mb-4 md:mb-6 text-gray-900 dark:text-white transition-colors duration-300">Want to see your project here?</h2>
           <p className="text-gray-500 dark:text-gray-400 mb-8 transition-colors duration-300">
             Let's discuss how we can build a high-performance system for your business.
           </p>
-          <Link to="/contact" className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-6 py-3 font-semibold rounded-full transition-colors duration-300 inline-flex items-center gap-2">
+          <Link to="/contact" className="interactive-glow-button bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-6 py-3 font-semibold rounded-full transition-colors duration-300 inline-flex items-center gap-2">
             Start Your Project <ArrowRight size={20} />
           </Link>
         </div>
