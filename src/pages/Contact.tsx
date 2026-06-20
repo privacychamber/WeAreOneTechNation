@@ -1,17 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Mail, MapPin, Send, MessageSquare, CheckCircle2 } from 'lucide-react';
 import { useContent } from '../hooks/useContent';
 
 const Contact: React.FC = () => {
   const { content } = useContent();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const initialService = searchParams.get('service');
+
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    projectType: 'Web Development',
+    projectType: initialService || 'Web Development',
     budget: '$5,000 - $10,000',
     message: ''
   });
+
+  // If service param changes or content loads, ensure it's in the list
+  const serviceOptions = content?.services?.map((s: any) => s.title) || [
+    'Web Development',
+    'AI Integration',
+    'Digital Automation',
+    'SaaS Development'
+  ];
+
+  useEffect(() => {
+    if (initialService && !formData.projectType) {
+      setFormData(prev => ({ ...prev, projectType: initialService }));
+    }
+  }, [initialService]);
 
   const email = content?.settings?.contact_email || 'privacy.chamber@gmail.com';
   const whatsapp = content?.settings?.contact_whatsapp || '+91-9418100803';
@@ -141,10 +160,14 @@ const Contact: React.FC = () => {
                       onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
                       className="w-full bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 px-6 py-4 rounded-2xl outline-none focus:border-[#2563eb] transition-colors appearance-none text-gray-900 dark:text-white"
                     >
-                      <option>Web Development</option>
-                      <option>AI Integration</option>
-                      <option>Digital Automation</option>
-                      <option>SaaS Development</option>
+                      <option value="" disabled>Select a service</option>
+                      {serviceOptions.map((opt: string, i: number) => (
+                        <option key={i} value={opt}>{opt}</option>
+                      ))}
+                      {/* In case the URL param doesn't strictly match the dynamic list */}
+                      {initialService && !serviceOptions.includes(initialService) && (
+                        <option value={initialService}>{initialService}</option>
+                      )}
                     </select>
                   </div>
                   <div className="space-y-2">

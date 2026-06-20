@@ -53,7 +53,7 @@ const Services: React.FC = () => {
                     </div>
                   ))}
                 </div>
-                <Link to="/contact" className="interactive-glow-button bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-6 py-3 font-semibold rounded-full transition-colors duration-300 inline-flex items-center gap-2">
+                <Link to={`/contact?service=${encodeURIComponent(service.title)}`} className="interactive-glow-button bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-6 py-3 font-semibold rounded-full transition-colors duration-300 inline-flex items-center gap-2">
                   Inquire About This Service <ArrowRight size={20} />
                 </Link>
               </div>
