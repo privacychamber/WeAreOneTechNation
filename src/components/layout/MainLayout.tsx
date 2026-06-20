@@ -16,7 +16,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   }, [pathname]);
 
   return (
-    <div className="min-h-screen flex flex-col relative overflow-hidden bg-[#EFEFEF] text-slate-900 font-inter">
+    <div className="min-h-screen flex flex-col relative overflow-hidden bg-[#EFEFEF] dark:bg-[#0B0F1A] text-slate-900 dark:text-white font-inter transition-colors duration-300">
       <Navbar />
       
       <main className="flex-grow z-10 w-full relative">

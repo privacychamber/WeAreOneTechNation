@@ -9,7 +9,7 @@ export const HeroSection: React.FC = () => {
   return (
     <section className="relative w-full h-screen min-h-screen bg-[#EFEFEF] dark:bg-[#0B0F1A] overflow-hidden flex flex-col justify-end pb-14 sm:pb-16 lg:pb-20 transition-colors duration-300">
       {/* Background Shader Overlay */}
-      <div className="absolute inset-0 z-10 pointer-events-none">
+      <div className="absolute inset-0 z-10 pointer-events-none transition-opacity duration-500 dark:opacity-5">
         <Shader>
           <Swirl colorA="#ffffff" colorB="#f0f0f0" detail={1.7} />
           <ChromaFlow baseColor="#ffffff" downColor="#3b82f6" leftColor="#3b82f6" rightColor="#3b82f6" upColor="#3b82f6" momentum={13} radius={3.5} />
