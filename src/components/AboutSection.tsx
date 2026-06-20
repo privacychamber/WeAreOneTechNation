@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 
 export const AboutSection: React.FC = () => {
   return (
-    <section id="studio" className="bg-white dark:bg-[#0B0F1A] pt-16 sm:pt-20 lg:pt-32 pb-12 sm:pb-16 lg:pb-24 overflow-hidden transition-colors duration-300">
+    <section id="studio" className="bg-white dark:bg-[#0B0F1A] pt-12 sm:pt-20 lg:pt-32 pb-10 sm:pb-16 lg:pb-24 overflow-hidden transition-colors duration-300">
       <div className="w-full max-w-[1440px] mx-auto">
         
         {/* Badge Row */}
@@ -18,7 +18,7 @@ export const AboutSection: React.FC = () => {
 
         {/* Heading h2 */}
         <div className="px-5 sm:px-8 lg:px-12">
-          <h2 className="text-gray-900 dark:text-white font-medium leading-[1.12] tracking-[-0.02em] text-[clamp(1.5rem,4vw,3.2rem)] mb-12 sm:mb-16 lg:mb-28 transition-colors duration-300">
+          <h2 className="text-gray-900 dark:text-white font-medium leading-[1.12] tracking-[-0.02em] text-[clamp(1.5rem,4vw,3.2rem)] mb-10 sm:mb-16 lg:mb-28 transition-colors duration-300">
             Strategy-led creatives, delivering <br className="hidden sm:block" /> results in digital and beyond.
           </h2>
         </div>
@@ -27,7 +27,7 @@ export const AboutSection: React.FC = () => {
         <div className="px-5 sm:px-8 lg:px-12">
           
           {/* Mobile/Tablet Layout (< lg) */}
-          <div className="lg:hidden flex flex-col gap-8">
+          <div className="lg:hidden flex flex-col gap-6">
             <p className="text-[15px] leading-[1.6] font-medium text-gray-900 dark:text-gray-300 transition-colors duration-300">
               Through research, creative thinking and iteration we help growing brands realize their digital full potential.
             </p>

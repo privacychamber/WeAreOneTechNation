@@ -4,18 +4,18 @@ import { ArrowLeft, TrendingUp, Zap, Clock, Users, Target, CheckCircle2 } from '
 
 const CaseStudies: React.FC = () => {
   return (
-    <div className="pt-32 pb-20">
+    <div className="pt-24 md:pt-32 pb-12 md:pb-20">
       <div className="container-custom">
         <Link to="/portfolio" className="inline-flex items-center gap-2 text-gray-500 dark:text-gray-400 hover:text-[#2563eb] dark:hover:text-[#2563eb] mb-12 transition-colors">
           <ArrowLeft size={18} /> Back to Portfolio
         </Link>
 
         {/* Hero */}
-        <section className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+        <section className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center mb-12 md:mb-20">
           <div>
             <div className="text-[#2563eb] font-bold uppercase tracking-[0.2em] mb-4">Case Study: Nexus AI</div>
-            <h1 className="text-4xl md:text-6xl mb-8 text-gray-900 dark:text-white transition-colors duration-300">Engineering a $12M Intelligence Engine for Global Logistics</h1>
-            <p className="text-xl text-gray-500 dark:text-gray-400 mb-8 leading-relaxed transition-colors duration-300">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl mb-6 md:mb-8 text-gray-900 dark:text-white transition-colors duration-300">Engineering a $12M Intelligence Engine for Global Logistics</h1>
+            <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 mb-6 md:mb-8 leading-relaxed transition-colors duration-300">
               Nexus needed to automate their supply chain forecasting. We built a custom LLM-integrated dashboard that reduced manual entry by 85%.
             </p>
             <div className="grid grid-cols-2 gap-8">
@@ -41,8 +41,8 @@ const CaseStudies: React.FC = () => {
         </section>
 
         {/* Content Sections */}
-        <div className="grid lg:grid-cols-3 gap-16">
-          <div className="lg:col-span-2 space-y-20">
+        <div className="grid lg:grid-cols-3 gap-10 md:gap-16">
+          <div className="lg:col-span-2 space-y-12 md:space-y-20">
             {/* Problem */}
             <section>
               <h2 className="text-3xl mb-6 flex items-center gap-3 text-gray-900 dark:text-white transition-colors duration-300">
@@ -65,10 +65,10 @@ const CaseStudies: React.FC = () => {
               <h2 className="text-3xl mb-6 flex items-center gap-3 text-gray-900 dark:text-white transition-colors duration-300">
                 <Zap className="text-[#2563eb]" /> Our Strategy
               </h2>
-              <p className="text-lg text-gray-500 dark:text-gray-400 leading-relaxed mb-6 transition-colors duration-300">
+              <p className="text-base md:text-lg text-gray-500 dark:text-gray-400 leading-relaxed mb-6 transition-colors duration-300">
                 We proposed a centralized digital ecosystem powered by a custom-trained AI model. The strategy focused on "Single Source of Truth" architecture and automated data ingestion pipelines.
               </p>
-              <div className="bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 p-8 rounded-3xl border border-[#2563eb]/20 dark:border-slate-700 italic transition-colors duration-300">
+              <div className="bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 p-6 md:p-8 rounded-2xl md:rounded-3xl border border-[#2563eb]/20 dark:border-slate-700 italic transition-colors duration-300">
                 "We didn't just build a dashboard; we rebuilt their decision-making engine from the ground up."
               </div>
             </section>
@@ -78,17 +78,17 @@ const CaseStudies: React.FC = () => {
               <h2 className="text-3xl mb-6 flex items-center gap-3 text-gray-900 dark:text-white transition-colors duration-300">
                 <TrendingUp className="text-[#2563eb]" /> Execution
               </h2>
-              <div className="space-y-8">
-                <div className="bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-8 rounded-3xl border border-gray-100 dark:border-slate-700 transition-colors duration-300">
-                  <h4 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">Phase 1: Data Normalization</h4>
+              <div className="space-y-6 md:space-y-8">
+                <div className="bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-6 md:p-8 rounded-2xl md:rounded-3xl border border-gray-100 dark:border-slate-700 transition-colors duration-300">
+                  <h4 className="text-lg md:text-xl font-bold mb-2 text-gray-900 dark:text-white">Phase 1: Data Normalization</h4>
                   <p className="text-gray-500 dark:text-gray-400">Cleaned and structured 10 years of historical logistics data to train the AI model.</p>
                 </div>
-                <div className="bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-8 rounded-3xl border border-gray-100 dark:border-slate-700 transition-colors duration-300">
-                  <h4 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">Phase 2: AI Engine Development</h4>
+                <div className="bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-6 md:p-8 rounded-2xl md:rounded-3xl border border-gray-100 dark:border-slate-700 transition-colors duration-300">
+                  <h4 className="text-lg md:text-xl font-bold mb-2 text-gray-900 dark:text-white">Phase 2: AI Engine Development</h4>
                   <p className="text-gray-500 dark:text-gray-400">Integrated OpenAI API with custom vector embeddings for company-specific logistics context.</p>
                 </div>
-                <div className="bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-8 rounded-3xl border border-gray-100 dark:border-slate-700 transition-colors duration-300">
-                  <h4 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">Phase 3: High-Performance UI</h4>
+                <div className="bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-6 md:p-8 rounded-2xl md:rounded-3xl border border-gray-100 dark:border-slate-700 transition-colors duration-300">
+                  <h4 className="text-lg md:text-xl font-bold mb-2 text-gray-900 dark:text-white">Phase 3: High-Performance UI</h4>
                   <p className="text-gray-500 dark:text-gray-400">Built a React-based real-time dashboard using WebSockets for live data streaming.</p>
                 </div>
               </div>
@@ -96,8 +96,8 @@ const CaseStudies: React.FC = () => {
           </div>
 
           {/* Sidebar Info */}
-          <aside className="space-y-8">
-            <div className="bg-white dark:bg-slate-800 shadow-lg dark:shadow-2xl p-8 rounded-3xl border border-gray-100 dark:border-slate-700 sticky top-32 transition-colors duration-300">
+          <aside className="space-y-6 md:space-y-8">
+            <div className="bg-white dark:bg-slate-800 shadow-lg dark:shadow-2xl p-6 md:p-8 rounded-2xl md:rounded-3xl border border-gray-100 dark:border-slate-700 sticky top-24 md:top-32 transition-colors duration-300">
               <h3 className="text-2xl mb-8 text-gray-900 dark:text-white">At a Glance</h3>
               <div className="space-y-8">
                 <div>

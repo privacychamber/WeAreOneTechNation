@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 
 export const CaseStudiesSection: React.FC = () => {
   return (
-    <section id="projects" className="bg-[#F5F5F5] dark:bg-[#111827] pt-16 sm:pt-20 lg:pt-28 pb-16 sm:pb-20 lg:pb-28 overflow-hidden transition-colors duration-300">
+    <section id="projects" className="bg-[#F5F5F5] dark:bg-[#111827] pt-12 sm:pt-20 lg:pt-28 pb-12 sm:pb-20 lg:pb-28 overflow-hidden transition-colors duration-300">
       <div className="w-full max-w-[1440px] mx-auto">
         
         {/* Badge Row */}
@@ -18,13 +18,13 @@ export const CaseStudiesSection: React.FC = () => {
 
         {/* Heading h2 */}
         <div className="px-5 sm:px-8 lg:px-12">
-          <h2 className="text-gray-900 dark:text-white font-medium leading-[1.08] tracking-[-0.03em] text-[clamp(1.75rem,7vw,4.2rem)] sm:text-[clamp(2.5rem,5vw,4.2rem)] mb-10 sm:mb-14 lg:mb-16 transition-colors duration-300">
+          <h2 className="text-gray-900 dark:text-white font-medium leading-[1.08] tracking-[-0.03em] text-[clamp(1.75rem,7vw,4.2rem)] sm:text-[clamp(2.5rem,5vw,4.2rem)] mb-8 sm:mb-14 lg:mb-16 transition-colors duration-300">
             Our projects
           </h2>
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 lg:gap-7 px-5 sm:px-8 lg:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-7 px-5 sm:px-8 lg:px-12">
           
           {/* Card 1 (Narrativ) */}
           <div className="flex flex-col">

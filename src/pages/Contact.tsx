@@ -44,13 +44,13 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className="pt-32 pb-20">
+    <div className="pt-24 md:pt-32 pb-12 md:pb-20">
       <section className="container-custom">
-        <div className="grid lg:grid-cols-2 gap-20 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 md:gap-20 items-start">
           {/* Info */}
           <div className="space-y-12">
             <div>
-              <h1 className="text-5xl md:text-7xl mb-8 text-gray-900 dark:text-white transition-colors duration-300">Let's Build <br />Something Great.</h1>
+              <h1 className="text-4xl md:text-5xl lg:text-7xl mb-4 md:mb-8 text-gray-900 dark:text-white transition-colors duration-300">Let's Build <br />Something Great.</h1>
               <p className="text-xl text-gray-500 dark:text-gray-400 max-w-md transition-colors duration-300">
                 Ready to transform your business with a premium digital system? We're here to help you scale.
               </p>
@@ -86,8 +86,8 @@ const Contact: React.FC = () => {
               </div>
             </div>
 
-            <div className="p-8 bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] rounded-3xl border border-blue-100 dark:border-slate-700 transition-colors duration-300">
-              <h3 className="text-2xl mb-4 font-bold text-gray-900 dark:text-white transition-colors duration-300">What happens next?</h3>
+            <div className="p-6 md:p-8 bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] rounded-3xl border border-blue-100 dark:border-slate-700 transition-colors duration-300">
+              <h3 className="text-xl md:text-2xl mb-4 font-bold text-gray-900 dark:text-white transition-colors duration-300">What happens next?</h3>
               <ul className="space-y-4">
                 {[
                   'Reply within 24 business hours',
@@ -106,7 +106,7 @@ const Contact: React.FC = () => {
 
           {/* Form */}
           <div className="relative">
-            <div className="bg-white dark:bg-slate-800 p-10 md:p-12 rounded-[3rem] border border-gray-100 dark:border-slate-700 shadow-[0_4px_24px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] relative z-10 transition-colors duration-300">
+            <div className="bg-white dark:bg-slate-800 p-6 md:p-12 rounded-3xl md:rounded-[3rem] border border-gray-100 dark:border-slate-700 shadow-[0_4px_24px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] relative z-10 transition-colors duration-300">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
@@ -193,14 +193,14 @@ const Contact: React.FC = () => {
       </section>
 
       {/* FAQ CTA */}
-      <section className="container-custom mt-32 text-center">
-        <h2 className="text-4xl mb-12 text-gray-900 dark:text-white transition-colors duration-300">Frequently Asked</h2>
+      <section className="container-custom mt-16 md:mt-32 text-center">
+        <h2 className="text-3xl md:text-4xl mb-8 md:mb-12 text-gray-900 dark:text-white transition-colors duration-300">Frequently Asked</h2>
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {[
             { q: "How long does a project take?", a: "Most projects take between 4-12 weeks depending on complexity." },
             { q: "Do you offer maintenance?", a: "Yes, we provide ongoing scaling and maintenance packages." }
           ].map((faq, i) => (
-            <div key={i} className="p-8 bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] rounded-3xl border border-gray-100 dark:border-slate-700 text-left transition-colors duration-300">
+            <div key={i} className="p-6 md:p-8 bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] rounded-3xl border border-gray-100 dark:border-slate-700 text-left transition-colors duration-300">
               <h4 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">{faq.q}</h4>
               <p className="text-gray-500 dark:text-gray-400">{faq.a}</p>
             </div>

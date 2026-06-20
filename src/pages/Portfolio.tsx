@@ -18,10 +18,10 @@ const Portfolio: React.FC = () => {
     : projects.filter((p: any) => p.category === activeTab);
 
   return (
-    <div className="pt-32 pb-20">
-      <section className="container-custom mb-16">
+    <div className="pt-24 md:pt-32 pb-12 md:pb-20">
+      <section className="container-custom mb-10 md:mb-16">
         <div className="max-w-3xl">
-          <h1 className="text-5xl md:text-7xl mb-6 text-gray-900 dark:text-white transition-colors duration-300">Proven Results.</h1>
+          <h1 className="text-4xl md:text-5xl lg:text-7xl mb-4 md:mb-6 text-gray-900 dark:text-white transition-colors duration-300">Proven Results.</h1>
           <p className="text-xl text-gray-500 dark:text-gray-400 transition-colors duration-300">
             A selection of high-value digital systems we've engineered for global partners.
           </p>
@@ -29,8 +29,8 @@ const Portfolio: React.FC = () => {
       </section>
 
       {/* Filter Tabs */}
-      <section className="container-custom mb-12">
-        <div className="flex flex-wrap gap-4">
+      <section className="container-custom mb-8 md:mb-12">
+        <div className="flex flex-wrap gap-3 md:gap-4">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -49,7 +49,7 @@ const Portfolio: React.FC = () => {
 
       {/* Grid */}
       <section className="container-custom">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {filteredProjects.map((project: any) => {
             let tagsList = [];
             try { tagsList = JSON.parse(project.tags || '[]'); } catch(e) {}
@@ -92,9 +92,9 @@ const Portfolio: React.FC = () => {
       </section>
 
       {/* CTA */}
-      <section className="container-custom mt-20 text-center">
-        <div className="bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-12 rounded-[3rem] max-w-4xl mx-auto border border-gray-100 dark:border-slate-700 transition-colors duration-300">
-          <h2 className="text-3xl mb-6 text-gray-900 dark:text-white transition-colors duration-300">Want to see your project here?</h2>
+      <section className="container-custom mt-12 md:mt-20 text-center">
+        <div className="bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-8 md:p-12 rounded-3xl md:rounded-[3rem] max-w-4xl mx-auto border border-gray-100 dark:border-slate-700 transition-colors duration-300">
+          <h2 className="text-2xl md:text-3xl mb-4 md:mb-6 text-gray-900 dark:text-white transition-colors duration-300">Want to see your project here?</h2>
           <p className="text-gray-500 dark:text-gray-400 mb-8 transition-colors duration-300">
             Let's discuss how we can build a high-performance system for your business.
           </p>
