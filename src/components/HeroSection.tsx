@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Clock, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Logo } from '../ui/Logo';
 import { Shader, Swirl, ChromaFlow, FilmGrain, FlutedGlass } from 'shaders/react';
 
 export const HeroSection: React.FC = () => {
+  const navLinks = [
+    { name: 'Services', href: '/services' },
+    { name: 'Portfolio', href: '/portfolio' },
+    { name: 'About', href: '/about' },
+    { name: 'Case Studies', href: '/case-studies' },
+    { name: 'Contact', href: '/contact' },
+  ];
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [timeStr, setTimeStr] = useState('');
 
@@ -38,14 +47,22 @@ export const HeroSection: React.FC = () => {
         <nav className="bg-white rounded-full p-[5px] flex items-center justify-between shadow-sm">
           {/* Left: Logo & Desktop Links */}
           <div className="flex items-center gap-6">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gray-900 rounded-full flex items-center justify-center">
-              <span className="text-white text-[10px] leading-[11px] font-bold tracking-tight">AX</span>
-            </div>
+            <Link to="/" className="flex items-center gap-2 pl-2">
+              <Logo size={28} />
+              <div className="flex flex-col leading-none">
+                <span className="text-[8px] font-semibold tracking-[0.18em] uppercase text-gray-500">
+                  We Are One
+                </span>
+                <span className="text-[12px] font-extrabold tracking-[0.08em] uppercase font-sora text-gray-900">
+                  Tech <span className="text-primary">Nation</span>
+                </span>
+              </div>
+            </Link>
             <div className="hidden md:flex items-center gap-6">
-              {['Projects', 'Studio', 'Journal', 'Connect'].map((link) => (
-                <a key={link} href={`#${link.toLowerCase()}`} className="text-[14px] text-gray-900 hover:text-gray-500 transition-colors duration-300">
-                  {link}
-                </a>
+              {navLinks.map((link) => (
+                <Link key={link.name} to={link.href} className="text-[14px] text-gray-900 hover:text-gray-500 transition-colors duration-300">
+                  {link.name}
+                </Link>
               ))}
             </div>
           </div>
@@ -107,10 +124,10 @@ export const HeroSection: React.FC = () => {
             </button>
           </div>
           <div className="flex flex-col gap-4 mb-8">
-            {['Projects', 'Studio', 'Journal', 'Connect'].map((link) => (
-              <a key={link} href={`#${link.toLowerCase()}`} className="text-[28px] leading-[32px] font-medium text-gray-900">
-                {link}
-              </a>
+            {navLinks.map((link) => (
+              <Link key={link.name} to={link.href} onClick={() => setIsMobileMenuOpen(false)} className="text-[28px] leading-[32px] font-medium text-gray-900">
+                {link.name}
+              </Link>
             ))}
           </div>
           <button className="w-full bg-[#F26522] text-white text-base font-medium rounded-full py-4 flex items-center justify-center gap-3">
