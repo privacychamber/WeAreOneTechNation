@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Globe, Mail, MessageSquare, ArrowUpRight } from 'lucide-react';
-import { Logo } from '../ui/Logo';
 import { useContent } from '../../hooks/useContent';
 
 export const Footer: React.FC = () => {
