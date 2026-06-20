@@ -66,8 +66,8 @@ const Portfolio: React.FC = () => {
     <div className="pt-32 pb-20">
       <section className="container-custom mb-16">
         <div className="max-w-3xl">
-          <h1 className="text-5xl md:text-7xl mb-6">Proven Results.</h1>
-          <p className="text-xl text-slate-600 dark:text-slate-400">
+          <h1 className="text-5xl md:text-7xl mb-6 text-gray-900">Proven Results.</h1>
+          <p className="text-xl text-gray-500">
             A selection of high-value digital systems we've engineered for global partners.
           </p>
         </div>
@@ -82,8 +82,8 @@ const Portfolio: React.FC = () => {
               onClick={() => setActiveTab(cat)}
               className={`px-6 py-2 rounded-full border-2 transition-all duration-300 font-medium ${
                 activeTab === cat 
-                ? 'bg-primary border-primary text-white' 
-                : 'border-slate-200 dark:border-white/10 hover:border-primary/50'
+                ? 'bg-[#2563eb] border-[#2563eb] text-white' 
+                : 'border-gray-200 hover:border-[#2563eb]/50 text-gray-600 hover:text-gray-900'
               }`}
             >
               {cat}
@@ -99,7 +99,7 @@ const Portfolio: React.FC = () => {
             <Link 
               to={`/case-studies`} 
               key={project.id} 
-              className="group relative block bg-white dark:bg-background-secondary rounded-[2rem] overflow-hidden border border-slate-200 dark:border-white/5 hover:border-primary/30 transition-colors duration-200"
+              className="group relative block bg-white rounded-[2rem] overflow-hidden border border-gray-100 hover:border-[#2563eb]/30 transition-colors duration-200 shadow-sm"
             >
               <div className="aspect-[4/3] overflow-hidden relative">
                 <img 
@@ -113,16 +113,16 @@ const Portfolio: React.FC = () => {
                   </div>
                 </div>
                 {/* Metric Badge */}
-                <div className="absolute top-6 left-6 glass px-4 py-2 rounded-full text-xs font-bold text-white z-10">
+                <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-md border border-white/20 shadow-sm px-4 py-2 rounded-full text-xs font-bold text-gray-900 z-10">
                   {project.metrics}
                 </div>
               </div>
               <div className="p-8">
-                <div className="text-primary font-bold text-sm uppercase tracking-widest mb-2">{project.category}</div>
-                <h3 className="text-2xl mb-4 group-hover:text-primary transition-colors">{project.title}</h3>
+                <div className="text-[#2563eb] font-bold text-sm uppercase tracking-widest mb-2">{project.category}</div>
+                <h3 className="text-2xl mb-4 group-hover:text-[#2563eb] transition-colors text-gray-900">{project.title}</h3>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
-                    <span key={tag} className="text-xs bg-slate-100 dark:bg-white/5 px-3 py-1 rounded-full text-slate-500">
+                    <span key={tag} className="text-xs bg-gray-100 px-3 py-1 rounded-full text-gray-500">
                       {tag}
                     </span>
                   ))}
@@ -135,12 +135,12 @@ const Portfolio: React.FC = () => {
 
       {/* CTA */}
       <section className="container-custom mt-20 text-center">
-        <div className="glass p-12 rounded-[3rem] max-w-4xl mx-auto">
-          <h2 className="text-3xl mb-6">Want to see your project here?</h2>
-          <p className="text-slate-600 dark:text-slate-400 mb-8">
+        <div className="bg-white shadow-[0_4px_24px_rgba(0,0,0,0.04)] p-12 rounded-[3rem] max-w-4xl mx-auto border border-gray-100">
+          <h2 className="text-3xl mb-6 text-gray-900">Want to see your project here?</h2>
+          <p className="text-gray-500 mb-8">
             Let's discuss how we can build a high-performance system for your business.
           </p>
-          <Link to="/contact" className="btn-primary inline-flex items-center gap-2">
+          <Link to="/contact" className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-6 py-3 font-semibold rounded-full transition-colors duration-300 inline-flex items-center gap-2">
             Start Your Project <ArrowRight size={20} />
           </Link>
         </div>

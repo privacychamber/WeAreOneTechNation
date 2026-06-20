@@ -5,18 +5,9 @@
   --font-inter: 'Inter', sans-serif;
   --font-sora: 'Sora', sans-serif;
 
-  --color-primary: #4F6DFF;
-  --color-primary-dark: #3D56D1;
-  --color-primary-light: #768DFF;
-
-  --color-accent: #7DD3FC;
-  --color-accent-dark: #38BDF8;
-  --color-accent-light: #BAE6FD;
-
-  --color-background-dark: #0B0F1A;
-  --color-background-secondary: #111827;
-  --color-background-light: #FFFFFF;
-  --color-background-light-secondary: #F3F4F6;
+  --color-primary: #2563eb;
+  --color-background-light: #ffffff;
+  --color-background-light-secondary: #f3f4f6;
 
   --animate-gradient-x: gradient-x 15s ease infinite;
   --animate-float: float 6s ease-in-out infinite;
@@ -52,11 +43,6 @@
     transition: background-color 0.3s, color 0.3s;
   }
 
-  .dark body {
-    background-color: var(--color-background-dark);
-    color: theme(colors.slate.100);
-  }
-
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-sora);
     font-weight: 700;
@@ -65,44 +51,6 @@
 }
 
 @layer components {
-  .glass {
-    @apply backdrop-blur-md bg-white/10 border border-white/20;
-  }
-
-  .dark .glass {
-    @apply bg-black/20 border-white/10;
-  }
-
-  .btn-primary {
-    @apply px-6 py-3 font-semibold rounded-full transition-all duration-300 active:scale-95;
-    background-color: var(--color-primary);
-    color: white;
-  }
-
-  .btn-primary:hover {
-    background-color: var(--color-primary-dark);
-    box-shadow: 0 10px 30px -10px rgba(79, 109, 255, 0.4);
-  }
-
-  .btn-outline {
-    @apply px-6 py-3 border-2 font-semibold rounded-full transition-all duration-300 active:scale-95;
-    border-color: var(--color-primary);
-    color: var(--color-primary);
-  }
-
-  .btn-outline:hover {
-    background-color: var(--color-primary);
-    color: white;
-  }
-
-  .section-padding {
-    @apply py-20 md:py-32;
-  }
-
-  .container-custom {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-  }
-
   .liquid-glass {
     background: rgba(255, 255, 255, 0.01);
     backdrop-filter: blur(4px);
@@ -127,16 +75,8 @@
   background-color: var(--color-background-light);
 }
 
-.dark ::-webkit-scrollbar-track {
-  background-color: var(--color-background-dark);
-}
-
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-300 rounded-full;
-}
-
-.dark ::-webkit-scrollbar-thumb {
-  @apply bg-slate-700 rounded-full;
+  @apply bg-gray-300 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {

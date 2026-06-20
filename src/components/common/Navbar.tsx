@@ -1,131 +1,87 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
 import { Menu, X, ArrowRight } from 'lucide-react';
-import { useTheme } from '../../hooks/useTheme';
+import { Link } from 'react-router-dom';
 import { Logo } from '../ui/Logo';
-import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
-
-const navLinks = [
-  { name: 'Services', href: '/services' },
-  { name: 'Portfolio', href: '/portfolio' },
-  { name: 'About', href: '/about' },
-  { name: 'Case Studies', href: '/case-studies' },
-  { name: 'Contact', href: '/contact' },
-];
 
 export const Navbar: React.FC = () => {
-  useTheme();
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const location = useLocation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const navLinks = [
+    { name: 'Services', href: '/services' },
+    { name: 'Portfolio', href: '/portfolio' },
+    { name: 'About', href: '/about' },
+    { name: 'Case Studies', href: '/case-studies' },
+    { name: 'Contact', href: '/contact' },
+  ];
 
   return (
-    <nav
-      className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        isScrolled
-          ? 'glass py-3'
-          : 'bg-transparent py-5'
-      )}
-    >
-      <div className="container-custom flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-3">
-          <Logo size={44} />
-          <div className="flex flex-col leading-none">
-            <span className={cn(
-              "text-[11px] font-semibold tracking-[0.18em] uppercase",
-              "text-slate-500 dark:text-slate-400"
-            )}>
-              We Are One
-            </span>
-            <span className={cn(
-              "text-[17px] font-extrabold tracking-[0.08em] uppercase font-sora",
-              "text-slate-900 dark:text-white"
-            )}>
-              Tech <span className="text-primary">Nation</span>
-            </span>
+    <>
+      <div className="fixed top-0 left-0 right-0 z-50 w-full max-w-[1440px] mx-auto p-2 sm:p-3 mt-4 px-4 sm:px-6 pointer-events-none">
+        <nav className="bg-white rounded-full p-[5px] flex items-center justify-between shadow-[0_4px_24px_rgba(0,0,0,0.04)] pointer-events-auto">
+          {/* Left: Logo & Desktop Links */}
+          <div className="flex items-center gap-6">
+            <Link to="/" className="flex items-center gap-2 pl-2">
+              <Logo size={28} />
+              <div className="flex flex-col leading-none">
+                <span className="text-[8px] font-semibold tracking-[0.18em] uppercase text-gray-500">
+                  We Are One
+                </span>
+                <span className="text-[12px] font-extrabold tracking-[0.08em] uppercase font-sora text-gray-900">
+                  Tech <span className="text-primary">Nation</span>
+                </span>
+              </div>
+            </Link>
+            <div className="hidden md:flex items-center gap-6">
+              {navLinks.map((link) => (
+                <Link key={link.name} to={link.href} className="text-[14px] text-gray-900 hover:text-gray-500 transition-colors duration-300">
+                  {link.name}
+                </Link>
+              ))}
+            </div>
           </div>
-        </Link>
-
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.href}
-              className={cn(
-                'text-sm font-medium transition-colors hover:text-primary',
-                location.pathname === link.href
-                  ? 'text-primary'
-                  : 'text-slate-600 dark:text-slate-300'
-              )}
-            >
-              {link.name}
-            </Link>
-          ))}
           
-
-
-          <Link to="/contact" className="btn-primary flex items-center gap-2">
-            Book Strategy Call <ArrowRight size={16} />
-          </Link>
-        </div>
-
-        {/* Mobile Toggle */}
-        <div className="flex md:hidden items-center gap-4">
-
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="text-slate-900 dark:text-white"
-          >
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      <div
-        className={cn(
-          'fixed inset-0 top-[60px] z-40 bg-white dark:bg-background-dark md:hidden transition-transform duration-300 ease-in-out',
-          isOpen ? 'translate-x-0' : 'translate-x-full'
-        )}
-      >
-        <div className="flex flex-col p-8 gap-6">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.href}
-              onClick={() => setIsOpen(false)}
-              className={cn(
-                'text-2xl font-bold font-sora',
-                location.pathname === link.href ? 'text-primary' : 'text-slate-900 dark:text-white'
-              )}
-            >
-              {link.name}
+          <div className="flex items-center gap-4">
+            <Link to="/contact" className="hidden md:flex bg-[#2563eb] text-white text-[14px] font-medium rounded-full px-5 py-2 hover:bg-[#1d4ed8] transition-colors duration-300">
+              Book Strategy Call
             </Link>
-          ))}
-          <Link
-            to="/contact"
-            onClick={() => setIsOpen(false)}
-            className="btn-primary text-center mt-4"
-          >
-            Book Strategy Call
+            <button
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="md:hidden p-2 rounded-full hover:bg-gray-100 transition-colors duration-300"
+            >
+              <Menu size={24} className="text-gray-900" />
+            </button>
+          </div>
+        </nav>
+      </div>
+
+      {/* Mobile Full Screen Menu */}
+      <div
+        className={`fixed inset-0 z-[60] bg-white transition-transform duration-500 ease-in-out flex flex-col ${
+          isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
+        }`}
+      >
+        <div className="p-4 sm:p-6 flex flex-col h-full">
+          <div className="flex justify-end mb-12">
+            <button
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-300 mt-4 mr-2"
+            >
+              <X size={32} className="text-gray-900" />
+            </button>
+          </div>
+          <div className="flex flex-col gap-4 mb-8">
+            {navLinks.map((link) => (
+              <Link key={link.name} to={link.href} onClick={() => setIsMobileMenuOpen(false)} className="text-[28px] leading-[32px] font-medium text-gray-900">
+                {link.name}
+              </Link>
+            ))}
+          </div>
+          <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="w-full bg-[#2563eb] text-white text-base font-medium rounded-full py-4 flex items-center justify-center gap-3">
+            Start a project
+            <ArrowRight size={18} />
           </Link>
         </div>
       </div>
-    </nav>
+    </>
   );
 };

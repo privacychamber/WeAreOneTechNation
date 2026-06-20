@@ -1,37 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, Clock, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { Logo } from './ui/Logo';
+import React from 'react';
+import { ArrowRight } from 'lucide-react';
 import { Shader, Swirl, ChromaFlow, FilmGrain, FlutedGlass } from 'shaders/react';
 
 export const HeroSection: React.FC = () => {
-  const navLinks = [
-    { name: 'Services', href: '/services' },
-    { name: 'Portfolio', href: '/portfolio' },
-    { name: 'About', href: '/about' },
-    { name: 'Case Studies', href: '/case-studies' },
-    { name: 'Contact', href: '/contact' },
-  ];
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [timeStr, setTimeStr] = useState('');
-
-  useEffect(() => {
-    const updateLondonTime = () => {
-      const now = new Date();
-      const time = now.toLocaleTimeString('en-GB', {
-        timeZone: 'Europe/London',
-        hour: '2-digit',
-        minute: '2-digit',
-      });
-      setTimeStr(time);
-    };
-    updateLondonTime();
-    const interval = setInterval(updateLondonTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <section className="relative w-full h-screen min-h-screen bg-[#EFEFEF] overflow-hidden flex flex-col justify-between">
+    <section className="relative w-full h-screen min-h-screen bg-[#EFEFEF] overflow-hidden flex flex-col justify-end pb-14 sm:pb-16 lg:pb-20">
       {/* Background Shader Overlay */}
       <div className="absolute inset-0 z-10 pointer-events-none">
         <Shader>
@@ -42,103 +15,8 @@ export const HeroSection: React.FC = () => {
         </Shader>
       </div>
 
-      {/* Navigation */}
-      <div className="relative z-20 w-full max-w-[1440px] mx-auto p-2 sm:p-3 mt-4 px-4 sm:px-6">
-        <nav className="bg-white rounded-full p-[5px] flex items-center justify-between shadow-sm">
-          {/* Left: Logo & Desktop Links */}
-          <div className="flex items-center gap-6">
-            <Link to="/" className="flex items-center gap-2 pl-2">
-              <Logo size={28} />
-              <div className="flex flex-col leading-none">
-                <span className="text-[8px] font-semibold tracking-[0.18em] uppercase text-gray-500">
-                  We Are One
-                </span>
-                <span className="text-[12px] font-extrabold tracking-[0.08em] uppercase font-sora text-gray-900">
-                  Tech <span className="text-primary">Nation</span>
-                </span>
-              </div>
-            </Link>
-            <div className="hidden md:flex items-center gap-6">
-              {navLinks.map((link) => (
-                <Link key={link.name} to={link.href} className="text-[14px] text-gray-900 hover:text-gray-500 transition-colors duration-300">
-                  {link.name}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* Right: Desktop Actions */}
-          <div className="hidden md:flex items-center gap-6 pr-1">
-            <span className="text-[13px] text-gray-600 hidden lg:block">Taking on projects for Q1 2026</span>
-            <div className="flex items-center gap-1.5 text-gray-600">
-              <Clock size={14} />
-              <span className="text-[13px]">{timeStr} in London</span>
-            </div>
-            
-            <button className="group bg-gray-900 text-white text-[13px] font-medium rounded-full pl-5 pr-2 py-2 flex items-center gap-3 hover:bg-gray-800 transition-colors duration-300">
-              <div className="flex-col overflow-hidden h-[20px] relative w-auto">
-                <div className="flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-translate-y-1/2">
-                  <span className="h-[20px] flex items-center">Book a strategy call</span>
-                  <span className="h-[20px] flex items-center">Book a strategy call</span>
-                </div>
-              </div>
-              <div className="bg-white text-gray-900 w-6 h-6 rounded-full flex items-center justify-center">
-                <ArrowRight size={14} className="transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-rotate-45" />
-              </div>
-            </button>
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <div className="md:hidden pr-1">
-            <button 
-              onClick={() => setIsMobileMenuOpen(true)}
-              className="bg-gray-900 text-white w-9 h-9 rounded-full flex items-center justify-center"
-            >
-              <Menu size={16} />
-            </button>
-          </div>
-        </nav>
-      </div>
-
-      {/* Mobile Menu Overlay */}
-      <div 
-        className={`fixed inset-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${isMobileMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
-      >
-        <div 
-          className={`absolute inset-0 bg-black/60 transition-opacity duration-500 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`} 
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
-        <div 
-          className={`absolute bottom-0 left-0 right-0 bg-white rounded-2xl mx-3 mb-3 p-6 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${isMobileMenuOpen ? 'translate-y-0' : 'translate-y-[120%]'}`}
-        >
-          <div className="flex justify-between items-center mb-8">
-            <div className="flex items-center gap-1.5 text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">
-              <Clock size={14} />
-              <span className="text-[13px]">{timeStr} in London</span>
-            </div>
-            <button 
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="bg-gray-100 w-9 h-9 rounded-full flex items-center justify-center"
-            >
-              <X size={16} />
-            </button>
-          </div>
-          <div className="flex flex-col gap-4 mb-8">
-            {navLinks.map((link) => (
-              <Link key={link.name} to={link.href} onClick={() => setIsMobileMenuOpen(false)} className="text-[28px] leading-[32px] font-medium text-gray-900">
-                {link.name}
-              </Link>
-            ))}
-          </div>
-          <button className="w-full bg-[#2563eb] text-white text-base font-medium rounded-full py-4 flex items-center justify-center gap-3">
-            Start a project
-            <ArrowRight size={18} />
-          </button>
-        </div>
-      </div>
-
       {/* Hero Content */}
-      <div className="relative z-20 w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 pb-14 sm:pb-16 lg:pb-20 mt-auto">
+      <div className="relative z-20 w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 pt-32">
         <p className="text-[13px] leading-[14px] text-gray-900 tracking-wide mb-5 sm:mb-8 font-medium">
           Axion Studio
         </p>
