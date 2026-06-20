@@ -80,29 +80,65 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     portfolio: [
       {
         id: 1,
-        title: 'Nexus AI Platform',
-        category: 'Enterprise SaaS',
-        metrics: '+312% Efficiency',
-        tags: JSON.stringify(['React', 'Node.js', 'OpenAI API']),
-        image_url: 'https://images.unsplash.com/photo-1551288049-bbda4e966c52?auto=format&fit=crop&q=80&w=1500',
+        title: 'WeAreOneTechNation',
+        category: 'Corporate Website',
+        metrics: '100% Performance',
+        tags: JSON.stringify(['TypeScript', 'React', 'Tailwind']),
+        image_url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1500',
         link: '/case-studies'
       },
       {
         id: 2,
-        title: 'FinTech Secure',
-        category: 'Financial Systems',
-        metrics: '0.001s Latency',
-        tags: JSON.stringify(['Next.js', 'Go', 'AWS']),
-        image_url: 'https://images.unsplash.com/photo-1563986768494-4dee2763ff0f?auto=format&fit=crop&q=80&w=1500',
+        title: 'SaiHoliday',
+        category: 'Travel Platform',
+        metrics: '3x Booking Rate',
+        tags: JSON.stringify(['TypeScript', 'Next.js', 'Booking System']),
+        image_url: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=1500',
         link: '/case-studies'
       },
       {
         id: 3,
-        title: 'Global Logistics',
-        category: 'Logistics Platform',
-        metrics: '$12M Saved',
-        tags: JSON.stringify(['Vue', 'Python', 'PostgreSQL']),
-        image_url: 'https://images.unsplash.com/photo-1586528116311-ad8ed7c663be?auto=format&fit=crop&q=80&w=1500',
+        title: 'Make Holidays Memorable',
+        category: 'Travel Platform',
+        metrics: '+150% Engagement',
+        tags: JSON.stringify(['TypeScript', 'React', 'Tour Management']),
+        image_url: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=1500',
+        link: '/case-studies'
+      },
+      {
+        id: 4,
+        title: 'VibeRide',
+        category: 'Mobility App',
+        metrics: '10k+ Rides/Day',
+        tags: JSON.stringify(['TypeScript', 'React Native', 'Real-time']),
+        image_url: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=80&w=1500',
+        link: '/case-studies'
+      },
+      {
+        id: 5,
+        title: 'Yoga Wellness',
+        category: 'Health & Fitness',
+        metrics: '5k+ Active Members',
+        tags: JSON.stringify(['PHP', 'MySQL', 'Web Application']),
+        image_url: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1500',
+        link: '/case-studies'
+      },
+      {
+        id: 6,
+        title: 'SarahswatiAgni',
+        category: 'Brand Website',
+        metrics: 'Global Reach',
+        tags: JSON.stringify(['HTML5', 'CSS3', 'UI/UX']),
+        image_url: 'https://images.unsplash.com/photo-1518182170546-0766de6b6aa1?auto=format&fit=crop&q=80&w=1500',
+        link: '/case-studies'
+      },
+      {
+        id: 7,
+        title: 'Axion Studio',
+        category: 'Creative Studio',
+        metrics: 'Award Winning Design',
+        tags: JSON.stringify(['HTML5', 'CSS3', 'Portfolio']),
+        image_url: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1500',
         link: '/case-studies'
       }
     ]
@@ -116,10 +152,11 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       try {
         const result = JSON.parse(text);
         if (result.status === 'success') {
-          // Force the updated services over the database ones to guarantee the user sees the changes
+          // Force the updated services and portfolio over the database ones to guarantee the user sees the changes
           const updatedData = {
             ...result.data,
-            services: defaultFallbackContent.services
+            services: defaultFallbackContent.services,
+            portfolio: defaultFallbackContent.portfolio
           };
           setContent(updatedData);
         } else {
