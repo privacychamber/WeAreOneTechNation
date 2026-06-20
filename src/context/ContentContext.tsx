@@ -123,15 +123,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         image_url: '/images/portfolio/sai-holiday.jpg',
         link: '/case-studies'
       },
-      {
-        id: 6,
-        title: 'VibeRide',
-        category: 'Mobility App',
-        metrics: '10k+ Rides/Day',
-        tags: JSON.stringify(['TypeScript', 'React Native', 'Real-time']),
-        image_url: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=80&w=1500',
-        link: '/case-studies'
-      },
+
       {
         id: 7,
         title: 'Yoga Wellness',
@@ -139,15 +131,6 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         metrics: '5k+ Active Members',
         tags: JSON.stringify(['PHP', 'MySQL', 'Web Application']),
         image_url: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1500',
-        link: '/case-studies'
-      },
-      {
-        id: 8,
-        title: 'WeAreOneTechNation',
-        category: 'Corporate Website',
-        metrics: '100% Performance',
-        tags: JSON.stringify(['TypeScript', 'React', 'Tailwind']),
-        image_url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1500',
         link: '/case-studies'
       }
     ]
