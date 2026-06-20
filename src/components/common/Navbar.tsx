@@ -18,35 +18,35 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <div className="fixed top-0 left-0 right-0 z-50 w-full max-w-[1440px] mx-auto p-2 sm:p-3 mt-4 px-4 sm:px-6 pointer-events-none">
-        <nav className="bg-white/80 dark:bg-[#0f172a]/80 backdrop-blur-xl border border-white/40 dark:border-slate-700/50 rounded-full p-[6px] pl-4 flex items-center justify-between shadow-[0_8px_32px_rgba(0,0,0,0.08)] pointer-events-auto transition-colors duration-300">
+        <nav className="bg-white dark:bg-[#0B0F1A] rounded-full p-[5px] flex items-center justify-between shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] pointer-events-auto border border-transparent dark:border-white/10 transition-colors duration-300">
           {/* Left: Logo & Desktop Links */}
-          <div className="flex items-center gap-8">
-            <Link to="/" className="flex items-center">
-              <img src="/logo.png" alt="We Are One Tech Nation" className="h-9 w-auto object-contain origin-left hover:scale-105 transition-transform duration-300" />
+          <div className="flex items-center gap-6">
+            <Link to="/" className="flex items-center pl-2">
+              <img src="/logo.png" alt="We Are One Tech Nation" className="h-8 w-auto object-contain origin-left" />
             </Link>
-            <div className="hidden md:flex items-center gap-1">
+            <div className="hidden md:flex items-center gap-6">
               {navLinks.map((link) => (
-                <Link key={link.name} to={link.href} className="text-[14px] font-medium text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary px-4 py-2 rounded-full hover:bg-gray-100/50 dark:hover:bg-slate-800/50 transition-all duration-300">
+                <Link key={link.name} to={link.href} className="text-[14px] text-gray-900 dark:text-gray-300 hover:text-gray-500 dark:hover:text-white transition-colors duration-300">
                   {link.name}
                 </Link>
               ))}
             </div>
           </div>
           
-          <div className="flex items-center gap-2 pr-1">
+          <div className="flex items-center gap-4">
             <button 
               onClick={toggleTheme}
-              className="p-2.5 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors duration-300"
+              className="p-2 flex items-center justify-center rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors duration-300"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
             </button>
-            <Link to="/contact" className="hidden md:flex bg-[#2563eb] text-white text-[14px] font-medium rounded-full px-6 py-2.5 hover:bg-[#1d4ed8] shadow-lg hover:shadow-[#2563eb]/25 hover:-translate-y-0.5 transition-all duration-300">
+            <Link to="/contact" className="hidden md:flex bg-[#2563eb] text-white text-[14px] font-medium rounded-full px-5 py-2 hover:bg-[#1d4ed8] transition-colors duration-300">
               Book Strategy Call
             </Link>
             <button
               onClick={() => setIsMobileMenuOpen(true)}
-              className="md:hidden p-2.5 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors duration-300"
+              className="md:hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors duration-300"
             >
               <Menu size={24} className="text-gray-900 dark:text-white" />
             </button>
