@@ -129,18 +129,18 @@ const Contact: React.FC = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">What's your name? 👋</label>
+                    <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">What's your name?</label>
                     <input
                       type="text"
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 px-6 py-4 rounded-2xl outline-none focus:border-[#2563eb] dark:focus:border-[#2563eb] transition-colors text-gray-900 dark:text-white"
-                      placeholder="John Doe... or Batman 🦇"
+                      placeholder="John Doe... or Batman"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">Your best email 📧</label>
+                    <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">Your best email</label>
                     <input
                       type="email"
                       required
@@ -154,7 +154,7 @@ const Contact: React.FC = () => {
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">What are we building? 🚀</label>
+                    <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">What are we building?</label>
                     <select
                       value={formData.projectType}
                       onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
@@ -171,7 +171,7 @@ const Contact: React.FC = () => {
                     </select>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">Investment Tier 💰</label>
+                    <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">Investment Tier</label>
                     <select
                       value={formData.budget}
                       onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
@@ -186,7 +186,7 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">Spill the details! ✨</label>
+                  <label className="text-sm font-bold text-gray-400 uppercase tracking-widest ml-1">Spill the details!</label>
                   <textarea
                     rows={4}
                     value={formData.message}
@@ -202,9 +202,9 @@ const Contact: React.FC = () => {
                   className="interactive-glow-button bg-[#2563eb] hover:bg-[#1d4ed8] text-white rounded-full font-semibold transition-colors duration-300 w-full py-5 text-xl flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {submitted ? (
-                    <>Woohoo! We're doing a happy dance! 🎉 <CheckCircle2 /></>
+                    <>Woohoo! We're doing a happy dance! <CheckCircle2 /></>
                   ) : (
-                    <>Send Message 🚀 <Send size={20} /></>
+                    <>Send Message <Send size={20} /></>
                   )}
                 </button>
               </form>
