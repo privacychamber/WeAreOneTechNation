@@ -47,7 +47,7 @@ export const Footer: React.FC = () => {
           <div>
             <h4 className="text-lg font-bold mb-6 text-gray-900 dark:text-white transition-colors duration-300">Company</h4>
             <ul className="space-y-4">
-              {['About Us', 'Portfolio', 'Case Studies', 'Insights', 'Contact'].map((item) => (
+              {['About Us', 'Portfolio', 'Insights', 'Contact'].map((item) => (
                 <li key={item}>
                   <Link 
                     to={`/${item.toLowerCase().replace(' ', '-')}`} 

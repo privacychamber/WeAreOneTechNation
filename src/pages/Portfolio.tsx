@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ExternalLink, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useContent } from '../hooks/useContent';
 
 const Portfolio: React.FC = () => {
@@ -54,8 +54,7 @@ const Portfolio: React.FC = () => {
             let tagsList = [];
             try { tagsList = JSON.parse(project.tags || '[]'); } catch(e) {}
             return (
-            <Link 
-              to={`/case-studies`} 
+            <div 
               key={project.id} 
               className="interactive-glow group relative block bg-white dark:bg-slate-800 rounded-[2rem] overflow-hidden border border-gray-100 dark:border-slate-700 hover:border-[#2563eb]/30 transition-colors duration-200 shadow-sm dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)]"
             >
@@ -65,11 +64,8 @@ const Portfolio: React.FC = () => {
                   alt={project.title} 
                   className="w-full h-full object-cover" 
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end p-8">
-                  <div className="text-white flex items-center gap-2 font-bold">
-                    View Case Study <ExternalLink size={18} />
-                  </div>
-                </div>
+                {/* Hover overlay effect */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                 {/* Metric Badge */}
                 <div className="absolute top-6 left-6 bg-white/90 dark:bg-black/90 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-sm px-4 py-2 rounded-full text-xs font-bold text-gray-900 dark:text-white z-10 transition-colors duration-300">
                   {project.metrics}
@@ -86,7 +82,7 @@ const Portfolio: React.FC = () => {
                   ))}
                 </div>
               </div>
-            </Link>
+            </div>
           )})}
         </div>
       </section>

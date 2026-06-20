@@ -84,8 +84,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         category: 'Brand Website',
         metrics: 'Custom Design',
         tags: JSON.stringify(['HTML', 'CSS', 'JavaScript']),
-        image_url: '/images/portfolio/sarahswati-agni.jpg',
-        link: '/case-studies'
+        image_url: '/images/portfolio/sarahswati-agni.jpg'
       },
       {
         id: 2,
@@ -93,8 +92,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         category: 'E-Commerce',
         metrics: '100% Organic',
         tags: JSON.stringify(['Next.js', 'React', 'Tailwind CSS', 'Framer']),
-        image_url: '/images/portfolio/katoch-organic.jpg',
-        link: '/case-studies'
+        image_url: '/images/portfolio/katoch-organic.jpg'
       },
       {
         id: 3,
@@ -102,8 +100,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         category: 'Travel Platform',
         metrics: '500+ Destinations',
         tags: JSON.stringify(['TypeScript', 'React', 'Tour Management']),
-        image_url: '/images/portfolio/mhm-travels.jpg',
-        link: '/case-studies'
+        image_url: '/images/portfolio/mhm-travels.jpg'
       },
       {
         id: 4,
@@ -111,8 +108,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         category: 'Beauty & Wellness',
         metrics: 'Premium Care',
         tags: JSON.stringify(['UI/UX', 'Booking System', 'Brand Identity']),
-        image_url: '/images/portfolio/glam-house.jpg',
-        link: '/case-studies'
+        image_url: '/images/portfolio/glam-house.jpg'
       },
       {
         id: 5,
@@ -120,8 +116,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         category: 'Travel Platform',
         metrics: '10,000+ Travelers',
         tags: JSON.stringify(['Next.js', 'React.js', 'Tailwind CSS', 'Framer Motion']),
-        image_url: '/images/portfolio/sai-holiday.jpg',
-        link: '/case-studies'
+        image_url: '/images/portfolio/sai-holiday.jpg'
       },
 
       {
@@ -130,8 +125,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         category: 'Health & Fitness',
         metrics: '5k+ Active Members',
         tags: JSON.stringify(['PHP', 'MySQL', 'Web Application']),
-        image_url: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1500',
-        link: '/case-studies'
+        image_url: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1500'
       }
     ]
   };
