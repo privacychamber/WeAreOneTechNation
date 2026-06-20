@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Clock, ArrowRight } from 'lucide-react';
-import { Swirl, ChromaFlow, FilmGrain, FlutedGlass } from 'shaders/react';
+import { Shader, Swirl, ChromaFlow, FilmGrain, FlutedGlass } from 'shaders/react';
 
 export const HeroSection: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -25,10 +25,12 @@ export const HeroSection: React.FC = () => {
     <section className="relative w-full h-screen min-h-screen bg-[#EFEFEF] overflow-hidden flex flex-col justify-between">
       {/* Background Shader Overlay */}
       <div className="absolute inset-0 z-10 pointer-events-none">
-        <Swirl colorA="#ffffff" colorB="#f0f0f0" detail={1.7} />
-        <ChromaFlow baseColor="#ffffff" downColor="#ff5f03" leftColor="#ff5f03" rightColor="#ff5f03" upColor="#ff5f03" momentum={13} radius={3.5} />
-        <FlutedGlass aberration={0.61} angle={31} frequency={8} highlight={0.12} highlightSoftness={0} lightAngle={-90} refraction={4} shape="rounded" softness={1} speed={0.15} />
-        <FilmGrain strength={0.05} />
+        <Shader>
+          <Swirl colorA="#ffffff" colorB="#f0f0f0" detail={1.7} />
+          <ChromaFlow baseColor="#ffffff" downColor="#ff5f03" leftColor="#ff5f03" rightColor="#ff5f03" upColor="#ff5f03" momentum={13} radius={3.5} />
+          <FlutedGlass aberration={0.61} angle={31} frequency={8} highlight={0.12} highlightSoftness={0} lightAngle={-90} refraction={4} shape="rounded" softness={1} speed={0.15} />
+          <FilmGrain strength={0.05} />
+        </Shader>
       </div>
 
       {/* Navigation */}
