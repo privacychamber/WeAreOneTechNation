@@ -7,7 +7,7 @@ export const HeroSection: React.FC = () => {
   const { content } = useContent();
 
   return (
-    <section className="relative w-full h-screen min-h-screen bg-[#EFEFEF] dark:bg-[#0B0F1A] overflow-hidden flex flex-col justify-end pb-28 sm:pb-16 lg:pb-20 transition-colors duration-300">
+    <section className="relative w-full h-[100dvh] min-h-[100dvh] bg-[#EFEFEF] dark:bg-[#0B0F1A] overflow-hidden flex flex-col justify-end pb-28 sm:pb-16 lg:pb-20 transition-colors duration-300">
       {/* Background Shader Overlay */}
       <div className="absolute inset-0 z-10 pointer-events-none transition-opacity duration-500 dark:opacity-5 [&_canvas]:w-full [&_canvas]:h-full [&_canvas]:object-cover">
         <Shader>
