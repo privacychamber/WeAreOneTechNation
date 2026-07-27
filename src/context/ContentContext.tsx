@@ -121,11 +121,11 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
       {
         id: 7,
-        title: 'Yoga Wellness',
-        category: 'Health & Fitness',
-        metrics: '5k+ Active Members',
-        tags: JSON.stringify(['PHP', 'MySQL', 'Web Application']),
-        image_url: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1500'
+        title: 'Himyog Yoga Kendra',
+        category: 'Spiritual Wellness',
+        metrics: 'Yoga Alliance Certified',
+        tags: JSON.stringify(['React', 'PHP', 'MySQL']),
+        image_url: '/images/portfolio/himyog.jpg'
       }
     ]
   };
