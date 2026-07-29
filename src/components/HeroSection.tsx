@@ -2,17 +2,28 @@ import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Shader, Swirl, ChromaFlow, FilmGrain, FlutedGlass } from 'shaders/react';
 import { useContent } from '../hooks/useContent';
+import { useTheme } from '../hooks/useTheme';
 
 export const HeroSection: React.FC = () => {
   const { content } = useContent();
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   return (
     <section className="relative w-full min-h-[100dvh] bg-[#EFEFEF] dark:bg-[#0B0F1A] overflow-hidden flex flex-col justify-end pb-28 sm:pb-16 lg:pb-20 transition-colors duration-300">
       {/* Background Shader Overlay */}
-      <div className="absolute inset-0 z-10 pointer-events-none transition-opacity duration-500 dark:opacity-5 [&>div]:w-full [&>div]:h-full [&_canvas]:w-full [&_canvas]:h-full [&_canvas]:object-cover">
+      <div className="absolute inset-0 z-10 pointer-events-none transition-opacity duration-500 [&>div]:w-full [&>div]:h-full [&_canvas]:w-full [&_canvas]:h-full [&_canvas]:object-cover">
         <Shader>
-          <Swirl colorA="#ffffff" colorB="#f0f0f0" detail={1.7} />
-          <ChromaFlow baseColor="#ffffff" downColor="#3b82f6" leftColor="#3b82f6" rightColor="#3b82f6" upColor="#3b82f6" momentum={13} radius={3.5} />
+          <Swirl colorA={isDark ? "#0B0F1A" : "#ffffff"} colorB={isDark ? "#111827" : "#f0f0f0"} detail={1.7} />
+          <ChromaFlow 
+            baseColor={isDark ? "#0B0F1A" : "#ffffff"} 
+            downColor={isDark ? "#1d4ed8" : "#3b82f6"} 
+            leftColor={isDark ? "#1e40af" : "#3b82f6"} 
+            rightColor={isDark ? "#2563eb" : "#3b82f6"} 
+            upColor={isDark ? "#3b82f6" : "#3b82f6"} 
+            momentum={13} 
+            radius={3.5} 
+          />
           <FlutedGlass aberration={0.61} angle={31} frequency={8} highlight={0.12} highlightSoftness={0} lightAngle={-90} refraction={4} shape="rounded" softness={1} speed={0.15} />
           <FilmGrain strength={0.05} />
         </Shader>
