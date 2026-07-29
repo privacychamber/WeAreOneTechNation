@@ -59,22 +59,76 @@ const About: React.FC = () => {
       </section>
 
       {/* Core Values */}
-      <section className="py-16 md:py-32 container-custom">
-        <h2 className="text-3xl md:text-4xl text-center mb-10 md:mb-20 text-gray-900 dark:text-white transition-colors duration-300">Why Choose WAOTN?</h2>
-        <div className="grid md:grid-cols-3 gap-8 md:gap-12">
-          {[
-            { icon: <Award />, title: 'Premium Execution', desc: 'We only take on projects where we can deliver 10x value. No mediocrity.' },
-            { icon: <Target />, title: 'Result Driven', desc: 'Every line of code is written with your business KPIs in mind.' },
-            { icon: <Shield />, title: 'Rock-Solid Trust', desc: 'We are long-term partners. Your security and scalability are our priority.' }
-          ].map((item, i) => (
-            <div key={i} className="interactive-glow text-center space-y-4 md:space-y-6 bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-6 md:p-10 rounded-2xl md:rounded-3xl transition-colors duration-300 border border-transparent dark:border-slate-700">
-              <div className="w-20 h-20 bg-[#2563eb]/10 dark:bg-[#2563eb]/20 rounded-full flex items-center justify-center text-[#2563eb] mx-auto">
-                {React.cloneElement(item.icon as React.ReactElement<any>, { size: 40 })}
+      <section className="py-16 md:py-32 relative overflow-hidden">
+        {/* Background Decorative Elements */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+          <div className="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] rounded-full bg-blue-500/10 blur-[120px] dark:bg-blue-600/20 transition-all duration-1000"></div>
+          <div className="absolute bottom-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-indigo-500/10 blur-[120px] dark:bg-indigo-600/20 transition-all duration-1000"></div>
+        </div>
+
+        <div className="container-custom relative z-10">
+          <div className="text-center max-w-2xl mx-auto mb-16 md:mb-24">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white transition-colors duration-300">
+              Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500">WAOTN?</span>
+            </h2>
+            <p className="text-lg text-gray-500 dark:text-gray-400">We do not just write code. We architect scalable ecosystems designed to dominate the market.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+            {[
+              {
+                icon: <Award />, 
+                title: 'Premium Execution', 
+                desc: 'We only take on projects where we can deliver 10x value. No mediocrity. Every pixel and logic block is vetted.',
+                colSpan: 'md:col-span-12 lg:col-span-7',
+                bgClass: 'bg-gradient-to-br from-blue-50 to-white dark:from-slate-800 dark:to-slate-900/80',
+                accent: 'bg-blue-500'
+              },
+              {
+                icon: <Target />, 
+                title: 'Result Driven', 
+                desc: 'Every line of code is written with your business KPIs in mind.',
+                colSpan: 'md:col-span-6 lg:col-span-5',
+                bgClass: 'bg-white dark:bg-slate-800',
+                accent: 'bg-indigo-500'
+              },
+              {
+                icon: <Shield />, 
+                title: 'Rock-Solid Trust', 
+                desc: 'We are long-term partners. Your security and scalability are our priority. We treat your infrastructure as if it were our own.',
+                colSpan: 'md:col-span-6 lg:col-span-12 lg:flex lg:items-center lg:gap-12',
+                bgClass: 'bg-[#0B0F1A] dark:bg-black',
+                textClass: 'text-white',
+                accent: 'bg-white',
+                flexStyle: true
+              }
+            ].map((item, i) => (
+              <div key={i} className={`group relative overflow-hidden p-8 md:p-12 rounded-3xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl border border-gray-200/50 dark:border-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.02)] ${item.colSpan} ${item.bgClass}`}>
+                
+                {/* Decorative background circle on hover */}
+                <div className={`absolute -right-20 -top-20 w-64 h-64 rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-700 blur-3xl ${item.accent}`}></div>
+                
+                <div className={`relative z-10 h-full ${item.flexStyle ? 'lg:flex lg:items-center lg:justify-between lg:w-full' : 'flex flex-col justify-between gap-8'}`}>
+                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 ${item.textClass === 'text-white' ? 'bg-white/10 text-white' : 'bg-blue-50 dark:bg-slate-700 text-[#2563eb]'} transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3 ${item.flexStyle ? 'mb-6 lg:mb-0' : ''}`}>
+                    {React.cloneElement(item.icon as React.ReactElement<any>, { size: 32 })}
+                  </div>
+                  
+                  <div className={item.flexStyle ? 'lg:flex-1 lg:ml-12' : ''}>
+                    <h3 className={`text-2xl font-bold mb-4 ${item.textClass || 'text-gray-900 dark:text-white'}`}>{item.title}</h3>
+                    <p className={`leading-relaxed text-lg ${item.textClass === 'text-white' ? 'text-gray-300' : 'text-gray-500 dark:text-gray-400'}`}>{item.desc}</p>
+                  </div>
+                  
+                  {item.flexStyle && (
+                    <div className="hidden lg:block shrink-0">
+                       <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white/50 group-hover:text-white group-hover:border-white transition-all duration-300 group-hover:translate-x-2">
+                         <Sparkles size={20} />
+                       </div>
+                    </div>
+                  )}
+                </div>
               </div>
-              <h3 className="text-2xl text-gray-900 dark:text-white">{item.title}</h3>
-              <p className="text-gray-500 dark:text-gray-400 leading-relaxed">{item.desc}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
