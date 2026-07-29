@@ -12,7 +12,7 @@ export const AboutSection: React.FC = () => {
             1
           </div>
           <div className="text-[12px] leading-[13px] font-medium border border-gray-200 dark:border-slate-700 text-gray-900 dark:text-white rounded-full px-3 sm:px-4 py-1 sm:py-1.5 transition-colors duration-300">
-            Introducing Axion
+            Introducing WeAreOneTechNation
           </div>
         </div>
 
@@ -48,14 +48,14 @@ export const AboutSection: React.FC = () => {
               <div className="interactive-glow w-full sm:w-[45%] aspect-[438/346] rounded-xl sm:rounded-2xl overflow-hidden shadow-sm border border-transparent dark:border-slate-700/50 hover:border-[#2563eb]/30 transition-all duration-300">
                 <img 
                   src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260516_090123_74be96d4-9c1b-40cf-932a-96f4f4babed3.png&w=1280&q=85" 
-                  alt="Axion Studio Work 1" 
+                  alt="WeAreOneTechNation Work 1" 
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="interactive-glow w-full sm:w-[55%] aspect-[900/600] rounded-xl sm:rounded-2xl overflow-hidden shadow-sm border border-transparent dark:border-slate-700/50 hover:border-[#2563eb]/30 transition-all duration-300">
                 <img 
                   src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260516_090133_c157d30b-a99a-4477-bec1-a446149ec3f2.png&w=1280&q=85" 
-                  alt="Axion Studio Work 2" 
+                  alt="WeAreOneTechNation Work 2" 
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -67,7 +67,7 @@ export const AboutSection: React.FC = () => {
             <div className="interactive-glow w-full aspect-[438/346] rounded-2xl overflow-hidden self-end shadow-sm border border-transparent dark:border-slate-700/50 hover:border-[#2563eb]/30 transition-all duration-300">
               <img 
                 src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260516_090123_74be96d4-9c1b-40cf-932a-96f4f4babed3.png&w=1280&q=85" 
-                alt="Axion Studio Work 1" 
+                alt="WeAreOneTechNation Work 1" 
                 className="w-full h-full object-cover"
               />
             </div>
@@ -94,7 +94,7 @@ export const AboutSection: React.FC = () => {
             <div className="interactive-glow w-full aspect-[3/2] rounded-2xl overflow-hidden self-end shadow-sm border border-transparent dark:border-slate-700/50 hover:border-[#2563eb]/30 transition-all duration-300">
               <img 
                 src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260516_090133_c157d30b-a99a-4477-bec1-a446149ec3f2.png&w=1280&q=85" 
-                alt="Axion Studio Work 2" 
+                alt="WeAreOneTechNation Work 2" 
                 className="w-full h-full object-cover"
               />
             </div>

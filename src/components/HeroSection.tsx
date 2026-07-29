@@ -32,7 +32,7 @@ export const HeroSection: React.FC = () => {
       {/* Hero Content */}
       <div className="relative z-20 w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 pt-24 md:pt-32">
         <p className="text-[13px] leading-[14px] text-gray-900 dark:text-gray-300 tracking-wide mb-5 sm:mb-8 font-medium">
-          {content?.settings?.hero_subtitle || 'Axion Studio'}
+          {content?.settings?.hero_subtitle || 'WeAreOneTechNation'}
         </p>
         
         <h1 

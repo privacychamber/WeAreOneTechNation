@@ -44,7 +44,7 @@ try {
     $stmt->execute(['contact_email', 'privacy.chamber@gmail.com']);
     $stmt->execute(['contact_whatsapp', '+91-9418100803']);
     $stmt->execute(['hero_title', "We craft digital experiences <br class=\"hidden sm:block\" />for brands ready to dominate <br class=\"hidden sm:block\" />their category online."]);
-    $stmt->execute(['hero_subtitle', "Axion Studio"]);
+    $stmt->execute(['hero_subtitle', "WeAreOneTechNation"]);
     $stmt->execute(['about_vision', "Founded on the principle of 'One Tech Nation', we believe in a unified digital future where AI and human creativity merge to solve the world's most complex business challenges."]);
     $stmt->execute(['about_vision_secondary', "We don't operate like a standard agency. We are your technical co-founders, your innovation lab, and your scale partner all in one."]);
 

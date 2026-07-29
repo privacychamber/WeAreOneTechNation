@@ -17,7 +17,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       contact_email: 'privacy.chamber@gmail.com',
       contact_whatsapp: '+91-9418100803',
       hero_title: 'We craft digital experiences <br class="hidden sm:block" />for brands ready to dominate <br class="hidden sm:block" />their category online.',
-      hero_subtitle: 'Axion Studio',
+      hero_subtitle: 'WeAreOneTechNation',
       about_vision: "Founded on the principle of 'One Tech Nation', we believe in a unified digital future where AI and human creativity merge to solve the world's most complex business challenges.",
       about_vision_secondary: "We don't operate like a standard agency. We are your technical co-founders, your innovation lab, and your scale partner all in one."
     },
