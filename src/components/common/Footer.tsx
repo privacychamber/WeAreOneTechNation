@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Globe, ArrowUpRight, Briefcase, Monitor, Video, Users, Camera } from 'lucide-react';
+import { Globe, ArrowUpRight, Video, Users, Camera } from 'lucide-react';
 import { useContent } from '../../hooks/useContent';
 
 export const Footer: React.FC = () => {
@@ -21,8 +21,6 @@ export const Footer: React.FC = () => {
             <div className="flex gap-4 flex-wrap">
               {[
                 { Icon: Globe, url: 'https://weareonetechnation.com/', label: 'Website' },
-                { Icon: Briefcase, url: 'https://www.upwork.com/freelancers/~01c9e8378dd87006c4', label: 'Upwork' },
-                { Icon: Monitor, url: 'https://www.freelancer.com/u/weareonetech', label: 'Freelancer' },
                 { Icon: Video, url: 'https://www.youtube.com/@WeAreOneTechNation', label: 'YouTube' },
                 { Icon: Users, url: 'https://www.facebook.com/weareonetechnation', label: 'Facebook' },
                 { Icon: Camera, url: 'https://www.instagram.com/weareonetechnation/', label: 'Instagram' },
