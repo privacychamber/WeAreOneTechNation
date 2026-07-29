@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Globe, Mail, MessageSquare, ArrowUpRight } from 'lucide-react';
+import { Globe, Mail, MessageSquare, ArrowUpRight, Briefcase, Monitor, Youtube, Facebook, Instagram } from 'lucide-react';
 import { useContent } from '../../hooks/useContent';
 
 export const Footer: React.FC = () => {
@@ -18,11 +18,22 @@ export const Footer: React.FC = () => {
             <p className="text-gray-500 dark:text-gray-400 max-w-xs transition-colors duration-300">
               We build digital systems that think, learn, and convert. A premium technology partner for high-value digital ecosystems.
             </p>
-            <div className="flex gap-4">
-              {[Globe, Mail, MessageSquare].map((Icon, i) => (
+            <div className="flex gap-4 flex-wrap">
+              {[
+                { Icon: Globe, url: 'https://weareonetechnation.com/', label: 'Website' },
+                { Icon: Briefcase, url: 'https://www.upwork.com/freelancers/~01c9e8378dd87006c4', label: 'Upwork' },
+                { Icon: Monitor, url: 'https://www.freelancer.com/u/weareonetech', label: 'Freelancer' },
+                { Icon: Youtube, url: 'https://www.youtube.com/@WeAreOneTechNation', label: 'YouTube' },
+                { Icon: Facebook, url: 'https://www.facebook.com/weareonetechnation', label: 'Facebook' },
+                { Icon: Instagram, url: 'https://www.instagram.com/weareonetechnation/', label: 'Instagram' },
+              ].map(({ Icon, url, label }, i) => (
                 <a
                   key={i}
-                  href="#"
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  title={label}
                   className="w-10 h-10 rounded-full bg-gray-100 dark:bg-slate-800 flex items-center justify-center hover:bg-[#2563eb] dark:hover:bg-[#2563eb] hover:text-white transition-all duration-300 text-gray-600 dark:text-gray-300"
                 >
                   <Icon size={18} />
