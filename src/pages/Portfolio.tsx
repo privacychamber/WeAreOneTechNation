@@ -1,44 +1,89 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
-import { useContent } from '../hooks/useContent';
+import { ExternalLink, ArrowRight } from 'lucide-react';
+
+const projects = [
+  {
+    id: 1,
+    title: 'Nexus AI Dashboard',
+    category: 'AI / SaaS',
+    image: 'https://images.unsplash.com/photo-1551288049-bbda4e966c52?auto=format&fit=crop&q=80&w=1000',
+    tags: ['React', 'OpenAI', 'Node.js'],
+    metrics: '+45% Efficiency'
+  },
+  {
+    id: 2,
+    title: 'Vanguard E-Commerce',
+    category: 'Web / E-com',
+    image: 'https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=1000',
+    tags: ['Next.js', 'Shopify', 'GSAP'],
+    metrics: '3.2s -> 0.8s Load'
+  },
+  {
+    id: 3,
+    title: 'Quantum Ledger',
+    category: 'Web3 / Fintech',
+    image: 'https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=1000',
+    tags: ['Solidity', 'Tailwind', 'Python'],
+    metrics: '$2M TVL'
+  },
+  {
+    id: 4,
+    title: 'Apex Logistics System',
+    category: 'Automation',
+    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1000',
+    tags: ['Cloud', 'Go', 'Docker'],
+    metrics: '99.99% Uptime'
+  },
+  {
+    id: 5,
+    title: 'Solaris Marketing Portal',
+    category: 'Web / CMS',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000',
+    tags: ['Headless CMS', 'Vite', 'Three.js'],
+    metrics: '+200% Leads'
+  },
+  {
+    id: 6,
+    title: 'Aura Health App',
+    category: 'Mobile / SaaS',
+    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1000',
+    tags: ['React Native', 'Firebase', 'AI'],
+    metrics: '100k+ Users'
+  }
+];
+
+const categories = ['All', 'AI / SaaS', 'Web / E-com', 'Web3 / Fintech', 'Automation', 'Mobile / SaaS'];
 
 const Portfolio: React.FC = () => {
   const [activeTab, setActiveTab] = useState('All');
-  const { content } = useContent();
-
-  const projects = content?.portfolio || [];
-  
-  // Extract unique categories from projects
-  const uniqueCategories = Array.from(new Set(projects.map((p: any) => p.category))) as string[];
-  const categories: string[] = ['All', ...uniqueCategories];
 
   const filteredProjects = activeTab === 'All' 
     ? projects 
-    : projects.filter((p: any) => p.category === activeTab);
+    : projects.filter(p => p.category === activeTab);
 
   return (
-    <div className="pt-24 md:pt-32 pb-12 md:pb-20">
-      <section className="container-custom mb-10 md:mb-16">
+    <div className="pt-32 pb-20">
+      <section className="container-custom mb-16">
         <div className="max-w-3xl">
-          <h1 className="text-4xl md:text-5xl lg:text-7xl mb-4 md:mb-6 text-gray-900 dark:text-white transition-colors duration-300">Proven Results.</h1>
-          <p className="text-xl text-gray-500 dark:text-gray-400 transition-colors duration-300">
+          <h1 className="text-5xl md:text-7xl mb-6">Proven Results.</h1>
+          <p className="text-xl text-slate-600 dark:text-slate-400">
             A selection of high-value digital systems we've engineered for global partners.
           </p>
         </div>
       </section>
 
       {/* Filter Tabs */}
-      <section className="container-custom mb-8 md:mb-12">
-        <div className="flex flex-wrap gap-3 md:gap-4">
+      <section className="container-custom mb-12">
+        <div className="flex flex-wrap gap-4">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveTab(cat)}
               className={`px-6 py-2 rounded-full border-2 transition-all duration-300 font-medium ${
                 activeTab === cat 
-                ? 'bg-[#2563eb] border-[#2563eb] text-white' 
-                : 'border-gray-200 dark:border-slate-700 hover:border-[#2563eb]/50 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+                ? 'bg-primary border-primary text-white' 
+                : 'border-slate-200 dark:border-white/10 hover:border-primary/50'
               }`}
             >
               {cat}
@@ -49,52 +94,53 @@ const Portfolio: React.FC = () => {
 
       {/* Grid */}
       <section className="container-custom">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {filteredProjects.map((project: any) => {
-            let tagsList = [];
-            try { tagsList = JSON.parse(project.tags || '[]'); } catch(e) {}
-            return (
-            <div 
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProjects.map((project) => (
+            <Link 
+              to={`/case-studies`} 
               key={project.id} 
-              className="interactive-glow group relative block bg-white dark:bg-slate-800 rounded-[2rem] overflow-hidden border border-gray-100 dark:border-slate-700 hover:border-[#2563eb]/30 transition-colors duration-200 shadow-sm dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)]"
+              className="group relative block bg-white dark:bg-background-secondary rounded-[2rem] overflow-hidden border border-slate-200 dark:border-white/5 hover:border-primary/30 transition-colors duration-200"
             >
               <div className="aspect-[4/3] overflow-hidden relative">
                 <img 
-                  src={project.image_url} 
+                  src={project.image} 
                   alt={project.title} 
                   className="w-full h-full object-cover" 
                 />
-                {/* Hover overlay effect */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end p-8">
+                  <div className="text-white flex items-center gap-2 font-bold">
+                    View Case Study <ExternalLink size={18} />
+                  </div>
+                </div>
                 {/* Metric Badge */}
-                <div className="absolute top-6 left-6 bg-white/90 dark:bg-black/90 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-sm px-4 py-2 rounded-full text-xs font-bold text-gray-900 dark:text-white z-10 transition-colors duration-300">
+                <div className="absolute top-6 left-6 glass px-4 py-2 rounded-full text-xs font-bold text-white z-10">
                   {project.metrics}
                 </div>
               </div>
               <div className="p-8">
-                <div className="text-[#2563eb] font-bold text-sm uppercase tracking-widest mb-2">{project.category}</div>
-                <h3 className="text-2xl mb-4 group-hover:text-[#2563eb] transition-colors text-gray-900 dark:text-white">{project.title}</h3>
+                <div className="text-primary font-bold text-sm uppercase tracking-widest mb-2">{project.category}</div>
+                <h3 className="text-2xl mb-4 group-hover:text-primary transition-colors">{project.title}</h3>
                 <div className="flex flex-wrap gap-2">
-                  {tagsList.map((tag: string) => (
-                    <span key={tag} className="text-xs bg-gray-100 dark:bg-slate-700 px-3 py-1 rounded-full text-gray-500 dark:text-gray-300 transition-colors duration-300">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="text-xs bg-slate-100 dark:bg-white/5 px-3 py-1 rounded-full text-slate-500">
                       {tag}
                     </span>
                   ))}
                 </div>
               </div>
-            </div>
-          )})}
+            </Link>
+          ))}
         </div>
       </section>
 
       {/* CTA */}
-      <section className="container-custom mt-12 md:mt-20 text-center">
-        <div className="interactive-glow bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] p-8 md:p-12 rounded-3xl md:rounded-[3rem] max-w-4xl mx-auto border border-gray-100 dark:border-slate-700 transition-colors duration-300">
-          <h2 className="text-2xl md:text-3xl mb-4 md:mb-6 text-gray-900 dark:text-white transition-colors duration-300">Want to see your project here?</h2>
-          <p className="text-gray-500 dark:text-gray-400 mb-8 transition-colors duration-300">
+      <section className="container-custom mt-20 text-center">
+        <div className="glass p-12 rounded-[3rem] max-w-4xl mx-auto">
+          <h2 className="text-3xl mb-6">Want to see your project here?</h2>
+          <p className="text-slate-600 dark:text-slate-400 mb-8">
             Let's discuss how we can build a high-performance system for your business.
           </p>
-          <Link to="/contact" className="interactive-glow-button bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-6 py-3 font-semibold rounded-full transition-colors duration-300 inline-flex items-center gap-2">
+          <Link to="/contact" className="btn-primary inline-flex items-center gap-2">
             Start Your Project <ArrowRight size={20} />
           </Link>
         </div>
