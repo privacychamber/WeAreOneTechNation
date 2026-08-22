@@ -75,6 +75,33 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         features: JSON.stringify(['Go-to-Market Strategy', 'Growth Marketing', 'Lead Generation Automation', 'End-to-End Business Management']),
         icon: 'globe',
         image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&q=80&w=2000'
+      },
+      {
+        id: 7,
+        title: 'Social Media Management',
+        subtitle: 'Stop Posting. Start Growing.',
+        description: 'Professional social media management that handles everything for you. From content planning to publishing and meta ads management, we help your business build a stronger online presence and generate more leads.',
+        features: JSON.stringify(['Premium Social Media Posts', 'High-Engagement Reels', 'Meta Ads Management', 'Campaign Monitoring']),
+        icon: 'globe',
+        image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=2000'
+      },
+      {
+        id: 8,
+        title: 'Personal Brand & Creator Growth',
+        subtitle: 'Create More. Worry Less.',
+        description: 'Tailored for content creators, influencers, and personal brands. We manage your content production, growth strategy, and community engagement so you can focus on creating inspiring content.',
+        features: JSON.stringify(['Content Production', 'Growth Strategy', 'Community Management', 'Performance Analytics']),
+        icon: 'zap',
+        image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=2000'
+      },
+      {
+        id: 9,
+        title: 'Salon & Local Business Growth',
+        subtitle: 'More Visibility. More Bookings.',
+        description: 'Specialized social media marketing designed to bring real foot traffic and bookings to salons, clinics, and local businesses. Turn your social media into an active lead generation engine.',
+        features: JSON.stringify(['Targeted Local Meta Ads', 'High-Conversion Creatives', 'Booking Optimization', 'Audience Engagement']),
+        icon: 'globe',
+        image: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=2000'
       }
     ],
     portfolio: [
