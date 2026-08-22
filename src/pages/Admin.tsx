@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Calendar, ChevronRight, Search, LayoutDashboard, Settings, LogOut, Loader2 } from 'lucide-react';
+import { ChevronRight, Search, LayoutDashboard, Settings, LogOut, Loader2, Image, Type, List, Trash2, Plus } from 'lucide-react';
+import { useContent } from '../hooks/useContent';
 
 interface Lead {
   id: number;
@@ -17,16 +18,16 @@ const Admin: React.FC = () => {
   const [password, setPassword] = useState('');
   const [activeTab, setActiveTab] = useState<'leads' | 'content'>('leads');
   const [leads, setLeads] = useState<Lead[]>([]);
-  const [content, setContent] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  
+  const { content, refreshContent } = useContent();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === 'WAOTN_ADMIN_2024') {
       setIsLoggedIn(true);
       fetchLeads();
-      fetchContent();
     } else {
       alert('Invalid Password');
     }
@@ -47,16 +48,6 @@ const Admin: React.FC = () => {
     }
   };
 
-  const fetchContent = async () => {
-    try {
-      const response = await fetch('/api/get_content.php');
-      const result = await response.json();
-      if (result.status === 'success') setContent(result.data);
-    } catch (error) {
-      console.error('Error fetching content:', error);
-    }
-  };
-
   const updateSetting = async (key: string, value: string) => {
     try {
       await fetch('/api/update_content.php', {
@@ -67,9 +58,83 @@ const Admin: React.FC = () => {
         },
         body: JSON.stringify({ type: 'setting', action: 'update', key, value })
       });
-      fetchContent();
+      refreshContent();
     } catch (error) {
       console.error('Error updating setting:', error);
+    }
+  };
+
+  const saveService = async (service: any, isNew = false) => {
+    try {
+      await fetch('/api/update_content.php', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': 'WAOTN_ADMIN_2024'
+        },
+        body: JSON.stringify({ 
+          type: 'service', 
+          action: isNew ? 'add' : 'update', 
+          ...service 
+        })
+      });
+      refreshContent();
+    } catch (error) {
+      console.error('Error saving service:', error);
+    }
+  };
+
+  const deleteService = async (id: number) => {
+    if (!window.confirm('Are you sure you want to delete this service?')) return;
+    try {
+      await fetch('/api/update_content.php', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': 'WAOTN_ADMIN_2024'
+        },
+        body: JSON.stringify({ type: 'service', action: 'delete', id })
+      });
+      refreshContent();
+    } catch (error) {
+      console.error('Error deleting service:', error);
+    }
+  };
+
+  const savePortfolio = async (portfolio: any, isNew = false) => {
+    try {
+      await fetch('/api/update_content.php', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': 'WAOTN_ADMIN_2024'
+        },
+        body: JSON.stringify({ 
+          type: 'portfolio', 
+          action: isNew ? 'add' : 'update', 
+          ...portfolio 
+        })
+      });
+      refreshContent();
+    } catch (error) {
+      console.error('Error saving portfolio:', error);
+    }
+  };
+
+  const deletePortfolio = async (id: number) => {
+    if (!window.confirm('Are you sure you want to delete this project?')) return;
+    try {
+      await fetch('/api/update_content.php', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': 'WAOTN_ADMIN_2024'
+        },
+        body: JSON.stringify({ type: 'portfolio', action: 'delete', id })
+      });
+      refreshContent();
+    } catch (error) {
+      console.error('Error deleting portfolio:', error);
     }
   };
 
@@ -107,7 +172,7 @@ const Admin: React.FC = () => {
   return (
     <div className="min-h-screen bg-background-dark text-white flex">
       {/* Sidebar */}
-      <aside className="w-64 border-r border-white/10 p-6 flex flex-col gap-8 hidden lg:flex">
+      <aside className="w-64 border-r border-white/10 p-6 flex flex-col gap-8 hidden lg:flex fixed h-full z-10">
         <div className="flex items-center gap-3 px-2">
           <div className="w-8 h-8 bg-primary rounded-lg"></div>
           <span className="font-bold font-sora tracking-tight">WAOTN ADMIN</span>
@@ -140,7 +205,7 @@ const Admin: React.FC = () => {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-grow p-8 lg:p-12 overflow-auto pt-24 lg:pt-12">
+      <main className="flex-grow p-8 lg:p-12 overflow-auto pt-24 lg:pt-12 lg:ml-64">
         {activeTab === 'leads' ? (
           <>
             <header className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
@@ -242,7 +307,7 @@ const Admin: React.FC = () => {
               {/* Brand Settings */}
               <div className="glass p-8 rounded-[2rem] border-white/10">
                 <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                  <Settings className="text-primary" size={20} /> Brand Configuration
+                  <Settings className="text-primary" size={20} /> Global Info
                 </h3>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
@@ -269,13 +334,13 @@ const Admin: React.FC = () => {
               {/* Hero Section */}
               <div className="glass p-8 rounded-[2rem] border-white/10">
                 <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                  <Calendar className="text-primary" size={20} /> Hero Section
+                  <Type className="text-primary" size={20} /> Hero Section
                 </h3>
                 <div className="space-y-6">
                   <div className="space-y-2">
                     <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Hero Title (HTML supported)</label>
-                    <input 
-                      type="text" 
+                    <textarea 
+                      rows={3}
                       defaultValue={content?.settings?.hero_title}
                       onBlur={(e) => updateSetting('hero_title', e.target.value)}
                       className="w-full bg-white/5 border border-white/10 px-6 py-3 rounded-xl outline-none focus:border-primary transition-colors text-white"
@@ -284,7 +349,7 @@ const Admin: React.FC = () => {
                   <div className="space-y-2">
                     <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Hero Subtitle</label>
                     <textarea 
-                      rows={3}
+                      rows={2}
                       defaultValue={content?.settings?.hero_subtitle}
                       onBlur={(e) => updateSetting('hero_subtitle', e.target.value)}
                       className="w-full bg-white/5 border border-white/10 px-6 py-3 rounded-xl outline-none focus:border-primary transition-colors text-white resize-none"
@@ -293,29 +358,123 @@ const Admin: React.FC = () => {
                 </div>
               </div>
 
-              {/* Services List (Preview) */}
+              {/* About Section */}
               <div className="glass p-8 rounded-[2rem] border-white/10">
                 <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                  <LayoutDashboard className="text-primary" size={20} /> Services Overview
+                  <Type className="text-primary" size={20} /> About Vision
                 </h3>
-                <div className="space-y-4">
-                  {content?.services?.map((service: any) => (
-                    <div key={service.id} className="flex items-center justify-between p-4 bg-white/5 rounded-2xl border border-white/5">
-                      <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center text-primary uppercase font-bold text-xs">
-                          {service.icon.substring(0, 2)}
-                        </div>
-                        <div>
-                          <p className="font-bold">{service.title}</p>
-                          <p className="text-xs text-slate-400">{service.description.substring(0, 50)}...</p>
-                        </div>
-                      </div>
-                      <ChevronRight className="text-slate-600" size={20} />
-                    </div>
-                  ))}
-                  <p className="text-center text-sm text-slate-500 mt-4 italic">Service detailed editor coming in next update.</p>
+                <div className="space-y-6">
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Vision Text</label>
+                    <textarea 
+                      rows={3}
+                      defaultValue={content?.settings?.about_vision}
+                      onBlur={(e) => updateSetting('about_vision', e.target.value)}
+                      className="w-full bg-white/5 border border-white/10 px-6 py-3 rounded-xl outline-none focus:border-primary transition-colors text-white"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Secondary Text</label>
+                    <textarea 
+                      rows={3}
+                      defaultValue={content?.settings?.about_vision_secondary}
+                      onBlur={(e) => updateSetting('about_vision_secondary', e.target.value)}
+                      className="w-full bg-white/5 border border-white/10 px-6 py-3 rounded-xl outline-none focus:border-primary transition-colors text-white resize-none"
+                    />
+                  </div>
                 </div>
               </div>
+
+              {/* Services Editor */}
+              <div className="glass p-8 rounded-[2rem] border-white/10">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="text-xl font-bold flex items-center gap-2">
+                    <List className="text-primary" size={20} /> Services
+                  </h3>
+                  <button onClick={() => saveService({ title: 'New Service', subtitle: '', description: '', features: '[]', icon: 'cpu', image: '' }, true)} className="text-xs bg-primary/20 text-primary px-3 py-1.5 rounded-lg flex items-center gap-1 hover:bg-primary/30 transition-colors">
+                    <Plus size={14} /> Add Service
+                  </button>
+                </div>
+                <div className="space-y-8">
+                  {content?.services?.map((service: any) => (
+                    <div key={service.id} className="p-6 bg-white/5 rounded-2xl border border-white/5 space-y-4 relative">
+                      <button onClick={() => deleteService(service.id)} className="absolute top-4 right-4 text-red-400 hover:text-red-300">
+                        <Trash2 size={18} />
+                      </button>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <label className="text-xs text-slate-500">Title</label>
+                          <input type="text" defaultValue={service.title} onBlur={(e) => saveService({...service, title: e.target.value})} className="w-full bg-black/20 border border-white/10 px-4 py-2 rounded-lg text-sm" />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-xs text-slate-500">Subtitle</label>
+                          <input type="text" defaultValue={service.subtitle} onBlur={(e) => saveService({...service, subtitle: e.target.value})} className="w-full bg-black/20 border border-white/10 px-4 py-2 rounded-lg text-sm" />
+                        </div>
+                        <div className="space-y-2 md:col-span-2">
+                          <label className="text-xs text-slate-500">Description</label>
+                          <textarea defaultValue={service.description} onBlur={(e) => saveService({...service, description: e.target.value})} className="w-full bg-black/20 border border-white/10 px-4 py-2 rounded-lg text-sm" rows={2} />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-xs text-slate-500">Features (JSON Array)</label>
+                          <input type="text" defaultValue={service.features} onBlur={(e) => saveService({...service, features: e.target.value})} className="w-full bg-black/20 border border-white/10 px-4 py-2 rounded-lg text-sm" />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-xs text-slate-500">Image URL</label>
+                          <input type="text" defaultValue={service.image} onBlur={(e) => saveService({...service, image: e.target.value})} className="w-full bg-black/20 border border-white/10 px-4 py-2 rounded-lg text-sm" />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Portfolio Editor */}
+              <div className="glass p-8 rounded-[2rem] border-white/10">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="text-xl font-bold flex items-center gap-2">
+                    <Image className="text-primary" size={20} /> Portfolio Projects
+                  </h3>
+                  <button onClick={() => savePortfolio({ title: 'New Project', category: 'Category', metrics: '', tags: '[]', image_url: '', link: '#' }, true)} className="text-xs bg-primary/20 text-primary px-3 py-1.5 rounded-lg flex items-center gap-1 hover:bg-primary/30 transition-colors">
+                    <Plus size={14} /> Add Project
+                  </button>
+                </div>
+                <div className="space-y-8">
+                  {content?.portfolio?.map((project: any) => (
+                    <div key={project.id} className="p-6 bg-white/5 rounded-2xl border border-white/5 space-y-4 relative">
+                      <button onClick={() => deletePortfolio(project.id)} className="absolute top-4 right-4 text-red-400 hover:text-red-300">
+                        <Trash2 size={18} />
+                      </button>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <label className="text-xs text-slate-500">Project Title</label>
+                          <input type="text" defaultValue={project.title} onBlur={(e) => savePortfolio({...project, title: e.target.value})} className="w-full bg-black/20 border border-white/10 px-4 py-2 rounded-lg text-sm" />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-xs text-slate-500">Category</label>
+                          <input type="text" defaultValue={project.category} onBlur={(e) => savePortfolio({...project, category: e.target.value})} className="w-full bg-black/20 border border-white/10 px-4 py-2 rounded-lg text-sm" />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-xs text-slate-500">Metrics (e.g. +312% Growth)</label>
+                          <input type="text" defaultValue={project.metrics} onBlur={(e) => savePortfolio({...project, metrics: e.target.value})} className="w-full bg-black/20 border border-white/10 px-4 py-2 rounded-lg text-sm" />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-xs text-slate-500">Tags (JSON Array)</label>
+                          <input type="text" defaultValue={project.tags} onBlur={(e) => savePortfolio({...project, tags: e.target.value})} className="w-full bg-black/20 border border-white/10 px-4 py-2 rounded-lg text-sm" />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-xs text-slate-500">Image URL</label>
+                          <input type="text" defaultValue={project.image_url} onBlur={(e) => savePortfolio({...project, image_url: e.target.value})} className="w-full bg-black/20 border border-white/10 px-4 py-2 rounded-lg text-sm" />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-xs text-slate-500">Link / URL</label>
+                          <input type="text" defaultValue={project.link} onBlur={(e) => savePortfolio({...project, link: e.target.value})} className="w-full bg-black/20 border border-white/10 px-4 py-2 rounded-lg text-sm" />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
             </div>
           </div>
         ) }

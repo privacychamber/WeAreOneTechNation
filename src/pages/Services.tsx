@@ -1,144 +1,106 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Cpu, Globe, Zap, ArrowRight, Layers, Smartphone, Database } from 'lucide-react';
+import { Cpu, Globe, Zap, ArrowRight, Layers, Smartphone, Database, Shield } from 'lucide-react';
+import { useContent } from '../hooks/useContent';
+
+const getIcon = (iconName: string) => {
+  switch(iconName) {
+    case 'cpu': return <Cpu className="text-[#2563eb]" size={48} />;
+    case 'globe': return <Globe className="text-[#3b82f6]" size={48} />;
+    case 'layers': return <Layers className="text-[#2563eb]" size={48} />;
+    case 'shield': return <Shield className="text-[#3b82f6]" size={48} />;
+    default: return <Zap className="text-[#2563eb]" size={48} />;
+  }
+};
 
 const Services: React.FC = () => {
-  const serviceCategories = [
-    {
-      id: 'ai',
-      title: 'AI & Automation Systems',
-      subtitle: 'Intelligence built into your core.',
-      description: 'We integrate advanced LLMs and custom automation pipelines into your existing workflows to reduce manual overhead and increase decision-making speed.',
-      features: ['Custom GPT & LLM Integration', 'Automated Content Pipelines', 'Intelligent Customer Support Bots', 'Predictive Analytics Dashboards'],
-      icon: <Cpu className="text-primary" size={48} />,
-      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=2000'
-    },
-    {
-      id: 'web',
-      title: 'High-Performance Web',
-      subtitle: 'Websites that convert at 3x the industry average.',
-      description: 'Beyond aesthetics, we build for conversion. Our websites are lightweight, SEO-engineered, and designed with psychological triggers to turn visitors into leads.',
-      features: ['React & Next.js Development', 'Headless CMS Architecture', 'Performance Optimization (Lighthouse 95+)', 'SEO & Conversion Engineering'],
-      icon: <Globe className="text-accent-dark" size={48} />,
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000'
-    },
-    {
-      id: 'infra',
-      title: 'Scalable Architecture',
-      subtitle: 'Foundations that never break.',
-      description: 'Build for today, scale for tomorrow. We design cloud-native infrastructures that handle traffic spikes and complex data loads with ease.',
-      features: ['Cloud Infrastructure (AWS/GCP/Azure)', 'Microservices Architecture', 'Database Optimization', 'Real-time Data Processing'],
-      icon: <Layers className="text-primary" size={48} />,
-      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2000'
-    },
-    {
-      id: 'smm',
-      title: 'Social Media Management',
-      subtitle: 'Stop Posting. Start Growing.',
-      description: 'Professional social media management that handles everything for you. From content planning to publishing and meta ads management, we help your business build a stronger online presence and generate more leads.',
-      features: ['Premium Social Media Posts', 'High-Engagement Reels', 'Meta Ads Management', 'Campaign Monitoring'],
-      icon: <Smartphone className="text-primary" size={48} />,
-      image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=2000'
-    },
-    {
-      id: 'personal-brand',
-      title: 'Personal Brand & Creator Growth',
-      subtitle: 'Create More. Worry Less.',
-      description: 'Tailored for content creators, influencers, and personal brands. We manage your content production, growth strategy, and community engagement so you can focus on creating inspiring content.',
-      features: ['Content Production (Reels, Posts)', 'Growth Strategy & Trends', 'Community Management', 'Performance Analytics'],
-      icon: <Zap className="text-accent-dark" size={48} />,
-      image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=2000'
-    },
-    {
-      id: 'local-business',
-      title: 'Salon & Local Business Growth',
-      subtitle: 'More Visibility. More Bookings.',
-      description: 'Specialized social media marketing designed to bring real foot traffic and bookings to salons, clinics, and local businesses. Turn your social media into an active lead generation engine.',
-      features: ['Targeted Local Meta Ads', 'High-Conversion Creatives', 'Booking Optimization', 'Audience Engagement'],
-      icon: <Globe className="text-primary" size={48} />,
-      image: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=2000'
-    }
-  ];
+  const { content } = useContent();
+  const serviceCategories = content?.services || [];
 
   return (
-    <div className="pt-32">
+    <div className="pt-24 md:pt-32">
       {/* Header */}
-      <section className="container-custom mb-20 text-center">
-        <h1 className="text-5xl md:text-7xl mb-6">Our Services</h1>
-        <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
+      <section className="container-custom mb-12 md:mb-20 text-center">
+        <h1 className="text-4xl md:text-5xl lg:text-7xl mb-4 md:mb-6 text-gray-900 dark:text-white transition-colors duration-300">Our Services</h1>
+        <p className="text-xl text-gray-500 dark:text-gray-400 max-w-3xl mx-auto transition-colors duration-300">
           We provide end-to-end digital engineering for companies that refuse to settle for "good enough".
         </p>
       </section>
 
       {/* Service Blocks */}
-      {serviceCategories.map((service, i) => (
-        <section key={service.id} className={`py-20 ${i % 2 === 1 ? 'bg-slate-50 dark:bg-white/[0.02]' : ''}`}>
+      {serviceCategories.map((service: any, i: number) => {
+        let featuresList = [];
+        try { featuresList = JSON.parse(service.features || '[]'); } catch(e) {}
+        
+        return (
+        <section key={service.id} className={`py-12 md:py-20 transition-colors duration-300 ${i % 2 === 1 ? 'bg-gray-50 dark:bg-[#111827]' : ''}`}>
           <div className="container-custom">
-            <div className={`grid lg:grid-cols-2 gap-16 items-center ${i % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+            <div className={`grid lg:grid-cols-2 gap-8 md:gap-16 items-center ${i % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
               <div className={i % 2 === 1 ? 'lg:order-2' : ''}>
-                <div className="mb-6 p-4 glass rounded-2xl inline-block">
-                  {service.icon}
+                <div className="interactive-glow mb-6 p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 inline-block transition-colors duration-300">
+                  {getIcon(service.icon)}
                 </div>
-                <h2 className="text-4xl mb-2">{service.title}</h2>
-                <p className="text-primary font-bold text-lg mb-6">{service.subtitle}</p>
-                <p className="text-lg text-slate-600 dark:text-slate-400 mb-10 leading-relaxed">
+                <h2 className="text-3xl md:text-4xl mb-2 text-gray-900 dark:text-white transition-colors duration-300">{service.title}</h2>
+                <p className="text-[#2563eb] font-bold text-base md:text-lg mb-4 md:mb-6">{service.subtitle}</p>
+                <p className="text-base md:text-lg text-gray-500 dark:text-gray-400 mb-6 md:mb-10 leading-relaxed transition-colors duration-300">
                   {service.description}
                 </p>
-                <div className="grid sm:grid-cols-2 gap-4 mb-10">
-                  {service.features.map((feature, j) => (
+                <div className="grid sm:grid-cols-2 gap-3 md:gap-4 mb-8 md:mb-10 text-sm md:text-base text-gray-900 dark:text-gray-300">
+                  {featuresList.map((feature: string, j: number) => (
                     <div key={j} className="flex items-center gap-3">
-                      <Zap size={18} className="text-primary flex-shrink-0" />
+                      <Zap size={18} className="text-[#2563eb] flex-shrink-0" />
                       <span className="font-medium">{feature}</span>
                     </div>
                   ))}
                 </div>
-                <Link to="/contact" className="btn-primary inline-flex items-center gap-2">
+                <Link to={`/contact?service=${encodeURIComponent(service.title)}`} className="interactive-glow-button bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-6 py-3 font-semibold rounded-full transition-colors duration-300 inline-flex items-center gap-2">
                   Inquire About This Service <ArrowRight size={20} />
                 </Link>
               </div>
               <div className={`relative ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
-                <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl aspect-video lg:aspect-square">
+                <div className="interactive-glow relative z-10 rounded-3xl overflow-hidden shadow-2xl aspect-video lg:aspect-square">
                   <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 </div>
                 {/* Decorative Elements */}
-                <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/20 blur-[60px] rounded-full -z-10" />
-                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-accent/20 blur-[60px] rounded-full -z-10" />
+                <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#3b82f6]/20 blur-[60px] rounded-full -z-10" />
+                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-[#2563eb]/20 blur-[60px] rounded-full -z-10" />
               </div>
             </div>
           </div>
         </section>
-      ))}
+        );
+      })}
 
       {/* Why Choose Us Grid */}
-      <section className="section-padding container-custom">
-        <h2 className="text-4xl text-center mb-20">The WAOTN Advantage</h2>
+      <section className="py-16 md:py-32 container-custom">
+        <h2 className="text-3xl md:text-4xl text-center mb-10 md:mb-20 text-gray-900 dark:text-white transition-colors duration-300">The WAOTN Advantage</h2>
         <div className="grid md:grid-cols-3 gap-8">
           {[
             { icon: <Zap />, title: 'Speed', desc: 'We ship 2x faster than traditional agencies through our proprietary automation frameworks.' },
             { icon: <Database />, title: 'Scalability', desc: 'Your system is built to handle $10M+ in revenue from day one.' },
             { icon: <Smartphone />, title: 'Modern UX', desc: 'Mobile-first, high-fidelity designs that wow your customers.' }
           ].map((item, i) => (
-            <div key={i} className="glass p-10 rounded-3xl text-center space-y-6">
-              <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mx-auto">
+            <div key={i} className="interactive-glow bg-white dark:bg-slate-800 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)] rounded-2xl md:rounded-3xl p-6 md:p-10 text-center space-y-4 md:space-y-6 transition-colors duration-300 border border-transparent dark:border-slate-700">
+              <div className="w-16 h-16 bg-[#2563eb]/10 dark:bg-[#2563eb]/20 rounded-2xl flex items-center justify-center text-[#2563eb] mx-auto">
                 {React.cloneElement(item.icon as React.ReactElement<any>, { size: 32 })}
               </div>
-              <h3 className="text-2xl">{item.title}</h3>
-              <p className="text-slate-600 dark:text-slate-400">{item.desc}</p>
+              <h3 className="text-2xl text-gray-900 dark:text-white">{item.title}</h3>
+              <p className="text-gray-500 dark:text-gray-400">{item.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* CTA */}
-      <section className="section-padding text-center">
+      <section className="py-16 md:py-32 text-center">
         <div className="container-custom">
-          <div className="glass p-16 rounded-[3rem] border-primary/10">
-            <h2 className="text-4xl mb-8">Not sure which system you need?</h2>
-            <p className="text-xl text-slate-600 dark:text-slate-400 mb-12 max-w-2xl mx-auto">
+          <div className="bg-white dark:bg-slate-800 shadow-lg dark:shadow-2xl p-8 md:p-16 rounded-3xl md:rounded-[3rem] border border-gray-100 dark:border-slate-700 transition-colors duration-300">
+            <h2 className="text-3xl md:text-4xl mb-4 md:mb-8 text-gray-900 dark:text-white transition-colors duration-300">Not sure which system you need?</h2>
+            <p className="text-xl text-gray-500 dark:text-gray-400 mb-12 max-w-2xl mx-auto transition-colors duration-300">
               Our consultants help you map out the technical roadmap for your business.
             </p>
-            <Link to="/contact" className="btn-primary px-12 py-4 text-lg">
+            <Link to="/contact" className="interactive-glow-button bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-12 py-4 font-semibold rounded-full transition-colors duration-300 text-lg">
               Book a Discovery Session
             </Link>
           </div>
