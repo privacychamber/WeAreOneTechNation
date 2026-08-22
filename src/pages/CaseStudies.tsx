@@ -71,6 +71,98 @@ const caseStudies = [
     timeline: "Ongoing",
     industry: "Personal Brand",
     technologies: ['Instagram', 'Meta Ads', 'Analytics']
+  },
+  {
+    id: "scalable-infra-fintech",
+    title: "Cloud Infrastructure Scaling for a High-Volume FinTech Startup",
+    client: "PayStream Financial",
+    summary: "PayStream was experiencing database deadlocks and slow load times during peak trading hours. We migrated their monolithic architecture to scalable microservices.",
+    metrics: [
+      { value: "99.99%", label: "Uptime", color: "text-[#2563eb]" },
+      { value: "4x", label: "Traffic Capacity", color: "text-[#3b82f6]" }
+    ],
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1500",
+    problem: "The client's monolithic Node.js application was unable to handle concurrent transaction spikes, leading to 15-second API latency and dropped connections during market open hours.",
+    problemList: ['Database connection pooling limits', 'No horizontal scaling strategy', 'Single points of failure', 'High infrastructure costs'],
+    strategy: "We redesigned their backend using AWS ECS for containerized microservices and implemented read-replicas for their PostgreSQL database to separate read/write workloads.",
+    quote: "They didn't just fix our server crashes; they built a foundation that can handle our next 3 years of growth.",
+    execution: [
+      { title: "Architecture Audit", desc: "Identified bottlenecks in the database queries and monolithic structure." },
+      { title: "Containerization", desc: "Migrated the application into Docker containers orchestrated by ECS." },
+      { title: "Load Balancing", desc: "Implemented advanced Application Load Balancers and auto-scaling groups." }
+    ],
+    timeline: "2 Months",
+    industry: "FinTech",
+    technologies: ['AWS', 'Docker', 'PostgreSQL', 'Node.js']
+  },
+  {
+    id: "ui-ux-rebrand",
+    title: "Complete Brand & UX Redesign for a Premium SaaS Platform",
+    client: "FlowState CRM",
+    summary: "FlowState's powerful features were hidden behind an outdated, clunky interface. We redesigned the entire user journey and visual identity.",
+    metrics: [
+      { value: "+120%", label: "User Retention", color: "text-[#2563eb]" },
+      { value: "-45%", label: "Bounce Rate", color: "text-[#3b82f6]" }
+    ],
+    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=1500",
+    problem: "Users were churning within the first 14 days because the onboarding process was confusing and the dashboard was overwhelming with data.",
+    problemList: ['Complex onboarding flow', 'Inconsistent visual hierarchy', 'Poor mobile experience', 'Lack of modern brand identity'],
+    strategy: "We adopted a 'progressive disclosure' design philosophy, hiding advanced features until the user needed them, and established a sleek, modern design system.",
+    quote: "Our product finally looks as good as it works. The new design has completely changed how users perceive our brand.",
+    execution: [
+      { title: "UX Research", desc: "Conducted user interviews and heat-map analysis to understand friction points." },
+      { title: "Design System", desc: "Created a comprehensive UI kit in Figma with reusable components and tokens." },
+      { title: "Prototyping", desc: "Built high-fidelity interactive prototypes for user testing before development." }
+    ],
+    timeline: "6 Weeks",
+    industry: "SaaS / B2B",
+    technologies: ['Figma', 'Framer', 'Tailwind', 'React']
+  },
+  {
+    id: "marketing-lead-gen",
+    title: "Automated Lead Generation Engine for B2B Healthcare",
+    client: "MedTech Solutions",
+    summary: "MedTech relied entirely on cold-calling. We built an inbound marketing engine that generated a predictable pipeline of high-ticket leads.",
+    metrics: [
+      { value: "350+", label: "Qualified Leads/Mo", color: "text-[#2563eb]" },
+      { value: "62%", label: "Lower CAC", color: "text-[#3b82f6]" }
+    ],
+    image: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&q=80&w=1500",
+    problem: "Traditional outbound methods were becoming too expensive and yielding low conversion rates. They had no digital footprint to attract decision-makers.",
+    problemList: ['High customer acquisition cost (CAC)', 'No inbound marketing strategy', 'Poor email deliverability', 'Lack of CRM integration'],
+    strategy: "We launched a multi-channel digital marketing campaign combining LinkedIn Ads, high-value lead magnets, and automated email nurturing sequences.",
+    quote: "For the first time, our sales team is waking up to a calendar full of booked meetings with qualified prospects.",
+    execution: [
+      { title: "Go-to-Market Strategy", desc: "Defined target buyer personas and crafted compelling value propositions." },
+      { title: "Campaign Launch", desc: "Executed targeted LinkedIn and Search ads driving traffic to optimized landing pages." },
+      { title: "Automation", desc: "Set up Zapier and HubSpot integrations to nurture leads via email automatically." }
+    ],
+    timeline: "Ongoing",
+    industry: "Healthcare / B2B",
+    technologies: ['HubSpot', 'LinkedIn Ads', 'Zapier', 'Webflow']
+  },
+  {
+    id: "salon-growth",
+    title: "Driving 150+ Monthly Bookings for a Premium Salon",
+    client: "Luxe Hair & Beauty Studio",
+    summary: "Luxe Studio was struggling to fill their chairs on weekdays. We implemented a hyper-local social media strategy that transformed their booking rate.",
+    metrics: [
+      { value: "150+", label: "New Bookings", color: "text-[#2563eb]" },
+      { value: "4.5x", label: "ROAS", color: "text-[#3b82f6]" }
+    ],
+    image: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=1500",
+    problem: "Despite being in a prime location, the salon had low foot traffic and was heavily reliant on walk-ins rather than scheduled appointments.",
+    problemList: ['Empty chairs during weekdays', 'No online booking system', 'Ineffective local awareness', 'Low social media engagement'],
+    strategy: "We launched targeted Meta ads offering weekday specials, combined with highly aesthetic before-and-after Reels to showcase their expertise locally.",
+    quote: "Our stylists are fully booked two weeks in advance. The digital transformation was exactly what we needed.",
+    execution: [
+      { title: "Local SEO & Booking", desc: "Optimized their Google My Business profile and integrated a seamless booking widget." },
+      { title: "Meta Advertising", desc: "Ran geo-targeted Facebook and Instagram ads with compelling offer creatives." },
+      { title: "Content Creation", desc: "Produced high-quality video content highlighting client transformations and salon ambiance." }
+    ],
+    timeline: "Ongoing",
+    industry: "Beauty & Wellness",
+    technologies: ['Meta Ads', 'Instagram Reels', 'Fresha', 'Google Local']
   }
 ];
 
