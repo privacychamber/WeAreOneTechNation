@@ -153,6 +153,22 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         metrics: 'Yoga Alliance Certified',
         tags: JSON.stringify(['React', 'PHP', 'MySQL']),
         image_url: '/images/portfolio/himyog.jpg'
+      },
+      {
+        id: 8,
+        title: 'D.O.T Clothing',
+        category: 'E-Commerce',
+        metrics: 'Custom Brand',
+        tags: JSON.stringify(['React', 'Next.js', 'Node.js']),
+        image_url: '/images/portfolio/dot-clothing.jpg'
+      },
+      {
+        id: 9,
+        title: 'Wellness Family',
+        category: 'Health & Wellness',
+        metrics: 'Brand Website',
+        tags: JSON.stringify(['React', 'Next.js', 'Node.js']),
+        image_url: '/images/portfolio/wellness-family.jpg'
       }
     ]
   };
