@@ -1,8 +1,10 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 export const AboutSection: React.FC = () => {
+  const navigate = useNavigate();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -70,6 +72,7 @@ export const AboutSection: React.FC = () => {
             </motion.p>
             
             <motion.button 
+              onClick={() => navigate('/about')}
               variants={itemVariants}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
@@ -130,6 +133,7 @@ export const AboutSection: React.FC = () => {
                 realize their digital full potential.
               </p>
               <motion.button 
+                onClick={() => navigate('/about')}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="interactive-glow-button group bg-[#2563eb] hover:bg-[#1d4ed8] shadow-lg shadow-blue-500/25 text-white text-[14px] font-medium rounded-full pl-6 pr-2 py-2 flex items-center gap-4 transition-all duration-300"

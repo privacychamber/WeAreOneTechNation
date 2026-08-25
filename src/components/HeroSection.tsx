@@ -3,10 +3,12 @@ import { ArrowRight } from 'lucide-react';
 import { Shader, Swirl, ChromaFlow, FilmGrain, FlutedGlass } from 'shaders/react';
 import { useContent } from '../hooks/useContent';
 import { useTheme } from '../hooks/useTheme';
+import { useNavigate } from 'react-router-dom';
 
 export const HeroSection: React.FC = () => {
   const { content } = useContent();
   const { theme } = useTheme();
+  const navigate = useNavigate();
   const isDark = theme === 'dark';
 
   return (
@@ -41,7 +43,7 @@ export const HeroSection: React.FC = () => {
         />
 
         <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
-          <button className="interactive-glow-button group bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-[13px] leading-[14px] font-medium rounded-full pl-5 sm:pl-6 pr-2 py-2 flex items-center gap-3 transition-colors duration-300">
+          <button onClick={() => navigate('/contact')} className="interactive-glow-button group bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-[13px] leading-[14px] font-medium rounded-full pl-5 sm:pl-6 pr-2 py-2 flex items-center gap-3 transition-colors duration-300">
             <div className="flex-col overflow-hidden h-[20px] relative w-auto">
               <div className="flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-translate-y-1/2">
                 <span className="h-[20px] flex items-center">Start a project</span>
