@@ -29,7 +29,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         description: 'We integrate advanced LLMs and custom automation pipelines into your existing workflows to reduce manual overhead and increase decision-making speed.',
         features: JSON.stringify(['Custom GPT & LLM Integration', 'Automated Content Pipelines', 'Intelligent Customer Support Bots', 'Predictive Analytics Dashboards']),
         icon: 'cpu',
-        image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=2000'
+        image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=2000'
       },
       {
         id: 2,
@@ -38,7 +38,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         description: 'Beyond aesthetics, we build for conversion. Our websites are lightweight, SEO-engineered, and designed with psychological triggers to turn visitors into leads.',
         features: JSON.stringify(['React & Next.js Development', 'Headless CMS Architecture', 'Performance Optimization', 'SEO & Conversion Engineering']),
         icon: 'globe',
-        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000'
+        image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=2000'
       },
       {
         id: 3,
@@ -47,7 +47,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         description: 'Build for today, scale for tomorrow. We design cloud-native infrastructures that handle traffic spikes and complex data loads with ease.',
         features: JSON.stringify(['Cloud Infrastructure (AWS/GCP/Azure)', 'Microservices Architecture', 'Database Optimization', 'Real-time Data Processing']),
         icon: 'layers',
-        image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2000'
+        image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=2000'
       },
       {
         id: 4,
@@ -56,7 +56,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         description: 'We build end-to-end web applications designed to convert. Our websites are lightweight, SEO-engineered, and designed with psychological triggers to turn visitors into leads.',
         features: JSON.stringify(['React & Next.js Development', 'Headless CMS Architecture', 'Performance Optimization', 'SEO & Conversion Engineering']),
         icon: 'globe',
-        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000'
+        image: 'https://images.unsplash.com/photo-1507238691740-14c27d7620f1?auto=format&fit=crop&q=80&w=2000'
       },
       {
         id: 5,
@@ -65,7 +65,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         description: 'Modern UX/UI that wows your customers. We design premium brand experiences, from initial wireframes to high-fidelity interactive prototypes.',
         features: JSON.stringify(['UI/UX Design', 'Brand Identity', 'Interactive Prototyping', 'Design Systems']),
         icon: 'layers',
-        image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=2000'
+        image: 'https://images.unsplash.com/photo-1587440871876-04907ba087a3?auto=format&fit=crop&q=80&w=2000'
       },
       {
         id: 6,
@@ -74,7 +74,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         description: 'We don’t just build your product; we help you scale it. From comprehensive go-to-market strategies to full business management and growth marketing campaigns.',
         features: JSON.stringify(['Go-to-Market Strategy', 'Growth Marketing', 'Lead Generation Automation', 'End-to-End Business Management']),
         icon: 'globe',
-        image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&q=80&w=2000'
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000'
       },
       {
         id: 7,
@@ -83,7 +83,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         description: 'Professional social media management that handles everything for you. From content planning to publishing and meta ads management, we help your business build a stronger online presence and generate more leads.',
         features: JSON.stringify(['Premium Social Media Posts', 'High-Engagement Reels', 'Meta Ads Management', 'Campaign Monitoring']),
         icon: 'globe',
-        image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=2000'
+        image: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&q=80&w=2000'
       },
       {
         id: 8,
@@ -92,7 +92,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         description: 'Tailored for content creators, influencers, and personal brands. We manage your content production, growth strategy, and community engagement so you can focus on creating inspiring content.',
         features: JSON.stringify(['Content Production', 'Growth Strategy', 'Community Management', 'Performance Analytics']),
         icon: 'zap',
-        image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=2000'
+        image: 'https://images.unsplash.com/photo-1493612276216-ee3925520721?auto=format&fit=crop&q=80&w=2000'
       },
       {
         id: 9,
@@ -101,7 +101,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         description: 'Specialized social media marketing designed to bring real foot traffic and bookings to salons, clinics, and local businesses. Turn your social media into an active lead generation engine.',
         features: JSON.stringify(['Targeted Local Meta Ads', 'High-Conversion Creatives', 'Booking Optimization', 'Audience Engagement']),
         icon: 'globe',
-        image: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=2000'
+        image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=2000'
       }
     ],
     portfolio: [
