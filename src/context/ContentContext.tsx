@@ -56,7 +56,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         description: 'We build end-to-end web applications designed to convert. Our websites are lightweight, SEO-engineered, and designed with psychological triggers to turn visitors into leads.',
         features: JSON.stringify(['React & Next.js Development', 'Headless CMS Architecture', 'Performance Optimization', 'SEO & Conversion Engineering']),
         icon: 'globe',
-        image: 'https://images.unsplash.com/photo-1507238691740-14c27d7620f1?auto=format&fit=crop&q=80&w=2000'
+        image: 'https://images.unsplash.com/photo-1547658719-da2b51151dda?auto=format&fit=crop&q=80&w=2000'
       },
       {
         id: 5,
@@ -65,7 +65,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         description: 'Modern UX/UI that wows your customers. We design premium brand experiences, from initial wireframes to high-fidelity interactive prototypes.',
         features: JSON.stringify(['UI/UX Design', 'Brand Identity', 'Interactive Prototyping', 'Design Systems']),
         icon: 'layers',
-        image: 'https://images.unsplash.com/photo-1587440871876-04907ba087a3?auto=format&fit=crop&q=80&w=2000'
+        image: 'https://images.unsplash.com/photo-1507238691740-14c27d7620f1?auto=format&fit=crop&q=80&w=2000'
       },
       {
         id: 6,
@@ -83,7 +83,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         description: 'Professional social media management that handles everything for you. From content planning to publishing and meta ads management, we help your business build a stronger online presence and generate more leads.',
         features: JSON.stringify(['Premium Social Media Posts', 'High-Engagement Reels', 'Meta Ads Management', 'Campaign Monitoring']),
         icon: 'globe',
-        image: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&q=80&w=2000'
+        image: 'https://images.unsplash.com/photo-1616469829581-73993eb86b02?auto=format&fit=crop&q=80&w=2000'
       },
       {
         id: 8,
