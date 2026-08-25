@@ -111,8 +111,8 @@ export const AboutSection: React.FC = () => {
           </div>
 
           {/* Desktop Layout (>= lg) */}
-          <div className="hidden lg:grid grid-cols-[26%_1fr_48%] items-end gap-6 xl:gap-8">
-            <motion.div variants={imageVariants} className="relative w-full aspect-[438/346] rounded-[2rem] overflow-hidden self-end shadow-[0_8px_30px_rgba(0,0,0,0.06)] dark:shadow-2xl border border-transparent dark:border-slate-700/50 hover:border-[#2563eb]/30 transition-colors duration-300 group">
+          <div className="hidden lg:grid grid-cols-[28%_1fr_46%] items-center gap-6 xl:gap-10">
+            <motion.div variants={imageVariants} className="relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.06)] dark:shadow-2xl border border-transparent dark:border-slate-700/50 hover:border-[#2563eb]/30 transition-colors duration-300 group">
               <motion.img 
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
@@ -123,7 +123,7 @@ export const AboutSection: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </motion.div>
             
-            <motion.div variants={itemVariants} className="self-start flex flex-col items-end pb-8">
+            <motion.div variants={itemVariants} className="flex flex-col items-center lg:items-end text-center lg:text-right px-4">
               <p className="text-[17px] leading-[1.65] font-medium text-gray-900 dark:text-gray-300 whitespace-nowrap text-right mb-10 transition-colors duration-300">
                 Through research, creative thinking <br/>
                 and iteration we help growing brands <br/>
@@ -146,7 +146,7 @@ export const AboutSection: React.FC = () => {
               </motion.button>
             </motion.div>
 
-            <motion.div variants={imageVariants} className="relative w-full aspect-[3/2] rounded-[2rem] overflow-hidden self-end shadow-[0_8px_30px_rgba(0,0,0,0.06)] dark:shadow-2xl border border-transparent dark:border-slate-700/50 hover:border-[#2563eb]/30 transition-colors duration-300 group">
+            <motion.div variants={imageVariants} className="relative w-full aspect-[16/10] rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.06)] dark:shadow-2xl border border-transparent dark:border-slate-700/50 hover:border-[#2563eb]/30 transition-colors duration-300 group">
               <motion.img 
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}

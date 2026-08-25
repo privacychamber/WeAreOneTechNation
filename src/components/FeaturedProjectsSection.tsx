@@ -56,7 +56,7 @@ export const FeaturedProjectsSection: React.FC = () => {
         </motion.div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 px-5 sm:px-8 lg:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 px-5 sm:px-8 lg:px-12">
           {featuredProjects.map((project: any) => {
             let tagsList = [];
             try { tagsList = JSON.parse(project.tags || '[]'); } catch(e) {}
@@ -66,7 +66,7 @@ export const FeaturedProjectsSection: React.FC = () => {
                 key={project.id} 
                 className="group relative block bg-white dark:bg-slate-800 rounded-[2rem] overflow-hidden border border-gray-100 dark:border-slate-700/50 shadow-sm hover:shadow-2xl dark:shadow-[0_4px_24px_rgba(0,0,0,0.2)] hover:border-[#2563eb]/30 transition-all duration-500"
               >
-                <div className="aspect-[4/3] overflow-hidden relative">
+                <div className="aspect-[16/10] sm:aspect-[3/2] md:aspect-[16/10] overflow-hidden relative">
                   <motion.img 
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.7 }}
